@@ -2,7 +2,6 @@
 module.exports = {
   basePath: '/hopp',
   reactStrictMode: false,
-  trailingSlash: true,
   async redirects() {
     return [
       {
