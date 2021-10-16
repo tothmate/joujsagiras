@@ -1,12 +1,12 @@
 {
   "rewrites": [
     {
-      "source": "/hopp/:match*",
-      "destination": "https://joujsagiras-hopp.vercel.app/hopp/:match*"
+        "source": "/hopp/create",
+        "destination": "https://joujsagiras-hopp.vercel.app/hopp/create"
     },
     {
-      "source": "/:match*",
-      "destination": "https://joujsagiras-home.vercel.app/:match*"
+      "source": "/hopp/:match*",
+      "destination": "https://joujsagiras-hopp.vercel.app/hopp/:match*"
     }
   ]
 }
