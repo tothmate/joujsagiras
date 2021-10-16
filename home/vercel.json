@@ -1,8 +1,8 @@
 {
   "rewrites": [
     {
-        "source": "/hopp/create",
-        "destination": "https://joujsagiras-hopp.vercel.app/hopp/create"
+        "source": "/hopp",
+        "destination": "https://joujsagiras-hopp.vercel.app/hopp"
     },
     {
       "source": "/hopp/:match*",
