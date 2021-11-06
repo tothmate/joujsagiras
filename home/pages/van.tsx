@@ -1,15 +1,15 @@
 import Link from "next/link";
-import Explanation from "../components/explanation";
+import Paragraph from "../components/paragraph";
 import Layout from "../components/layout";
-import Marker from "../components/marker";
+import { Heading1, Heading2 } from "../components/marker";
 
 const Page = () => (
   <Layout darkLogo="primary">
-    <Marker element="h1">Van jó újságírás</Marker>
+    <Heading1>Van jó újságírás</Heading1>
 
-    <Marker element="h2">A jó újságírás a rossz újságírás ellentéte.</Marker>
+    <Heading2>A jó újságírás a rossz újságírás ellentéte.</Heading2>
 
-    <Explanation>
+    <Paragraph>
       „A média hatalmáról való beszéd sokszor eltúlzott, és elsősorban
       politikusok szeretik emlegetni. A médiának valójában nincs szüksége
       nagyobb hatalomra és szabadságra, mint amennyi egy közrendőrnek van, aki
@@ -27,28 +27,28 @@ const Page = () => (
       számára a tudat, hogy nem érheti retorzió, ha a szakmája szabályai szerint
       jár el, mert mellette állnak a jogszabályok, a kollégái és a társadalom
       ítélete is. Ennyire van szüksége a sajtónak is.
-    </Explanation>
+    </Paragraph>
 
-    <Explanation>
+    <Paragraph>
       Az elfogultság persze nem száz százalékig szűrhető ki az újságírói
       munkából. Egyáltalán nem mindegy azonban, hogy végül mennyi marad belőle.
-    </Explanation>
+    </Paragraph>
 
-    <Marker element="h2">Olyan ez, mint az ivóvízben lévő arzén.</Marker>
+    <Heading2>Olyan ez, mint az ivóvízben lévő arzén.</Heading2>
 
-    <Explanation>
+    <Paragraph>
       Magyarországon köztudomásúan szinten mindenhol tartalmaz az ivóvíz
       valamennyi arzént, Csongrád megyében a legtöbbet. Nem mindegy azonban,
       hogy mennyi arzén van a vízben. Az egészségügyi határérték (egyébként 0,01
       mg/L) alatt a fogyasztása nem jelent egészségügyi kockázatot.
-    </Explanation>
+    </Paragraph>
 
-    <Marker element="h2">
+    <Heading2>
       A sajtó elfogultsága is ilyen: teljes egészében nem szüntethető meg, de
       szabályokkal az egészségügyi határérték alatt tartható.
-    </Marker>
+    </Heading2>
 
-    <Explanation>
+    <Paragraph>
       A függetlenség nem azt jelenti, hogy nem gondolunk semmit a világról.
       Jelenti viszont azt, hogy személyes érdekeinket és meggyőződéseinket
       alárendeljük egy adott szakma szabályainak és ethoszának. Álláspontunkat,
@@ -59,22 +59,22 @@ const Page = () => (
       minél inkább kiszűrje és a tények próbájának vesse alá. Ilyen szabály a
       tények ellenőrzése, a tények és a vélemények elválasztásának elve, az
       egyenlő mérce alkalmazása, minden releváns fél meghallgatása.
-    </Explanation>
+    </Paragraph>
 
-    <Explanation>
+    <Paragraph>
       Visszautalva a hasonlatra a közrendőrről: hogy a gyorshajtás gyorshajtás
       legyen, függetlenül attól, hogy ismert politikus, csinos nő, udvariatlan
       bunkó vagy kedvelt szomszédunk követte-e el.
-    </Explanation>
+    </Paragraph>
 
-    <Explanation>
+    <Paragraph>
       Ahogy vannak jó rendőrök, úgy vannak jó újságírók is. Akik jó újságírás
       művelnek.
-    </Explanation>
+    </Paragraph>
 
-    <Marker element="h1">
+    <Heading1>
       Milyen a jó újságírás? <Link href="/milyen">Katt ide.</Link>
-    </Marker>
+    </Heading1>
   </Layout>
 );
 

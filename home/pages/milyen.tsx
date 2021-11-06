@@ -1,5 +1,5 @@
 import Link from "next/link";
-import Explanation from "../components/explanation";
+import Explanation from "../components/paragraph";
 import Layout from "../components/layout";
 import Marker from "../components/marker";
 

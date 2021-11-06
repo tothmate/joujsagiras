@@ -30,3 +30,11 @@ export default function Marker(props: {
       return <span className={classNames.join(" ")}>{props.children}</span>;
   }
 }
+
+export function Heading1(props) {
+  return <Marker element="h1" {...props} />;
+}
+
+export function Heading2(props) {
+  return <Marker element="h2" {...props} />;
+}
