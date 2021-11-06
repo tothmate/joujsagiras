@@ -7,7 +7,7 @@ const Page = () => (
       justifyContent: "center",
       alignItems: "center",
       minHeight: "100vh",
-      fontSize: "5em",
+      fontSize: "10vw",
     }}
   >
     <Marker primary element="link" href="/van">
