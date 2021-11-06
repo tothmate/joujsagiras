@@ -1,0 +1,43 @@
+@import '../styles/variables.scss';
+
+.marker {
+    padding: 0.1em 0.3em;
+    margin: 0.1em;
+    text-transform: uppercase;
+    color: $dark-color;
+    text-decoration: inherit;
+    
+    &.primary {
+        background-color: $primary-color;
+    }
+
+    &.secondary {
+        background-color: $secondary-color;
+    }
+
+    &.dark {
+        background-color: $dark-color;
+        color: $light-color;
+    }
+}
+
+h1.marker {
+    margin-left: 0;
+    padding: 0;
+    background-color: $dark-color;
+    color: $light-color;
+    font-size: 3em;
+
+    & a {
+        color: inherit;
+    }
+}
+
+h2.marker {
+    width: 100%;
+    margin: 0.5em 0;
+    box-sizing: border-box;
+    background-color: $secondary-color;
+    color: $dark-color;
+    font-size: 1.5em;
+}

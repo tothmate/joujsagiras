@@ -1,0 +1,20 @@
+@import '../styles/variables.scss';
+
+.explanation {
+    background-color: $light-color;
+    color: $dark-color;
+    padding: 0.1em 0.3em;
+    width: 100%;
+    box-sizing: border-box;
+    overflow: hidden;
+    margin: 1em 0;
+
+    & .borderBottom {
+        border-left: $max-width/2 solid transparent;
+        border-bottom: 10px solid $dark-color;
+        position: relative;
+        left: 50%;
+        bottom: -0.1em;
+    }
+}
+
