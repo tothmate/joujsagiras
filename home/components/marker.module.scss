@@ -19,6 +19,10 @@
         background-color: $dark-color;
         color: $light-color;
     }
+
+    &.clickable {
+        cursor: pointer;
+    }
 }
 
 h1.marker {

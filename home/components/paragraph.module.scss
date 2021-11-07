@@ -1,3 +1,4 @@
+@use "sass:math";
 @import '../styles/variables.scss';
 
 .paragraph {
@@ -10,7 +11,7 @@
     margin: 1em 0;
 
     & .borderBottom {
-        border-left: $max-width/2 solid transparent;
+        border-left: math.div($max-width, 2) solid transparent;
         border-bottom: 10px solid $dark-color;
         position: relative;
         left: 50%;

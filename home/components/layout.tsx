@@ -30,3 +30,7 @@ export default function Layout(props: {
     </>
   );
 }
+
+export function HomeLayout(props: { children: React.ReactNode }) {
+  return <div className={styles.home}>{props.children}</div>;
+}

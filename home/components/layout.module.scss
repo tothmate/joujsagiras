@@ -12,3 +12,19 @@
     max-width: 2 * $max-width;
     margin-right: 0.3em;
 }
+
+.home {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    font-size: 9vw;
+    margin: 0 auto;
+    white-space: nowrap;
+}
+
+@media (min-width: 768px) {
+    .home {
+        font-size: 5em;
+    }
+}
