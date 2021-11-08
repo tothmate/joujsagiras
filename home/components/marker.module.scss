@@ -6,7 +6,7 @@
     text-transform: uppercase;
     color: $dark-color;
     text-decoration: inherit;
-    
+
     &.primary {
         background-color: $primary-color;
     }
@@ -30,7 +30,7 @@ h1.marker {
     padding: 0;
     background-color: $dark-color;
     color: $light-color;
-    font-size: 3em;
+    font-size: 12vw;
 
     & a {
         color: inherit;
