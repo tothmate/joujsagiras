@@ -3,7 +3,7 @@ import DropdownList from "../components/dropdownList";
 import Layout from "../components/layout";
 import { Heading1 } from "../components/marker";
 
-const content = [
+const contents = [
   {
     title: "Tájékoztatja a közvéleményt",
     list: [
@@ -26,7 +26,7 @@ const content = [
 const Page = () => (
   <Layout darkLogo="secondary">
     <Heading1>A jó újságírás</Heading1>
-    <DropdownList content={content} />
+    <DropdownList contents={contents} />
   </Layout>
 );
 

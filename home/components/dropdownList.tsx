@@ -8,9 +8,9 @@ interface DropdownListContent {
 }
 
 export function Dropdown(props: {
-  title: string;
-  list: string[];
+  content: DropdownListContent;
   color: string;
+  fadeInDelay: number;
 }) {
   const [open, setOpen] = useState(false);
   const handleTitleClick = useCallback(
@@ -18,38 +18,49 @@ export function Dropdown(props: {
     []
   );
 
+  const listItemFadeInDelay =
+    parseFloat(styles.fadeInDuration) / props.content.list.length;
+
   return (
-    <>
+    <div
+      className={styles.fadeIn}
+      style={{ animationDelay: `${props.fadeInDelay}s` }}
+    >
       <Heading2 onClick={handleTitleClick} color={props.color}>
-        {props.title}
+        {props.content.title}
       </Heading2>
       <ul
         className={`${styles.dropdown} ${open ? styles.open : styles.closed}`}
       >
-        {props.list.map((e, i) => (
-          <li key={i}>
+        {props.content.list.map((e, i) => (
+          <li
+            key={i}
+            className={styles.fadeIn}
+            style={{ animationDelay: `${i * listItemFadeInDelay}s` }}
+          >
             <Marker color={props.color}>{e}</Marker>
           </li>
         ))}
       </ul>
-    </>
+    </div>
   );
 }
 
 export default function DropdownList(props: {
-  content: DropdownListContent[];
+  contents: DropdownListContent[];
 }) {
   const gradient = tinygradient(styles.startColor, styles.endColor);
-  const lastIndex = props.content.length - 1;
+  const lastIndex = props.contents.length - 1;
+  const fadeInDelay = parseFloat(styles.fadeInDuration) / props.contents.length;
 
   return (
     <>
-      {props.content.map((row, i) => (
+      {props.contents.map((content, i) => (
         <Dropdown
-          title={row.title}
-          list={row.list}
+          content={content}
           key={i}
           color={gradient.rgbAt(i / lastIndex).toHexString()}
+          fadeInDelay={i * fadeInDelay}
         />
       ))}
     </>

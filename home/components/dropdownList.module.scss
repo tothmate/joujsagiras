@@ -1,5 +1,16 @@
 @import '../styles/variables.scss';
 
+@keyframes fade-in {
+    0% { opacity: 0}
+    100% { opacity: 1}
+}
+
+.fadeIn {
+    animation-name: fade-in;
+    animation-fill-mode: both;
+    animation-duration: $fade-in-duration;
+}
+
 ul.dropdown {
     list-style-type: none;
     padding-left: 2em;
@@ -22,4 +33,5 @@ ul.dropdown {
 :export {
     startColor: $secondary-color;
     endColor: $primary-color;
+    fadeInDuration: $fade-in-duration;
 }
