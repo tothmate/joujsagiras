@@ -1,8 +1,7 @@
 import React, { useCallback, useState } from "react";
 import tinygradient from "tinygradient";
 import styles from "./dropdownList.module.scss";
-import { Heading2 } from "./marker";
-
+import Marker, { Heading2 } from "./marker";
 interface DropdownListContent {
   title: string;
   list: string[];
@@ -29,7 +28,7 @@ export function Dropdown(props: {
       >
         {props.list.map((e, i) => (
           <li key={i}>
-            <Heading2 color={props.color}>{e}</Heading2>
+            <Marker color={props.color}>{e}</Marker>
           </li>
         ))}
       </ul>
