@@ -1,8 +1,14 @@
 import React, { useCallback, useState } from "react";
-import styles from "./dropdown.module.scss";
+import tinygradient from "tinygradient";
+import styles from "./dropdownList.module.scss";
 import { Heading2 } from "./marker";
 
-export default function Dropdown(props: {
+interface DropdownListContent {
+  title: string;
+  list: string[];
+}
+
+export function Dropdown(props: {
   title: string;
   list: string[];
   color: string;
@@ -27,6 +33,26 @@ export default function Dropdown(props: {
           </li>
         ))}
       </ul>
+    </>
+  );
+}
+
+export default function DropdownList(props: {
+  content: DropdownListContent[];
+}) {
+  const gradient = tinygradient(styles.startColor, styles.endColor);
+  const lastIndex = props.content.length - 1;
+
+  return (
+    <>
+      {props.content.map((row, i) => (
+        <Dropdown
+          title={row.title}
+          list={row.list}
+          key={i}
+          color={gradient.rgbAt(i / lastIndex).toHexString()}
+        />
+      ))}
     </>
   );
 }

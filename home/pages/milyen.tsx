@@ -1,5 +1,5 @@
 import tinygradient from "tinygradient";
-import Dropdown from "../components/dropdown";
+import DropdownList from "../components/dropdownList";
 import Layout from "../components/layout";
 import { Heading1 } from "../components/marker";
 
@@ -23,20 +23,10 @@ const content = [
   { title: "Oktatja és neveli az állampolgárokat", list: [] },
 ];
 
-const gradient = tinygradient("#5ac8fa", "#32d74b");
-
 const Page = () => (
   <Layout darkLogo="secondary">
     <Heading1>A jó újságírás</Heading1>
-
-    {content.map((row, i) => (
-      <Dropdown
-        title={row.title}
-        list={row.list}
-        key={i}
-        color={gradient.rgbAt(i / (content.length - 1)).toHexString()}
-      />
-    ))}
+    <DropdownList content={content} />
   </Layout>
 );
 
