@@ -4,11 +4,13 @@
 .paragraph {
     background-color: $light-color;
     color: $dark-color;
-    padding: 0.1em 0.3em;
+    padding: 0.5em 0.5em;
     width: 100%;
     box-sizing: border-box;
     overflow: hidden;
     margin: 1em 0;
+    font-size: 1.2em;
+    line-height: 1.4;
 
     & .borderBottom {
         border-left: math.div($max-width, 2) solid transparent;
@@ -18,4 +20,3 @@
         bottom: -0.1em;
     }
 }
-
