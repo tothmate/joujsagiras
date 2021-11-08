@@ -1,14 +1,14 @@
 import { HomeLayout } from "../components/layout";
-import Marker from "../components/marker";
+import Marker, { PrimaryMarker, SecondaryMarker } from "../components/marker";
 
 const Page = () => (
   <HomeLayout>
-    <Marker primary element="link" href="/van">
+    <PrimaryMarker element="link" href="/van">
       Van
-    </Marker>
-    <Marker secondary element="link" href="/milyen">
+    </PrimaryMarker>
+    <SecondaryMarker element="link" href="/milyen">
       Jó újságírás
-    </Marker>
+    </SecondaryMarker>
   </HomeLayout>
 );
 

@@ -31,7 +31,7 @@ ul.dropdown {
 }
 
 :export {
-    startColor: $secondary-color;
-    endColor: $primary-color;
+    startColor: $primary-color;
+    endColor: $secondary-color;
     fadeInDuration: $fade-in-duration;
 }

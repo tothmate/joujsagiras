@@ -2,9 +2,7 @@ import React, { MouseEventHandler } from "react";
 import styles from "./marker.module.scss";
 interface MarkerProps {
   children: React.ReactNode;
-  primary?: boolean;
-  secondary?: boolean;
-  dark?: boolean;
+  classNames?: string[];
   color?: string;
   element?: "h1" | "h2" | "link";
   href?: string;
@@ -12,11 +10,11 @@ interface MarkerProps {
 }
 
 export default function Marker(props: MarkerProps) {
-  const classNames = [styles.marker];
-  if (props.primary) classNames.push(styles.primary);
-  if (props.secondary) classNames.push(styles.secondary);
-  if (props.dark) classNames.push(styles.dark);
-  if (props.onClick) classNames.push(styles.clickable);
+  const classNames = props.classNames ? props.classNames : [];
+  classNames.push(styles.marker);
+  if (props.onClick) {
+    classNames.push(styles.clickable);
+  }
 
   const extraProps = {
     className: classNames.join(" "),
@@ -46,4 +44,23 @@ export function Heading1(props: MarkerProps) {
 
 export function Heading2(props: MarkerProps) {
   return <Marker element="h2" {...props} />;
+}
+
+export function PrimaryMarker(props: MarkerProps) {
+  return <Marker classNames={[styles.primary]} {...props} />;
+}
+
+export function SecondaryMarker(props: MarkerProps) {
+  return <Marker classNames={[styles.secondary]} {...props} />;
+}
+
+export function MenuItem(props: { href: string; children: React.ReactNode }) {
+  return (
+    <Marker
+      element="link"
+      href={props.href}
+      classNames={[styles.menuItem]}
+      children={props.children}
+    ></Marker>
+  );
 }

@@ -15,13 +15,22 @@
         background-color: $secondary-color;
     }
 
-    &.dark {
-        background-color: $dark-color;
-        color: $light-color;
-    }
-
     &.clickable {
         cursor: pointer;
+    }
+
+    &.menuItem {
+        background-color: $dark-color;
+        color: $light-color;
+        padding: 0;
+    }
+
+    &.menuItem:hover {
+        border-bottom: 3px solid $primary-color;
+    }
+
+    & a {
+        color: inherit;
     }
 }
 
@@ -31,10 +40,6 @@ h1.marker {
     background-color: $dark-color;
     color: $light-color;
     font-size: 12vw;
-
-    & a {
-        color: inherit;
-    }
 }
 
 @media (min-width: 768px) {
@@ -48,7 +53,7 @@ h2.marker {
     width: 100%;
     margin: 0.5em 0;
     box-sizing: border-box;
-    background-color: $secondary-color;
+    background-color: $primary-color;
     color: $dark-color;
     font-size: 1.5em;
 }

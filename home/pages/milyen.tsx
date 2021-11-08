@@ -24,7 +24,7 @@ const contents = [
 ];
 
 const Page = () => (
-  <Layout darkLogo="secondary">
+  <Layout>
     <Heading1>A jó újságírás</Heading1>
     <DropdownList contents={contents} />
   </Layout>
