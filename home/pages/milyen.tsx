@@ -5,9 +5,9 @@ import { Heading1 } from "../components/marker";
 
 const contents = [
   {
-    title: "Tájékoztatja a közvéleményt",
+    title: "Tájékoztatja a társadalmat",
     list: [
-      "tényszerű",
+      "igaz",
       "ellenőrizhető",
       "kiegyensúlyozott",
       "értelmezhető",
@@ -16,10 +16,35 @@ const contents = [
       "releváns",
     ],
   },
-  { title: "Teret ad a vitáknak és véleményeknek", list: ["asfsdfas"] },
-  { title: "Ellenőrzi a társadalomban hatalommal bírókat", list: [] },
-  { title: "Feltárja az igazságot", list: [] },
-  { title: "Láthatóvá tesz és felhangosít ügyeket", list: [] },
+  { title: "Teret ad a vitáknak és véleményeknek", list: [
+    "véleményt formál",
+    "véleményt közzétesz",
+    "megkülönbözteti a véleményt a ténytől",
+    "ütköztet",
+    "higgadt",
+  ]
+},
+  { title: "Ellenőrzi a társadalomban hatalommal bírókat", list: [
+    "kritikus",
+    "elfogulatlan",
+    "számonkér",
+    "szembesít",
+  ] },
+  { title: "Feltárja az igazságot", list: [
+    "alapos",
+    "pontos",
+    "megalapozott",
+    "megkérdezi a másik felet",
+    "méltányos",
+    "eredeti",
+  ] },
+  { title: "Láthatóvá tesz és felhangosít ügyeket", list: [
+    "felkarol ügyeket",
+    "az egyént védi",
+    "széles merítésű",
+    "sokszínű",
+    "reprezentatív",
+  ] },
   { title: "Oktatja és neveli az állampolgárokat", list: [] },
 ];
 
