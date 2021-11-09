@@ -1,5 +1,5 @@
 import { HomeLayout } from "../components/layout";
-import Marker, { PrimaryMarker, SecondaryMarker } from "../components/marker";
+import { PrimaryMarker, SecondaryMarker } from "../components/marker";
 
 const Page = () => (
   <HomeLayout>

@@ -1,33 +1,23 @@
-@import '../styles/variables.scss';
-
-.header {
-    display: flex;
-    justify-content: space-between;
-    margin: 0.5em 5em;
-
-    & a {
-        margin: 0 0.5em;
-    }
-}
+@import "../styles/variables.scss";
 
 .layout {
-    width: 80%;
-    max-width: $max-width;
-    margin: 5vw auto 0;
+  width: 90%;
+  max-width: $max-width;
+  margin: 5vw auto 0;
 }
 
 .home {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-height: 100vh;
-    font-size: 9vw;
-    margin: 0 auto;
-    white-space: nowrap;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 80vh;
+  font-size: 5em;
+  margin: 0 auto;
+  white-space: nowrap;
 }
 
-@media (min-width: 768px) {
-    .home {
-        font-size: 5em;
-    }
+@media (max-width: $max-width) {
+  .home {
+    font-size: 10vw;
+  }
 }

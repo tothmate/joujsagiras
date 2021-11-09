@@ -1,37 +1,41 @@
-@import '../styles/variables.scss';
+@import "../styles/variables.scss";
 
 @keyframes fade-in {
-    0% { opacity: 0}
-    100% { opacity: 1}
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
 }
 
 .fadeIn {
-    animation-name: fade-in;
-    animation-fill-mode: both;
-    animation-duration: $fade-in-duration;
+  animation-name: fade-in;
+  animation-fill-mode: both;
+  animation-duration: $fade-in-duration;
 }
 
 ul.dropdown {
-    list-style-type: none;
-    padding-left: 2em;
-    margin: 0;
+  list-style-type: none;
+  padding-left: 2em;
+  margin: 0;
 
-    &.open {
-        display: block;
-    }
+  &.open {
+    display: block;
+  }
 
-    &.closed {
-        display: none;
-    }
+  &.closed {
+    display: none;
+  }
 
-    & li {
-        font-size: 1.5em;
-        margin: 0.5em 0;
-    }
+  & li {
+    font-size: 1.5em;
+    margin: 0.5em 0;
+  }
 }
 
 :export {
-    startColor: $primary-color;
-    endColor: $secondary-color;
-    fadeInDuration: $fade-in-duration;
+  startColor: $primary-color;
+  endColor: $secondary-color;
+  fadeInDuration: $fade-in-duration;
 }

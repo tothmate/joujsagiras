@@ -1,0 +1,29 @@
+@import "../styles/variables.scss";
+
+.menu {
+  display: flex;
+  justify-content: space-between;
+  width: 90%;
+  max-width: $max-width;
+  margin: 0.5em auto;
+
+  & a {
+    margin-right: 0.5em;
+  }
+
+  & a:last-of-type {
+    margin-right: 0;
+  }
+}
+
+.menuItem {
+    background-color: $dark-color;
+    color: $light-color;
+    padding: 0;
+    text-transform: uppercase;
+    text-decoration: inherit;
+}
+
+.menuItem:hover {
+    border-bottom: 3px solid $primary-color;
+}

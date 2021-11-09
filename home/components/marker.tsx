@@ -10,8 +10,10 @@ interface MarkerProps {
 }
 
 export default function Marker(props: MarkerProps) {
-  const classNames = props.classNames ? props.classNames : [];
-  classNames.push(styles.marker);
+  const classNames = [styles.marker];
+  if (props.classNames) {
+    classNames.push(...props.classNames);
+  }
   if (props.onClick) {
     classNames.push(styles.clickable);
   }
@@ -52,15 +54,4 @@ export function PrimaryMarker(props: MarkerProps) {
 
 export function SecondaryMarker(props: MarkerProps) {
   return <Marker classNames={[styles.secondary]} {...props} />;
-}
-
-export function MenuItem(props: { href: string; children: React.ReactNode }) {
-  return (
-    <Marker
-      element="link"
-      href={props.href}
-      classNames={[styles.menuItem]}
-      children={props.children}
-    ></Marker>
-  );
 }

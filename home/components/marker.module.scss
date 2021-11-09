@@ -1,59 +1,48 @@
-@import '../styles/variables.scss';
+@import "../styles/variables.scss";
 
 .marker {
-    padding: 0.1em 0.3em;
-    margin: 0.1em;
-    text-transform: uppercase;
-    color: $dark-color;
-    text-decoration: inherit;
+  padding: 0.1em 0.3em;
+  margin: 0.1em;
+  text-transform: uppercase;
+  color: $dark-color;
+  text-decoration: inherit;
 
-    &.primary {
-        background-color: $primary-color;
-    }
+  &.primary {
+    background-color: $primary-color;
+  }
 
-    &.secondary {
-        background-color: $secondary-color;
-    }
+  &.secondary {
+    background-color: $secondary-color;
+  }
 
-    &.clickable {
-        cursor: pointer;
-    }
+  &.clickable {
+    cursor: pointer;
+  }
 
-    &.menuItem {
-        background-color: $dark-color;
-        color: $light-color;
-        padding: 0;
-    }
-
-    &.menuItem:hover {
-        border-bottom: 3px solid $primary-color;
-    }
-
-    & a {
-        color: inherit;
-    }
+  & a {
+    color: inherit;
+  }
 }
 
 h1.marker {
-    margin-left: 0;
-    padding: 0;
-    background-color: $dark-color;
-    color: $light-color;
+  margin-left: 0;
+  padding: 0;
+  background-color: $dark-color;
+  color: $light-color;
+  font-size: 5em;
+}
+
+@media (max-width: $max-width) {
+  h1.marker {
     font-size: 12vw;
+  }
 }
-
-@media (min-width: 768px) {
-    h1.marker {
-        font-size: 5em;
-    }
-}
-
 
 h2.marker {
-    width: 100%;
-    margin: 0.5em 0;
-    box-sizing: border-box;
-    background-color: $primary-color;
-    color: $dark-color;
-    font-size: 1.5em;
+  width: 100%;
+  margin: 0.5em 0;
+  box-sizing: border-box;
+  background-color: $primary-color;
+  color: $dark-color;
+  font-size: 1.5em;
 }
