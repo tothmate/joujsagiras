@@ -40,6 +40,8 @@ const Page = () => {
   useEffect(() => {
     if (router.query.slug) {
       setSelectedAttributeSlug(router.query.slug[0]);
+    } else {
+      setSelectedAttributeSlug(null);
     }
   }, [router.query.slug]);
 
