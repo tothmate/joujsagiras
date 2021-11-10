@@ -5,7 +5,7 @@ const Page = () => (
   <HomeLayout>
     <PrimaryMarker element="link" href="/van">
       Van
-    </PrimaryMarker>
+    </PrimaryMarker>{" "}
     <SecondaryMarker element="link" href="/milyen">
       Jó újságírás
     </SecondaryMarker>

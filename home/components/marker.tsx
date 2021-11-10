@@ -1,10 +1,11 @@
 import React, { MouseEventHandler } from "react";
+import Link from "next/link";
 import styles from "./marker.module.scss";
 interface MarkerProps {
   children: React.ReactNode;
   classNames?: string[];
   color?: string;
-  element?: "h1" | "h2" | "link";
+  element?: "h1" | "h2" | "h3" | "link";
   href?: string;
   onClick?: MouseEventHandler;
 }
@@ -29,11 +30,13 @@ export default function Marker(props: MarkerProps) {
       return <h1 {...extraProps}>{props.children}</h1>;
     case "h2":
       return <h2 {...extraProps}>{props.children}</h2>;
+    case "h3":
+      return <h3 {...extraProps}>{props.children}</h3>;
     case "link":
       return (
-        <a href={props.href} {...extraProps}>
-          {props.children}
-        </a>
+        <Link href={props.href}>
+          <a {...extraProps}>{props.children}</a>
+        </Link>
       );
     default:
       return <span {...extraProps}>{props.children}</span>;
@@ -46,6 +49,10 @@ export function Heading1(props: MarkerProps) {
 
 export function Heading2(props: MarkerProps) {
   return <Marker element="h2" {...props} />;
+}
+
+export function Heading3(props: MarkerProps) {
+  return <Marker element="h3" {...props} />;
 }
 
 export function PrimaryMarker(props: MarkerProps) {

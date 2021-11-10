@@ -4,19 +4,23 @@ import styles from "./dropdownList.module.scss";
 import Marker, { Heading2 } from "./marker";
 interface DropdownListContent {
   title: string;
-  list: string[];
+  list: { subtitle: string; slug: string }[];
 }
 
 export function Dropdown(props: {
   content: DropdownListContent;
   color: string;
   fadeInDelay: number;
+  onItemSelect: (item: string) => void;
 }) {
   const [open, setOpen] = useState(false);
   const handleTitleClick = useCallback(
     () => setOpen((prev: boolean) => !prev),
     []
   );
+  const handleSubtitleClick = useCallback((slug) => {
+    props.onItemSelect(slug);
+  }, []);
 
   const listItemFadeInDelay =
     parseFloat(styles.fadeInDuration) / props.content.list.length;
@@ -32,13 +36,18 @@ export function Dropdown(props: {
       <ul
         className={`${styles.dropdown} ${open ? styles.open : styles.closed}`}
       >
-        {props.content.list.map((e, i) => (
+        {props.content.list.map((row, i) => (
           <li
             key={i}
             className={styles.fadeIn}
             style={{ animationDelay: `${i * listItemFadeInDelay}s` }}
           >
-            <Marker color={props.color}>{e}</Marker>
+            <Marker
+              color={props.color}
+              onClick={() => handleSubtitleClick(row.slug)}
+            >
+              {row.subtitle}
+            </Marker>
           </li>
         ))}
       </ul>
@@ -48,21 +57,23 @@ export function Dropdown(props: {
 
 export default function DropdownList(props: {
   contents: DropdownListContent[];
+  onItemSelect: (item: string) => void;
 }) {
   const gradient = tinygradient(styles.startColor, styles.endColor);
   const lastIndex = props.contents.length - 1;
   const fadeInDelay = parseFloat(styles.fadeInDuration) / props.contents.length;
 
   return (
-    <>
+    <div>
       {props.contents.map((content, i) => (
         <Dropdown
           content={content}
           key={i}
           color={gradient.rgbAt(i / lastIndex).toHexString()}
           fadeInDelay={i * fadeInDelay}
+          onItemSelect={props.onItemSelect}
         />
       ))}
-    </>
+    </div>
   );
 }
