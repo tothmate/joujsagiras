@@ -30,15 +30,18 @@ const Page = () => {
   >(null);
   const attributeDetails = slugs.get(selectedAttributeSlug);
   const router = useRouter();
-  const handleItemSelected = useCallback((item: string) => {
-    setSelectedAttributeSlug(item);
-    router.push(`/milyen/${item}`, undefined, { shallow: true });
-  }, []);
+  const handleItemSelected = useCallback(
+    (item: string) => {
+      setSelectedAttributeSlug(item);
+      router.push(`/milyen/${item}`, undefined, { shallow: true });
+    },
+    [router]
+  );
   useEffect(() => {
     if (router.query.slug) {
       setSelectedAttributeSlug(router.query.slug[0]);
     }
-  }, [router.isReady]);
+  }, [router.query.slug]);
 
   return (
     <Layout>
@@ -53,8 +56,8 @@ const Page = () => {
 
       {attributeDetails && (
         <>
-          {attributeDetails.explanation.map((explanation: string) => (
-            <Paragraph>{explanation}</Paragraph>
+          {attributeDetails.explanation.map((explanation: string, i) => (
+            <Paragraph key={i}>{explanation}</Paragraph>
           ))}
         </>
       )}

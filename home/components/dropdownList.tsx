@@ -18,9 +18,13 @@ export function Dropdown(props: {
     () => setOpen((prev: boolean) => !prev),
     []
   );
-  const handleSubtitleClick = useCallback((slug) => {
-    props.onItemSelect(slug);
-  }, []);
+  const { onItemSelect } = props;
+  const handleSubtitleClick = useCallback(
+    (slug) => {
+      onItemSelect(slug);
+    },
+    [onItemSelect]
+  );
 
   const listItemFadeInDelay =
     parseFloat(styles.fadeInDuration) / props.content.list.length;
