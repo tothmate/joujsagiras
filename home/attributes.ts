@@ -1,70 +1,70 @@
-import { foldAccents } from "./utils";
+import { DropdownListContent } from "./components/dropdownList";
 
-export const attributes = [
+export const attributes: DropdownListContent[] = [
   {
-    category: "Tájékoztatja a társadalmat",
-    attributes: [
+    title: "Tájékoztatja a társadalmat",
+    list: [
       {
-        attribute: "igaz",
-        explanation: [
+        subtitle: "igaz",
+        paragraphs: [
           "A jó újságírás tényszerűen tájékoztat, ezért ellenőrzi a tényszerűségét annak ami ír.",
           "A nem valósághű újságírás félrevezeti olvasóját – akár szándékosan vagy hanyagságból teszi.",
         ],
       },
 
       {
-        attribute: "ellenőrizhető",
-        explanation: [
+        subtitle: "ellenőrizhető",
+        paragraphs: [
           "A jó újságírás ellenőrizhetően tájékoztat, ezért visszakövethetővé teszi a hivatkozott tényeket.",
           "A nem vagy nehezen ellenőrizhető újságírás könnyen elferdíti a valóságot és félrevezeti olvasóját – akár szándékosan vagy hanyagságból teszi.",
         ],
       },
-      { attribute: "kiegyensúlyozott", explanation: [] },
-      { attribute: "értelmezhető", explanation: [] },
-      { attribute: "hiteles", explanation: [] },
-      { attribute: "őszinte", explanation: [] },
-      { attribute: "releváns", explanation: [] },
+      { subtitle: "kiegyensúlyozott", paragraphs: [] },
+      { subtitle: "értelmezhető", paragraphs: [] },
+      { subtitle: "hiteles", paragraphs: [] },
+      { subtitle: "őszinte", paragraphs: [] },
+      { subtitle: "releváns", paragraphs: [] },
     ],
   },
   {
-    category: "Teret ad a vitáknak és véleményeknek",
-    attributes: [
-      { attribute: "véleményt formál", explanation: [] },
-      { attribute: "véleményt közzétesz", explanation: [] },
-      { attribute: "megkülönbözteti a véleményt a ténytől", explanation: [] },
-      { attribute: "ütköztet", explanation: [] },
-      { attribute: "higgadt", explanation: [] },
+    title: "Teret ad a vitáknak és véleményeknek",
+    list: [
+      { subtitle: "véleményt formál", paragraphs: [] },
+      { subtitle: "véleményt közzétesz", paragraphs: [] },
+      { subtitle: "megkülönbözteti a véleményt a ténytől", paragraphs: [] },
+      { subtitle: "ütköztet", paragraphs: [] },
+      { subtitle: "higgadt", paragraphs: [] },
     ],
   },
   {
-    category: "Ellenőrzi a társadalomban hatalommal bírókat",
-    attributes: [
-      { attribute: "kritikus", explanation: [] },
-      { attribute: "elfogulatlan", explanation: [] },
-      { attribute: "számonkér", explanation: [] },
-      { attribute: "szembesít", explanation: [] },
+    title: "Ellenőrzi a társadalomban hatalommal bírókat",
+    list: [
+      { subtitle: "kritikus", paragraphs: [] },
+      { subtitle: "elfogulatlan", paragraphs: [] },
+      { subtitle: "számonkér", paragraphs: [] },
+      { subtitle: "szembesít", paragraphs: [] },
     ],
   },
   {
-    category: "Feltárja az igazságot",
-    attributes: [
-      { attribute: "alapos", explanation: [] },
-      { attribute: "pontos", explanation: [] },
-      { attribute: "megalapozott", explanation: [] },
-      { attribute: "megkérdezi a másik felet", explanation: [] },
-      { attribute: "méltányos", explanation: [] },
-      { attribute: "eredeti", explanation: [] },
+    title: "Feltárja az igazságot",
+    list: [
+      { subtitle: "alapos", paragraphs: [] },
+      { subtitle: "pontos", paragraphs: [] },
+      { subtitle: "megalapozott", paragraphs: [] },
+      { subtitle: "megkérdezi a másik felet", paragraphs: [] },
+      { subtitle: "méltányos", paragraphs: [] },
+      { subtitle: "eredeti", paragraphs: [] },
     ],
   },
   {
-    category: "Láthatóvá tesz és felhangosít ügyeket",
-    attributes: [
-      { attribute: "felkarol ügyeket", explanation: [] },
-      { attribute: "az egyént védi", explanation: [] },
-      { attribute: "széles merítésű", explanation: [] },
-      { attribute: "sokszínű", explanation: [] },
-      { attribute: "reprezentatív", explanation: [] },
+    title: "Láthatóvá tesz és felhangosít ügyeket",
+    list: [
+      { subtitle: "felkarol ügyeket", paragraphs: [] },
+      { subtitle: "az egyént védi", paragraphs: [] },
+      { subtitle: "széles merítésű", paragraphs: [] },
+      { subtitle: "sokszínű", paragraphs: [] },
+      { subtitle: "reprezentatív", paragraphs: [] },
     ],
   },
-  { category: "Oktatja és neveli az állampolgárokat", attributes: [] },
+  { title: "Oktatja és neveli az állampolgárokat", list: [] },
 ];

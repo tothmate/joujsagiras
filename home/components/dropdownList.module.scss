@@ -15,6 +15,16 @@
   animation-duration: $fade-in-duration;
 }
 
+.dropdownList {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.dropdownListMain {
+  flex-basis: 70%;
+  flex-grow: 1;
+}
+
 ul.dropdown {
   list-style-type: none;
   padding: 0;
@@ -27,10 +37,19 @@ ul.dropdown {
   &.closed {
     display: none;
   }
+}
 
-  & li {
-    font-size: 1.5em;
-    margin: 0.5em 0;
+.dropdownTitle {
+  transition: all $fade-in-duration ease;
+  // height: 1.7em;
+
+  &.hidden {
+    height: 0;
+    opacity: 0;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    border: none;
   }
 }
 

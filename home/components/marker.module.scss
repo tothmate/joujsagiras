@@ -54,3 +54,11 @@ h3.marker {
   white-space: nowrap;
   box-sizing: border-box;
 }
+
+h4.marker {
+  color: $dark-color;
+  margin: 0.5em 0 0 0;
+  font-size: 1.5em;
+  box-sizing: border-box;
+  display: inline-block;
+}
