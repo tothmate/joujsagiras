@@ -76,7 +76,7 @@ export default function DropdownList(props: {
       onItemSelect(item);
       setSelectedItem(item);
     },
-    [onItemSelect, selectedItem]
+    [onItemSelect]
   );
 
   const gradient = tinygradient(styles.startColor, styles.endColor);
