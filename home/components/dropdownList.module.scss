@@ -15,17 +15,7 @@
   animation-duration: $fade-in-duration;
 }
 
-.dropdownList {
-  display: flex;
-  flex-wrap: wrap;
-}
-
-.dropdownListMain {
-  flex-basis: 70%;
-  flex-grow: 1;
-}
-
-h2.short {
+.dropdownItem {
   display: inline-block;
 }
 

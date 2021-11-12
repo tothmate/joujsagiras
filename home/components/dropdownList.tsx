@@ -2,7 +2,7 @@ import React, { useCallback, useEffect, useState } from "react";
 import AnimateHeight from "react-animate-height";
 import tinygradient from "tinygradient";
 import styles from "./dropdownList.module.scss";
-import { Heading2, Heading3 } from "./marker";
+import { Heading1, Heading2, Heading3 } from "./marker";
 import Paragraph from "./paragraph";
 export interface DropdownListItem {
   subtitle: string;
@@ -54,7 +54,16 @@ export function Dropdown(props: {
           }
           animateOpacity
         >
-          <Heading2 onClick={() => handleSubtitleClick(item)} color={props.color} classNames={[styles.short]}>
+          <span
+            style={{
+              margin: "0.5em 0.5em 0 0",
+              fontSize: "1.5em",
+              color: props.color,
+            }}
+          >
+            {props.onlyVisibleItem === item && "⬅"}
+          </span>
+          <Heading2 onClick={() => handleSubtitleClick(item)} color={props.color} classNames={[styles.dropdownItem]}>
             {item.subtitle}
           </Heading2>
         </AnimateHeight>
@@ -85,20 +94,18 @@ export default function DropdownList(props: {
 
   return (
     <>
-      <div className={styles.dropdownList}>
-        <Heading3>{props.prefix}</Heading3>
-        <div className={styles.dropdownListMain}>
-          {props.contents.map((content, i) => (
-            <Dropdown
-              content={content}
-              key={i}
-              color={gradient.rgbAt(i / lastIndex).toHexString()}
-              fadeInDelay={i * fadeInDelay}
-              onItemSelect={handleItemSelected}
-              onlyVisibleItem={selectedItem}
-            />
-          ))}
-        </div>
+      <Heading1>{props.prefix}</Heading1>
+      <div>
+        {props.contents.map((content, i) => (
+          <Dropdown
+            content={content}
+            key={i}
+            color={gradient.rgbAt(i / lastIndex).toHexString()}
+            fadeInDelay={i * fadeInDelay}
+            onItemSelect={handleItemSelected}
+            onlyVisibleItem={selectedItem}
+          />
+        ))}
       </div>
       {selectedItem?.paragraphs.map((paragraph: string, i) => (
         <Paragraph key={i}>{paragraph}</Paragraph>
