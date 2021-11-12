@@ -26,9 +26,9 @@ export function Dropdown(props: {
   const { onItemSelect, onlyVisibleItem, content } = props;
   const handleSubtitleClick = useCallback(
     (item) => {
-      onItemSelect(item);
+      onItemSelect(onlyVisibleItem === item ? null : item);
     },
-    [onItemSelect]
+    [onItemSelect, onlyVisibleItem]
   );
   useEffect(() => {
     if (content.list.indexOf(onlyVisibleItem) > -1) {
@@ -69,19 +69,15 @@ export default function DropdownList(props: {
   onItemSelect: (item: DropdownListItem) => void;
   initialSelectedItem?: DropdownListItem;
 }) {
-  const [selectedItem, setSelectedItem] = useState<DropdownListItem | null>(null);
-  const { onItemSelect, initialSelectedItem } = props;
+  const [selectedItem, setSelectedItem] = useState<DropdownListItem | null>(props.initialSelectedItem);
+  const { onItemSelect } = props;
   const handleItemSelected = useCallback(
     (item) => {
-      const itemIfNew = selectedItem === item ? null : item;
-      onItemSelect(itemIfNew);
-      setSelectedItem(itemIfNew);
+      onItemSelect(item);
+      setSelectedItem(item);
     },
     [onItemSelect, selectedItem]
   );
-  useEffect(() => {
-    setSelectedItem(initialSelectedItem);
-  }, [initialSelectedItem]);
 
   const gradient = tinygradient(styles.startColor, styles.endColor);
   const lastIndex = props.contents.length - 1;
