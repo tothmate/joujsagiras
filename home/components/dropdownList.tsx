@@ -1,7 +1,8 @@
 import React, { useCallback, useEffect, useState } from "react";
+import AnimateHeight from "react-animate-height";
 import tinygradient from "tinygradient";
 import styles from "./dropdownList.module.scss";
-import { Heading2, Heading3, Heading4 } from "./marker";
+import { Heading2, Heading3 } from "./marker";
 import Paragraph from "./paragraph";
 export interface DropdownListItem {
   subtitle: string;
@@ -22,46 +23,42 @@ export function Dropdown(props: {
   const [open, setOpen] = useState(false);
   const handleTitleClick = useCallback(() => setOpen((prev: boolean) => !prev), []);
 
-  const { onItemSelect } = props;
+  const { onItemSelect, onlyVisibleItem, content } = props;
   const handleSubtitleClick = useCallback(
-    (slug) => {
-      onItemSelect(slug);
+    (item) => {
+      onItemSelect(item);
     },
     [onItemSelect]
   );
+  useEffect(() => {
+    if (content.list.indexOf(onlyVisibleItem) > -1) {
+      setOpen(true);
+    }
+  }, [onlyVisibleItem, content]);
 
-  const listItemFadeInDelay = parseFloat(styles.fadeInDuration) / props.content.list.length;
-  const shouldHideItem = (item: DropdownListItem) => props.onlyVisibleItem && props.onlyVisibleItem !== item;
+  const fadeInDuration = parseFloat(styles.fadeInDuration);
 
   return (
     <div className={styles.fadeIn} style={{ animationDelay: `${props.fadeInDelay}s` }}>
-      <Heading2
-        onClick={handleTitleClick}
-        color={props.color}
-        classNames={[styles.dropdownTitle, props.onlyVisibleItem ? styles.hidden : ""]}
-      >
-        {props.content.title}
-      </Heading2>
-      <ul className={`${styles.dropdown} ${open || props.onlyVisibleItem ? styles.open : styles.closed}`}>
-        {props.content.list.map((item, i) => (
-          <li
-            key={i}
-            className={styles.fadeIn}
-            style={{
-              animationDelay: `${i * listItemFadeInDelay}s`,
-              display: shouldHideItem(item) ? "none" : "block",
-            }}
-          >
-            <Heading4
-              onClick={() => handleSubtitleClick(item)}
-              color={props.color}
-              classNames={[styles.dropdownTitle, shouldHideItem(item) ? styles.hidden : ""]}
-            >
-              {item.subtitle}
-            </Heading4>
-          </li>
-        ))}
-      </ul>
+      <AnimateHeight duration={fadeInDuration * 1000} height={props.onlyVisibleItem ? 0 : "auto"} animateOpacity>
+        <Heading2 onClick={handleTitleClick} color={props.color}>
+          {props.content.title}
+        </Heading2>
+      </AnimateHeight>
+      {props.content.list.map((item, i) => (
+        <AnimateHeight
+          key={i}
+          duration={fadeInDuration * 1000}
+          height={
+            (!props.onlyVisibleItem && open) || (props.onlyVisibleItem && props.onlyVisibleItem === item) ? "auto" : 0
+          }
+          animateOpacity
+        >
+          <Heading2 onClick={() => handleSubtitleClick(item)} color={props.color} classNames={[styles.short]}>
+            {item.subtitle}
+          </Heading2>
+        </AnimateHeight>
+      ))}
     </div>
   );
 }
@@ -76,10 +73,11 @@ export default function DropdownList(props: {
   const { onItemSelect, initialSelectedItem } = props;
   const handleItemSelected = useCallback(
     (item) => {
-      setSelectedItem(item);
-      onItemSelect(item);
+      const itemIfNew = selectedItem === item ? null : item;
+      onItemSelect(itemIfNew);
+      setSelectedItem(itemIfNew);
     },
-    [onItemSelect]
+    [onItemSelect, selectedItem]
   );
   useEffect(() => {
     setSelectedItem(initialSelectedItem);

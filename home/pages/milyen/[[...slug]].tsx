@@ -13,7 +13,7 @@ const Page = () => {
   const router = useRouter();
 
   const handleItemSelected = useCallback((item: DropdownListItem) => {
-    router.push(`/milyen/${foldAccents(item.subtitle)}`, undefined, { shallow: true });
+    router.push(`/milyen/${item ? foldAccents(item.subtitle) : ""}`, undefined, { shallow: true });
   }, []);
 
   const [initialSelectedItem, setInitialSelectedItem] = useState<DropdownListItem | null>(null);

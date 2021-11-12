@@ -25,32 +25,8 @@
   flex-grow: 1;
 }
 
-ul.dropdown {
-  list-style-type: none;
-  padding: 0;
-  margin: 0;
-
-  &.open {
-    display: block;
-  }
-
-  &.closed {
-    display: none;
-  }
-}
-
-.dropdownTitle {
-  transition: all $fade-in-duration ease;
-  // height: 1.7em;
-
-  &.hidden {
-    height: 0;
-    opacity: 0;
-    margin: 0;
-    padding: 0;
-    overflow: hidden;
-    border: none;
-  }
+h2.short {
+  display: inline-block;
 }
 
 :export {

@@ -5,7 +5,7 @@ interface MarkerProps {
   children: React.ReactNode;
   classNames?: string[];
   color?: string;
-  element?: "h1" | "h2" | "h3" | "h4" | "link";
+  element?: "h1" | "h2" | "h3" | "link";
   href?: string;
   onClick?: MouseEventHandler;
 }
@@ -32,8 +32,6 @@ export default function Marker(props: MarkerProps) {
       return <h2 {...extraProps}>{props.children}</h2>;
     case "h3":
       return <h3 {...extraProps}>{props.children}</h3>;
-    case "h4":
-      return <h4 {...extraProps}>{props.children}</h4>;
     case "link":
       return (
         <Link href={props.href}>
@@ -55,10 +53,6 @@ export function Heading2(props: MarkerProps) {
 
 export function Heading3(props: MarkerProps) {
   return <Marker element="h3" {...props} />;
-}
-
-export function Heading4(props: MarkerProps) {
-  return <Marker element="h4" {...props} />;
 }
 
 export function PrimaryMarker(props: MarkerProps) {
