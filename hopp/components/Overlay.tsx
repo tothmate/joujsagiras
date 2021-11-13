@@ -1,30 +1,42 @@
 import React from 'react';
-import { Box, makeStyles } from '@material-ui/core';
+import { Box, makeStyles, Typography } from '@material-ui/core';
 import { Sticker } from '../src/models';
-import { Textfit } from 'react-textfit';
 
 const useStyles = makeStyles({
-  overlay: {
-    backgroundColor: '#45474c',
-    color: '#fafafa',
-    borderRadius: '30px',
-    width: '210px',
-    height: '170px',
+  firstLabel: {
+    backgroundColor: '#ffcc02',
+    fontWeight: 'bold',
+    color: '#000000',
     padding: '10px',
     textAlign: 'center',
     textTransform: 'uppercase',
-    fontWeight: 700,
-    fontFamily: 'Roboto, sans-serif'
+    transform: 'rotate(-10deg)',
+    display: 'inline-block',
+    fontFamily: 'Oswald, sans-serif'
+  },
+  secondLabel: {
+    backgroundColor: '#5ac8fa',
+    marginLeft: '60px',
+    color: '#000000',
+    padding: '10px',
+    textAlign: 'center',
+    textTransform: 'uppercase',
+    transform: 'rotate(-10deg)',
+    display: 'inline-block',
+    fontFamily: 'Oswald, sans-serif'
   }
 });
 
 export default function Overlay(props: { sticker: Sticker }) {
   const classes = useStyles();
   return (
-    <Box className={classes.overlay} boxShadow={1}>
-      <Textfit mode="single">hopp!</Textfit>
-      <Textfit mode="single">ez jól hangzik, csak</Textfit>
-      <Textfit mode="single">{props.sticker.reason.text}</Textfit>
-    </Box>
+    <>
+      <Typography variant="h3" className={classes.firstLabel}>
+        hopp!
+      </Typography>
+      <Typography variant="h4" className={classes.secondLabel}>
+        Ez {props.sticker.reason.text}
+      </Typography>
+    </>
   );
 }

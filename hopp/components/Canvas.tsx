@@ -24,9 +24,13 @@ const useStyles = makeStyles({
   },
   overlay: {
     position: 'absolute',
-    top: '-10px',
-    right: '10px',
-    transform: 'rotate(-4deg)'
+    top: '20px',
+    left: '20px'
+  },
+  link: {
+    textTransform: 'uppercase',
+    color: '#616161',
+    fontSize: '0.85em'
   }
 });
 
@@ -49,14 +53,13 @@ export default function Canvas(props: { sticker: Sticker; loadingSource: boolean
       </Fade>
       {!props.loadingSource && (
         <CardContent>
-          <Typography gutterBottom variant="h6" component="h2">
+          <Typography variant="body2" component="h2" noWrap>
+            <Link href={props.sticker.source.url} className={classes.link}>
+              {new URL(props.sticker.source.url).hostname}
+            </Link>
+          </Typography>
+          <Typography gutterBottom variant="subtitle2" component="h3">
             {props.sticker.source.title}
-          </Typography>
-          <Typography variant="body2" color="textSecondary" component="p" noWrap>
-            Forrás: <Link href={props.sticker.source.url}>{props.sticker.source.url}</Link>
-          </Typography>
-          <Typography variant="body2" color="textSecondary" component="p">
-            Letöltve: {props.sticker.source.date}
           </Typography>
         </CardContent>
       )}
