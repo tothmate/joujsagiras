@@ -54,15 +54,6 @@ export function Dropdown(props: {
           }
           animateOpacity
         >
-          <span
-            style={{
-              margin: "0.5em 0.5em 0 0",
-              fontSize: "1.5em",
-              color: props.color,
-            }}
-          >
-            {props.onlyVisibleItem === item && "⬅"}
-          </span>
           <Heading2 onClick={() => handleSubtitleClick(item)} color={props.color} classNames={[styles.dropdownItem]}>
             {item.subtitle}
           </Heading2>
