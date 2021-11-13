@@ -22,13 +22,15 @@
     "typeRoots": [
       "./types",
       "./node_modules/@types"
-    ]
+    ],
+    "incremental": true
   },
   "include": [
     "next-env.d.ts",
     "**/*.ts",
-    "**/*.tsx"
-, "pages/[reasonSlug]/[[...slug]].tsx"  ],
+    "**/*.tsx",
+    "pages/[reasonSlug]/[[...slug]].tsx"
+  ],
   "exclude": [
     "node_modules"
   ]
