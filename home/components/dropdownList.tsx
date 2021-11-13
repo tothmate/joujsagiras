@@ -1,60 +1,53 @@
-import React, { useCallback, useEffect, useState } from "react";
+import React, { useCallback, useState } from "react";
 import AnimateHeight from "react-animate-height";
 import tinygradient from "tinygradient";
 import styles from "./dropdownList.module.scss";
-import { Heading1, Heading2, Heading3 } from "./marker";
+import { Heading2, Heading3 } from "./marker";
 import Paragraph from "./paragraph";
 export interface DropdownListItem {
   subtitle: string;
   paragraphs: string[];
 }
-export interface DropdownListContent {
+export interface DropdownListCategory {
   title: string;
   list: DropdownListItem[];
 }
 
+interface DropdownVisibility {
+  isTitleVisible: boolean;
+  isItemsVisible: boolean;
+  selectedItem: DropdownListItem;
+}
+
 export function Dropdown(props: {
-  content: DropdownListContent;
+  category: DropdownListCategory;
   color: string;
   fadeInDelay: number;
+  visibility: DropdownVisibility;
+  onCategorySelect: (category: DropdownListCategory) => void;
   onItemSelect: (item: DropdownListItem) => void;
-  onlyVisibleItem: DropdownListItem | null;
 }) {
-  const [open, setOpen] = useState(false);
-  const handleTitleClick = useCallback(() => setOpen((prev: boolean) => !prev), []);
-
-  const { onItemSelect, onlyVisibleItem, content } = props;
-  const handleSubtitleClick = useCallback(
-    (item) => {
-      onItemSelect(onlyVisibleItem === item ? null : item);
-    },
-    [onItemSelect, onlyVisibleItem]
-  );
-  useEffect(() => {
-    if (content.list.indexOf(onlyVisibleItem) > -1) {
-      setOpen(true);
-    }
-  }, [onlyVisibleItem, content]);
-
-  const fadeInDuration = parseFloat(styles.fadeInDuration);
+  const animateHeightDuration = parseFloat(styles.fadeInDuration) * 1000;
 
   return (
     <div className={styles.fadeIn} style={{ animationDelay: `${props.fadeInDelay}s` }}>
-      <AnimateHeight duration={fadeInDuration * 1000} height={props.onlyVisibleItem ? 0 : "auto"} animateOpacity>
-        <Heading2 onClick={handleTitleClick} color={props.color}>
-          {props.content.title}
+      <AnimateHeight
+        duration={animateHeightDuration}
+        height={props.visibility.isTitleVisible ? "auto" : 0}
+        animateOpacity
+      >
+        <Heading2 onClick={() => props.onCategorySelect(props.category)} color={props.color}>
+          {props.category.title}
         </Heading2>
       </AnimateHeight>
-      {props.content.list.map((item, i) => (
+      {props.category.list.map((item, i) => (
         <AnimateHeight
           key={i}
-          duration={fadeInDuration * 1000}
-          height={
-            (!props.onlyVisibleItem && open) || (props.onlyVisibleItem && props.onlyVisibleItem === item) ? "auto" : 0
-          }
+          duration={animateHeightDuration}
+          height={props.visibility.isItemsVisible || props.visibility.selectedItem === item ? "auto" : 0}
           animateOpacity
         >
-          <Heading2 onClick={() => handleSubtitleClick(item)} color={props.color} classNames={[styles.dropdownItem]}>
+          <Heading2 onClick={() => props.onItemSelect(item)} color={props.color} classNames={[styles.dropdownItem]}>
             {item.subtitle}
           </Heading2>
         </AnimateHeight>
@@ -65,38 +58,55 @@ export function Dropdown(props: {
 
 export default function DropdownList(props: {
   prefix: string;
-  contents: DropdownListContent[];
+  categories: DropdownListCategory[];
   onItemSelect: (item: DropdownListItem) => void;
-  initialSelectedItem?: DropdownListItem;
+  selectedItem?: DropdownListItem;
 }) {
-  const [selectedItem, setSelectedItem] = useState<DropdownListItem | null>(props.initialSelectedItem);
   const { onItemSelect } = props;
+
+  const [selectedCategory, setSelectedCategory] = useState<DropdownListCategory | undefined>(
+    props.categories.find((category) => category.list.some((item) => item === props.selectedItem))
+  );
+  const [selectedItem, setSelectedItem] = useState<DropdownListItem | undefined>(props.selectedItem);
+
+  const handleCategorySelected = useCallback(
+    (category) => setSelectedCategory((prev) => (prev === category ? undefined : category)),
+    []
+  );
   const handleItemSelected = useCallback(
     (item) => {
       onItemSelect(item);
-      setSelectedItem(item);
+      setSelectedItem((prev) => (prev === item ? undefined : item));
     },
     [onItemSelect]
   );
 
+  const noCategorySelected = selectedCategory === undefined;
   const gradient = tinygradient(styles.startColor, styles.endColor);
-  const lastIndex = props.contents.length - 1;
-  const fadeInDelay = parseFloat(styles.fadeInDuration) / props.contents.length;
+  const lastIndex = props.categories.length - 1;
+  const fadeInDelay = parseFloat(styles.fadeInDuration) / props.categories.length;
 
   return (
     <>
-      <Heading1>{props.prefix}</Heading1>
-      <div>
-        {props.contents.map((content, i) => (
-          <Dropdown
-            content={content}
-            key={i}
-            color={gradient.rgbAt(i / lastIndex).toHexString()}
-            fadeInDelay={i * fadeInDelay}
-            onItemSelect={handleItemSelected}
-            onlyVisibleItem={selectedItem}
-          />
-        ))}
+      <div className={[styles.dropdownListWrapper, noCategorySelected ? styles.noCategorySelected : ""].join(" ")}>
+        <Heading3>{props.prefix}</Heading3>
+        <div className={styles.dropdownList}>
+          {props.categories.map((category, i) => (
+            <Dropdown
+              key={i}
+              category={category}
+              color={gradient.rgbAt(i / lastIndex).toHexString()}
+              fadeInDelay={i * fadeInDelay}
+              visibility={{
+                isTitleVisible: selectedItem === undefined && (noCategorySelected || selectedCategory === category),
+                isItemsVisible: selectedItem === undefined && selectedCategory === category,
+                selectedItem,
+              }}
+              onCategorySelect={handleCategorySelected}
+              onItemSelect={handleItemSelected}
+            />
+          ))}
+        </div>
       </div>
       {selectedItem?.paragraphs.map((paragraph: string, i) => (
         <Paragraph key={i}>{paragraph}</Paragraph>

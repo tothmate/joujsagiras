@@ -1,6 +1,6 @@
-import { DropdownListContent } from "./components/dropdownList";
+import { DropdownListCategory } from "./components/dropdownList";
 
-export const attributes: DropdownListContent[] = [
+export const attributes: DropdownListCategory[] = [
   {
     title: "Tájékoztatja a társadalmat",
     list: [

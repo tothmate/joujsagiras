@@ -15,6 +15,26 @@
   animation-duration: $fade-in-duration;
 }
 
+.dropdownListWrapper {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.dropdownList {
+  flex-grow: 1;
+  flex-basis: 70%;
+}
+
+.noCategorySelected {
+  & .dropdownList {
+    margin-top: 3em;
+  }
+  
+  & h3 {
+    margin-bottom: -3em !important;
+  }
+}
+
 .dropdownItem {
   display: inline-block;
   margin-left: 1em !important;

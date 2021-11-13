@@ -37,9 +37,9 @@ const Page = (props: InferGetStaticPropsType<typeof getStaticProps>) => {
     <Layout>
       <DropdownList
         prefix="A jó újságírás"
-        contents={attributes}
+        categories={attributes}
         onItemSelect={handleItemSelected}
-        initialSelectedItem={slugs.get(props.slug)}
+        selectedItem={slugs.get(props.slug)}
       />
     </Layout>
   );
