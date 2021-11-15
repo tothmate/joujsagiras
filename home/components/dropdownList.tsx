@@ -19,6 +19,9 @@ interface DropdownVisibility {
   selectedItem: DropdownListItem;
 }
 
+const animateHeightDuration = parseFloat(styles.fadeInDuration) * 1000;
+const gradient = tinygradient(styles.startColor, styles.endColor);
+
 export function Dropdown(props: {
   category: DropdownListCategory;
   color: string;
@@ -27,8 +30,6 @@ export function Dropdown(props: {
   onCategorySelect: (category: DropdownListCategory) => void;
   onItemSelect: (item: DropdownListItem) => void;
 }) {
-  const animateHeightDuration = parseFloat(styles.fadeInDuration) * 1000;
-
   return (
     <div className={styles.fadeIn} style={{ animationDelay: `${props.fadeInDelay}s` }}>
       <AnimateHeight
@@ -82,15 +83,17 @@ export default function DropdownList(props: {
   );
 
   const noCategorySelected = selectedCategory === undefined;
-  const gradient = tinygradient(styles.startColor, styles.endColor);
   const lastIndex = props.categories.length - 1;
   const fadeInDelay = parseFloat(styles.fadeInDuration) / props.categories.length;
 
   return (
     <>
-      <div className={[styles.dropdownListWrapper, noCategorySelected ? styles.noCategorySelected : ""].join(" ")}>
+      <div className={styles.dropdownListWrapper}>
         <Heading3>{props.prefix}</Heading3>
         <div className={styles.dropdownList}>
+          <AnimateHeight duration={animateHeightDuration} height={noCategorySelected ? "auto" : 0}>
+            <div className={styles.spacerItem}></div>
+          </AnimateHeight>
           {props.categories.map((category, i) => (
             <Dropdown
               key={i}
