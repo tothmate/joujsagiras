@@ -48,7 +48,11 @@ export function Dropdown(props: {
           height={props.visibility.isItemsVisible || props.visibility.selectedItem === item ? "auto" : 0}
           animateOpacity
         >
-          <Heading2 onClick={() => props.onItemSelect(item)} color={props.color} classNames={[styles.dropdownItem]}>
+          <Heading2
+            onClick={() => props.onItemSelect(item)}
+            color={props.color}
+            classNames={[props.visibility.selectedItem === item ? "" : styles.shrinkedDropdownItem]}
+          >
             {item.subtitle}
           </Heading2>
         </AnimateHeight>
