@@ -22,6 +22,17 @@ interface DropdownVisibility {
 const animateHeightDuration = parseFloat(styles.fadeInDuration) * 1000;
 const gradient = tinygradient(styles.startColor, styles.endColor);
 
+function Closable(props: { closed: boolean; children: React.ReactNode }) {
+  return (
+    <div className={styles.closable}>
+      {props.children}
+      <span className={styles.closableButton} style={{ visibility: props.closed ? "hidden" : "visible" }}>
+        ✕
+      </span>
+    </div>
+  );
+}
+
 export function Dropdown(props: {
   category: DropdownListCategory;
   color: string;
@@ -38,7 +49,7 @@ export function Dropdown(props: {
         animateOpacity
       >
         <Heading2 onClick={() => props.onCategorySelect(props.category)} color={props.color}>
-          {props.category.title}
+          <Closable closed={!props.visibility.isItemsVisible}>{props.category.title}</Closable>
         </Heading2>
       </AnimateHeight>
       {props.category.list.map((item, i) => (
@@ -53,7 +64,7 @@ export function Dropdown(props: {
             color={props.color}
             classNames={[props.visibility.selectedItem === item ? "" : styles.shrinkedDropdownItem]}
           >
-            {item.subtitle}
+            <Closable closed={props.visibility.selectedItem !== item}>{item.subtitle}</Closable>
           </Heading2>
         </AnimateHeight>
       ))}

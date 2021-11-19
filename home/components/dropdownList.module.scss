@@ -37,9 +37,25 @@
   }
 }
 
+.closable {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  & .closableButton {
+    font-weight: 100;
+    font-size: 0.8em;
+    padding-left: 0.8em;
+  }
+}
+
 .shrinkedDropdownItem {
   display: inline-block;
   margin-left: 1em !important;
+
+  & .closableButton {
+    display: none;
+  }
 }
 
 :export {
