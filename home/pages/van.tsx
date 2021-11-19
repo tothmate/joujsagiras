@@ -56,7 +56,7 @@ const Page = () => (
       politikus, csinos nő, udvariatlan bunkó vagy kedvelt szomszédunk követte-e el.
     </Paragraph>
 
-    <Paragraph>Ahogy vannak jó rendőrök, úgy vannak jó újságírók is. Akik jó újságírás művelnek.</Paragraph>
+    <Paragraph>Ahogy vannak jó rendőrök, úgy vannak jó újságírók is. Akik jó újságírást művelnek.</Paragraph>
 
     <Heading1>
       Milyen a jó újságírás? <br />

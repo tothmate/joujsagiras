@@ -61,7 +61,7 @@ export const attributes: DropdownListCategory[] = [
     title: "Teret ad a vitáknak és véleményeknek",
     list: [
       {
-        subtitle: "véleményt formál",
+        subtitle: "véleményt alkot",
         paragraphs: [
           "A jó újságírás a tények közlése mellett véleményt is alkot, amelyet véleményként megjelöl és tesz közzé.",
           "A rossz újságírás sejtet, ködösít, utalgat, ahelyett hogy véleményt fogalmazna meg és tenne közzé.",
@@ -110,24 +110,28 @@ export const attributes: DropdownListCategory[] = [
       {
         subtitle: "kritikus",
         paragraphs: [
-          "A jó újságírás nem fogadja el a kapott választ kritikátlanul, hanem ellenőrzi azt, és rámutat az esetleges hiányosságokra, torzításokra, vagy hiányzó szempontokra.",
-          "A válaszokat vagy álláspontokat fenntartások nélkül elfogadó és közzétevő újságírás ...",
+          "A jó újságírás nem fogadja el a kapott válaszokat kritikátlanul, hanem ellenőrzi azokat, rámutat az esetleges hiányosságokra, ellentmondásokra, torzításokra, vagy hiányzó releváns szempontokra.",
+          "A válaszokat vagy álláspontokat fenntartások nélkül elfogadó és közzétevő újságírás nem ellenőrzi a társadalomban hatalommal bírókat.",
         ],
       },
       {
         subtitle: "elfogulatlan",
         paragraphs: [
           "A jó újságírás egyenlő mércével fordul a különböző szereplők felé.",
-          "Az olyan újságírás, amely egyes szereplők ...",
+          "Az olyan újságírás, amely egyes szereplők szempontjait mások elé helyezi, nem ellenőrzi a társadalomban hatalommal bírókat.",
         ],
       },
       {
         subtitle: "számonkér",
         paragraphs: [
           "A jó újságírás számonkéri a hazugságot, a csalást és a hatalommal való visszaélést, kérdőre és felelősségre von.",
+          "Az olyan újságírás, amely nem kéri számon a hazugságot, csalást vagy visszaélést, nem ellenőrzi a társadalomban hatalommal bírókat."
         ],
       },
-      { subtitle: "szembesít", paragraphs: [] },
+      { subtitle: "szembesít", paragraphs: [
+        "A jó újságírás szembesíti a közszereplőket ellentmondásos kijelentéseikkel és cselekedeteikkel.",
+        "Az olyan újságírás amely szemet húny a rossz érvek, a butaság, a hazugságok, a közszereplők ellentmondásos kijelentései vagy cselekedetei felett, nem ellenőrzi a társadalomban hatalommal bírókat."
+      ] },
     ],
   },
   {
@@ -137,6 +141,7 @@ export const attributes: DropdownListCategory[] = [
         subtitle: "alapos",
         paragraphs: [
           "Az igazság feltárása érdekében gondosan és körültekintően mérlegeli a riport vagy beszámoló tárgyához kapcsolódó valamennyi releváns tényt.",
+          "Az olyan újságírás, amely nem mutat be vagy elhallgat fontos tényeket, nem tárja fel az igazságot."
         ],
       },
       { subtitle: "körültekintő", paragraphs: [] },
@@ -150,24 +155,30 @@ export const attributes: DropdownListCategory[] = [
       {
         subtitle: "megalapozott",
         paragraphs: [
-          "A jó újságírás érvelése logikus és nyomon követhető, az állításait szabatosan, részletesen és konkrétan megfogalmazza, egyértelműen különválasztja az egymástól független állításokat.",
-          "A logikai bukfencek, az egymással csak látszólag összefüggő tények összemosása téves következtetések levonására juttatja az olvasót.",
+          "A jó újságírás érvelése logikus és nyomon követhető, az állításait szabatosan, részletesen és konkrétan megfogalmazza és alátámasztja.",
+          "A logikai bukfenceket tartalmazó, az egymással csak látszólag összefüggő tényeket összemosó újságírás nem feltárja az igazságot, hanem téves következtetések levonására készteti az olvasót.",
         ],
       },
       {
         subtitle: "megkérdezi a másik felet",
-        paragraphs: ["A jó újságírás megszólalási lehetőséget biztosít az ügyben érintett másik félnek is."],
+        paragraphs: [
+          "A jó újságírás megszólalási lehetőséget biztosít az ügyben érintett másik félnek is.",
+          "Az olyan újságírás, amely nem ad megszólalási lehetőséget az ügyben érintett összes releváns félnek, nem tárja fel az igazságot."
+        ],
       },
       {
         subtitle: "méltányos",
         paragraphs: [
           "A jó újságírás tiszteletben tartja a magánszférát, amelynek megsértését csak a magasabb társadalmi érdek igazolhatja.",
-          "Az olyan újságírás, amelyik személyeskedik, embereket méltóságában megaláz, ok nélkül beleavatkozik közszereplők magánszférájába ...",
+          "Az olyan újságírás, amelyik ok nélkül beleavatkozik közszereplők magánszférájába, nem az igazságot tárja fel, hanem megfélemlít, megaláz vagy lejárat embereket.",
         ],
       },
       {
         subtitle: "eredeti",
-        paragraphs: ["A jó újságírás új információkkal és új szempontokkal járul hozzá az igazság feltárásához."],
+        paragraphs: [
+          "A jó újságírás új információkkal és új szempontokkal járul hozzá az igazság feltárásához.",
+          "A rossz újságírás nem járul hozzá új információkkal vagy szempontokkal az igazság feltárásához."
+      ],
       },
     ],
   },
@@ -177,23 +188,34 @@ export const attributes: DropdownListCategory[] = [
       {
         subtitle: "felkarol ügyeket",
         paragraphs: [
-          "A jó újságírás megvédi az egyén jogait azáltal, hogy felkarol ügyeket, szemmel tartja a kormányt vagy a hatalommal bírókat.",
+          "A jó újságírás felkutat, feldolgoz, és a társadalom számára megismerhetővé tesz olyan ügyeket, amelyek egyébként nem kapnának nyilvánosságot.",
+          "A rossz újságírás elhallgat vagy segít eltussolni ügyeket."
         ],
       },
-      { subtitle: "az egyént védi", paragraphs: [] },
+      { subtitle: "az egyént védi",
+       paragraphs: [
+        "A jó újságírás a kiszolgáltatott egyént védi a kormánnyal és a társadalomban hatalommal bírókkal szemben.",
+        "A rossz újságírás a kormány vagy a társadalomban hatalommal bírók érdekét az egyén elé helyezi."
+      ] },
       {
         subtitle: "széles merítésű",
-        paragraphs: ["A jó újságírás biztosítja a nézetek széles skálájának ismertetését."],
+        paragraphs: [
+          "A jó újságírás biztosítja a nézetek széles skálájának ismertetését, a véleményeket a jelentőségüknek megfelelő súllyal és terjedelemben dolgozza fel.",
+          "A rossz újságírás szándékosan csak egyhangú véleményeket közöl, elfogult, egyoldalú vagy túlzóan egységes képet mutat a társadalmi ügyekről."
+        ],
       },
       {
         subtitle: "sokszínű",
-        paragraphs: ["A jó újságírás a társadalom sokszínűségét a tartalomban is érzékelhetővé teszi."],
+        paragraphs: [
+          "A jó újságírás a társadalom sokszínűségét a tartalomban is érzékelhetővé teszi.",
+          "A rossz újságírás nem veszi figyelembe a társadalom sokszínűségét, az emberek különbözőségét."
+        ],
       },
       {
         subtitle: "reprezentatív",
         paragraphs: [
           "A jó újságírás reprezentatív képet nyújt a társadalmat alkotó csoportokról.",
-          "A rossz újságírás reprezentatív képet nyújt a társadalmat alkotó csoportokról.",
+          "A rossz újságírás általánosít és sztereotipizál, elfogult vagy egyoldalú képet nyújt a társadalmat alkotó csoportokról.",
         ],
       },
     ],
@@ -205,7 +227,6 @@ export const attributes: DropdownListCategory[] = [
         subtitle: "oktat",
         paragraphs: [
           "A jó újságírás beszámol az egészséggel, természettel és környezettel kapcsolatos dolgokról, a fontosabb tudományos felfedezésekről, a tudomány fejlődéséről.",
-          "A rossz újságírás reprezentatív képet nyújt a társadalmat alkotó csoportokról.",
         ],
       },
       {
@@ -216,26 +237,34 @@ export const attributes: DropdownListCategory[] = [
       },
       {
         subtitle: "nevel",
-        paragraphs: [],
+        paragraphs: [
+          "A jó újságírás értéket ad, segíti az egyén fejlődését, boldogulását és a társadalom hasznos, építő tagjává való válását."
+        ],
       },
       {
         subtitle: "művel",
         paragraphs: [
-          "A jó újságírás tudósít a sport, a művészet és a kultúra kiemelkedő teljesítményeiről, eseményeiről.",
+          "A jó újságírás tudósít a művészet, a kultúra, a sport, a hitélet, a közélet és a közösség kiemelkedő teljesítményeiről, eseményeiről.",
         ],
       },
     ],
   },
   {
-    title: "Szórakoztat",
+    title: "Elgondolkodtat és inspirál",
     list: [
       {
         subtitle: "olvasmányos",
-        paragraphs: ["A jó újságírás jól szerkesztett, szellemes, eredeti és élvezetes olvasni."],
+        paragraphs: ["A jó újságírás jól szerkesztett, szellemes, nyelvezetében eredeti és élvezetes olvasni."],
       },
       {
-        subtitle: "inspirál",
-        paragraphs: ["A jó újságírás művészeti, kulturális programokat ajánl, ötleteket ad."],
+        subtitle: "elgondolkodtató",
+        paragraphs: ["A jó újságírás olyat témákkal is foglalkozik, amelyek elgondolkodtatják az olvasót."],
+      },
+      {
+        subtitle: "inspiráló",
+        paragraphs: [
+          "A jó újságírás művészeti, kulturális, közösségi programokat ajánl, ötleteket ad a szabadidő eltöltéséhez és különböző élethelyzetekhez."
+        ],
       },
     ],
   },
