@@ -1,4 +1,5 @@
 import React from "react";
+import Link from "next/link";
 import styles from "./menu.module.scss";
 
 export default function Menu() {
@@ -18,8 +19,8 @@ export default function Menu() {
 
 function MenuItem(props: { href: string; children: React.ReactNode }) {
   return (
-    <a href={props.href} className={styles.menuItem}>
-      {props.children}
-    </a>
+    <Link href={props.href}>
+      <a className={styles.menuItem}>{props.children}</a>
+    </Link>
   );
 }

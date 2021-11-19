@@ -1,7 +1,7 @@
 import DropdownList, { DropdownListItem } from "../../components/dropdownList";
 import Layout from "../../components/layout";
 import { attributes } from "../../attributes";
-import { useCallback } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { useRouter } from "next/dist/client/router";
 import { foldAccents } from "../../utils";
 import { GetStaticPropsContext, InferGetStaticPropsType } from "next";
@@ -26,12 +26,19 @@ export async function getStaticProps({ params }: GetStaticPropsContext) {
 const Page = (props: InferGetStaticPropsType<typeof getStaticProps>) => {
   const router = useRouter();
 
+  const [selectedItem, setSelectedItem] = useState<DropdownListItem | undefined>(slugs.get(props.slug));
+
   const handleItemSelected = useCallback(
     (item: DropdownListItem) => {
+      setSelectedItem(item);
       router.push(`/milyen/${item ? foldAccents(item.subtitle) : ""}`, undefined, { shallow: true });
     },
     [router]
   );
+
+  useEffect(() => {
+    setSelectedItem(router.query.slug ? slugs.get(router.query.slug[0]) : undefined);
+  }, [router.query.slug]);
 
   return (
     <Layout>
@@ -39,7 +46,7 @@ const Page = (props: InferGetStaticPropsType<typeof getStaticProps>) => {
         prefix="A jó újságírás"
         categories={attributes}
         onItemSelect={handleItemSelected}
-        selectedItem={slugs.get(props.slug)}
+        selectedItem={selectedItem}
       />
     </Layout>
   );

@@ -1,8 +1,9 @@
 import React, { useCallback, useState } from "react";
 import AnimateHeight from "react-animate-height";
 import tinygradient from "tinygradient";
+import Link from "next/link";
 import styles from "./dropdownList.module.scss";
-import Marker, { Heading2 } from "./marker";
+import { Heading2 } from "./marker";
 import Paragraph from "./paragraph";
 export interface DropdownListItem {
   subtitle: string;
@@ -78,24 +79,26 @@ export default function DropdownList(props: {
   onItemSelect: (item: DropdownListItem) => void;
   selectedItem?: DropdownListItem;
 }) {
-  const { onItemSelect } = props;
-
   const [selectedCategory, setSelectedCategory] = useState<DropdownListCategory | undefined>(
     props.categories.find((category) => category.list.some((item) => item === props.selectedItem))
   );
-  const [selectedItem, setSelectedItem] = useState<DropdownListItem | undefined>(props.selectedItem);
 
   const handleCategorySelected = useCallback(
     (category) => setSelectedCategory((prev) => (prev === category ? undefined : category)),
     []
   );
+
+  const { onItemSelect, selectedItem } = props;
   const handleItemSelected = useCallback(
     (item) => {
-      onItemSelect(item);
-      setSelectedItem((prev) => (prev === item ? undefined : item));
+      onItemSelect(selectedItem === item ? undefined : item);
     },
-    [onItemSelect]
+    [onItemSelect, selectedItem]
   );
+
+  const handleTitleClicked = useCallback(() => {
+    setSelectedCategory(undefined);
+  }, []);
 
   const noCategorySelected = selectedCategory === undefined;
   const lastIndex = props.categories.length - 1;
@@ -104,9 +107,11 @@ export default function DropdownList(props: {
   return (
     <>
       <div className={styles.dropdownListWrapper}>
-        <Marker element="link" href="/milyen" classNames={[styles.dropdownTitle]}>
-          {props.prefix}
-        </Marker>
+        <Link href="/milyen">
+          <a className={styles.dropdownTitle} onClick={handleTitleClicked}>
+            {props.prefix}
+          </a>
+        </Link>
         <div className={styles.dropdownList}>
           <AnimateHeight duration={animateHeightDuration} height={noCategorySelected ? "auto" : 0}>
             <div className={styles.spacerItem}></div>
@@ -118,9 +123,10 @@ export default function DropdownList(props: {
               color={gradient.rgbAt(i / lastIndex).toHexString()}
               fadeInDelay={i * fadeInDelay}
               visibility={{
-                isTitleVisible: selectedItem === undefined && (noCategorySelected || selectedCategory === category),
-                isItemsVisible: selectedItem === undefined && selectedCategory === category,
-                selectedItem,
+                isTitleVisible:
+                  props.selectedItem === undefined && (noCategorySelected || selectedCategory === category),
+                isItemsVisible: props.selectedItem === undefined && selectedCategory === category,
+                selectedItem: props.selectedItem,
               }}
               onCategorySelect={handleCategorySelected}
               onItemSelect={handleItemSelected}
@@ -128,7 +134,7 @@ export default function DropdownList(props: {
           ))}
         </div>
       </div>
-      {selectedItem?.paragraphs.map((paragraph: string, i) => (
+      {props.selectedItem?.paragraphs.map((paragraph: string, i) => (
         <Paragraph key={i}>{paragraph}</Paragraph>
       ))}
     </>
