@@ -221,7 +221,7 @@ export const attributes: DropdownListCategory[] = [
     ],
   },
   {
-    title: "Oktatja és neveli az állampolgárokat",
+    title: "Oktatja, neveli és szórakoztatja az állampolgárokat",
     list: [
       {
         subtitle: "oktat",
@@ -247,21 +247,22 @@ export const attributes: DropdownListCategory[] = [
           "A jó újságírás tudósít a művészet, a kultúra, a sport, a hitélet, a közélet és a közösség kiemelkedő teljesítményeiről, eseményeiről.",
         ],
       },
-    ],
-  },
-  {
-    title: "Elgondolkodtat és inspirál",
-    list: [
       {
         subtitle: "olvasmányos",
         paragraphs: ["A jó újságírás jól szerkesztett, szellemes, nyelvezetében eredeti és élvezetes olvasni."],
       },
       {
-        subtitle: "elgondolkodtató",
+        subtitle: "elgondolkodtat",
         paragraphs: ["A jó újságírás olyat témákkal is foglalkozik, amelyek elgondolkodtatják az olvasót."],
       },
       {
-        subtitle: "inspiráló",
+        subtitle: "inspirál",
+        paragraphs: [
+          "A jó újságírás művészeti, kulturális, közösségi programokat ajánl, ötleteket ad a szabadidő eltöltéséhez és különböző élethelyzetekhez."
+        ],
+      },
+      {
+        subtitle: "szórakoztat",
         paragraphs: [
           "A jó újságírás művészeti, kulturális, közösségi programokat ajánl, ötleteket ad a szabadidő eltöltéséhez és különböző élethelyzetekhez."
         ],
