@@ -17,6 +17,7 @@
 
 .dropdownListWrapper {
   display: flex;
+  align-items: flex-start;
 }
 
 .dropdownList {
@@ -35,6 +36,14 @@
   .spacerItem {
     display: none;
   }
+}
+
+.dropdownTitle {
+  color: $light-color !important;
+  margin: 0.5em 0 0 0 !important;
+  padding-left: 0 !important;
+  font-size: 1.5em;
+  white-space: nowrap;
 }
 
 .closable {

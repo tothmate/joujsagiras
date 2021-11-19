@@ -16,10 +16,15 @@
 
   &.clickable {
     cursor: pointer;
+    border: 4px solid transparent;
   }
 
   & a {
     color: inherit;
+  }
+
+  &.clickable:hover {
+    border: 4px solid $light-color;
   }
 }
 
@@ -43,14 +48,4 @@ h2.marker {
   background-color: $primary-color;
   color: $dark-color;
   font-size: 1.5em;
-}
-
-h3.marker {
-  background-color: $dark-color;
-  color: $light-color;
-  margin: 0.5em 0 0 0;
-  padding-left: 0;
-  font-size: 1.5em;
-  white-space: nowrap;
-  box-sizing: border-box;
 }

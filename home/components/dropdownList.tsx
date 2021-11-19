@@ -2,7 +2,7 @@ import React, { useCallback, useState } from "react";
 import AnimateHeight from "react-animate-height";
 import tinygradient from "tinygradient";
 import styles from "./dropdownList.module.scss";
-import { Heading2, Heading3 } from "./marker";
+import Marker, { Heading2 } from "./marker";
 import Paragraph from "./paragraph";
 export interface DropdownListItem {
   subtitle: string;
@@ -33,7 +33,7 @@ function Closable(props: { closed: boolean; children: React.ReactNode }) {
   );
 }
 
-export function Dropdown(props: {
+function Dropdown(props: {
   category: DropdownListCategory;
   color: string;
   fadeInDelay: number;
@@ -104,7 +104,9 @@ export default function DropdownList(props: {
   return (
     <>
       <div className={styles.dropdownListWrapper}>
-        <Heading3>{props.prefix}</Heading3>
+        <Marker element="link" href="/milyen" classNames={[styles.dropdownTitle]}>
+          {props.prefix}
+        </Marker>
         <div className={styles.dropdownList}>
           <AnimateHeight duration={animateHeightDuration} height={noCategorySelected ? "auto" : 0}>
             <div className={styles.spacerItem}></div>
