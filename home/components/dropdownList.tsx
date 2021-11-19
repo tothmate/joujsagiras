@@ -4,7 +4,6 @@ import tinygradient from "tinygradient";
 import Link from "next/link";
 import styles from "./dropdownList.module.scss";
 import { Heading2 } from "./marker";
-import Paragraph from "./paragraph";
 export interface DropdownListItem {
   subtitle: string;
   paragraphs: string[];
@@ -105,38 +104,32 @@ export default function DropdownList(props: {
   const fadeInDelay = parseFloat(styles.fadeInDuration) / props.categories.length;
 
   return (
-    <>
-      <div className={styles.dropdownListWrapper}>
-        <Link href="/milyen">
-          <a className={styles.dropdownTitle} onClick={handleTitleClicked}>
-            {props.prefix}
-          </a>
-        </Link>
-        <div className={styles.dropdownList}>
-          <AnimateHeight duration={animateHeightDuration} height={noCategorySelected ? "auto" : 0}>
-            <div className={styles.spacerItem}></div>
-          </AnimateHeight>
-          {props.categories.map((category, i) => (
-            <Dropdown
-              key={i}
-              category={category}
-              color={gradient.rgbAt(i / lastIndex).toHexString()}
-              fadeInDelay={i * fadeInDelay}
-              visibility={{
-                isTitleVisible:
-                  props.selectedItem === undefined && (noCategorySelected || selectedCategory === category),
-                isItemsVisible: props.selectedItem === undefined && selectedCategory === category,
-                selectedItem: props.selectedItem,
-              }}
-              onCategorySelect={handleCategorySelected}
-              onItemSelect={handleItemSelected}
-            />
-          ))}
-        </div>
+    <div className={styles.dropdownListWrapper}>
+      <Link href="/milyen">
+        <a className={styles.dropdownTitle} onClick={handleTitleClicked}>
+          {props.prefix}
+        </a>
+      </Link>
+      <div className={styles.dropdownList}>
+        <AnimateHeight duration={animateHeightDuration} height={noCategorySelected ? "auto" : 0}>
+          <div className={styles.spacerItem}></div>
+        </AnimateHeight>
+        {props.categories.map((category, i) => (
+          <Dropdown
+            key={i}
+            category={category}
+            color={gradient.rgbAt(i / lastIndex).toHexString()}
+            fadeInDelay={i * fadeInDelay}
+            visibility={{
+              isTitleVisible: props.selectedItem === undefined && (noCategorySelected || selectedCategory === category),
+              isItemsVisible: props.selectedItem === undefined && selectedCategory === category,
+              selectedItem: props.selectedItem,
+            }}
+            onCategorySelect={handleCategorySelected}
+            onItemSelect={handleItemSelected}
+          />
+        ))}
       </div>
-      {props.selectedItem?.paragraphs.map((paragraph: string, i) => (
-        <Paragraph key={i}>{paragraph}</Paragraph>
-      ))}
-    </>
+    </div>
   );
 }

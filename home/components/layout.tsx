@@ -11,6 +11,16 @@ export default function Layout(props: { children: React.ReactNode }) {
   );
 }
 
+export function NewSectionLayout(props: { children: React.ReactNode; isDarkSection: boolean }) {
+  return (
+    <div className={props.isDarkSection ? styles.darkSection : styles.lightSection}>
+      <div className={styles.borderTop} />
+      <div className={styles.layout}>{props.children}</div>
+      <div className={styles.borderBottom} />
+    </div>
+  );
+}
+
 export function HomeLayout(props: { children: React.ReactNode }) {
   return (
     <>

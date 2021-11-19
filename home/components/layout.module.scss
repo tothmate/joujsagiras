@@ -6,6 +6,37 @@
   margin: 5vw auto 0;
 }
 
+.section {
+  & .borderTop {
+    height: 0;
+    border-style: solid;
+    border-bottom-width: 5em;
+    border-left-width: 100vw;
+  }
+}
+
+.darkSection {
+  @extend .section;
+  background-color: $dark-color;
+  color: $light-color;
+
+  & .borderTop {
+    border-bottom-color: $dark-color;
+    border-left-color: $light-color;
+  }
+}
+
+.lightSection {
+  @extend .section;
+  background-color: $light-color;
+  color: $dark-color;
+
+  & .borderTop {
+    border-bottom-color: $light-color;
+    border-left-color: $dark-color;
+  }
+}
+
 .home {
   display: flex;
   justify-content: center;
