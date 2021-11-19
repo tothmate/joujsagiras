@@ -230,12 +230,6 @@ export const attributes: DropdownListCategory[] = [
         ],
       },
       {
-        subtitle: "tájékozottá tesz",
-        paragraphs: [
-          "A jó újságírás nyomon követi és hírt ad az emberek napi életét befolyásoló eseményekről és változásokról, gazdasági fejleményekről, jogi és államigazgatási ügyekről.",
-        ],
-      },
-      {
         subtitle: "nevel",
         paragraphs: [
           "A jó újságírás értéket ad, segíti az egyén fejlődését, boldogulását és a társadalom hasznos, építő tagjává való válását."
@@ -248,21 +242,27 @@ export const attributes: DropdownListCategory[] = [
         ],
       },
       {
+        subtitle: "tájékozottá tesz",
+        paragraphs: [
+          "A jó újságírás nyomon követi és hírt ad az emberek napi életét befolyásoló eseményekről és változásokról, gazdasági fejleményekről, jogi és államigazgatási ügyekről.",
+        ],
+      },
+      {
         subtitle: "olvasmányos",
         paragraphs: ["A jó újságírás jól szerkesztett, szellemes, nyelvezetében eredeti és élvezetes olvasni."],
       },
       {
-        subtitle: "elgondolkodtat",
+        subtitle: "elgondolkodtató",
         paragraphs: ["A jó újságírás olyat témákkal is foglalkozik, amelyek elgondolkodtatják az olvasót."],
       },
       {
-        subtitle: "inspirál",
+        subtitle: "inspiráló",
         paragraphs: [
           "A jó újságírás művészeti, kulturális, közösségi programokat ajánl, ötleteket ad a szabadidő eltöltéséhez és különböző élethelyzetekhez."
         ],
       },
       {
-        subtitle: "szórakoztat",
+        subtitle: "szórakoztató",
         paragraphs: [
           "A jó újságírás művészeti, kulturális, közösségi programokat ajánl, ötleteket ad a szabadidő eltöltéséhez és különböző élethelyzetekhez."
         ],
