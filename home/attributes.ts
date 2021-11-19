@@ -221,18 +221,12 @@ export const attributes: DropdownListCategory[] = [
     ],
   },
   {
-    title: "Oktatja és neveli az állampolgárokat",
+    title: "Oktatja, neveli és szórakoztatja az állampolgárokat",
     list: [
       {
         subtitle: "oktat",
         paragraphs: [
           "A jó újságírás beszámol az egészséggel, természettel és környezettel kapcsolatos dolgokról, a fontosabb tudományos felfedezésekről, a tudomány fejlődéséről.",
-        ],
-      },
-      {
-        subtitle: "tájékozottá tesz",
-        paragraphs: [
-          "A jó újságírás nyomon követi és hírt ad az emberek napi életét befolyásoló eseményekről és változásokról, gazdasági fejleményekről, jogi és államigazgatási ügyekről.",
         ],
       },
       {
@@ -247,11 +241,12 @@ export const attributes: DropdownListCategory[] = [
           "A jó újságírás tudósít a művészet, a kultúra, a sport, a hitélet, a közélet és a közösség kiemelkedő teljesítményeiről, eseményeiről.",
         ],
       },
-    ],
-  },
-  {
-    title: "Elgondolkodtat és inspirál",
-    list: [
+      {
+        subtitle: "tájékozottá tesz",
+        paragraphs: [
+          "A jó újságírás nyomon követi és hírt ad az emberek napi életét befolyásoló eseményekről és változásokról, gazdasági fejleményekről, jogi és államigazgatási ügyekről.",
+        ],
+      },
       {
         subtitle: "olvasmányos",
         paragraphs: ["A jó újságírás jól szerkesztett, szellemes, nyelvezetében eredeti és élvezetes olvasni."],
@@ -262,6 +257,12 @@ export const attributes: DropdownListCategory[] = [
       },
       {
         subtitle: "inspiráló",
+        paragraphs: [
+          "A jó újságírás művészeti, kulturális, közösségi programokat ajánl, ötleteket ad a szabadidő eltöltéséhez és különböző élethelyzetekhez."
+        ],
+      },
+      {
+        subtitle: "szórakoztató",
         paragraphs: [
           "A jó újságírás művészeti, kulturális, közösségi programokat ajánl, ötleteket ad a szabadidő eltöltéséhez és különböző élethelyzetekhez."
         ],
