@@ -15,8 +15,7 @@ import Overlay from './Overlay';
 
 const useStyles = makeStyles({
   card: {
-    position: 'relative',
-    overflow: 'visible'
+    position: 'relative'
   },
   placeholder: {
     height: '170px',
@@ -24,13 +23,20 @@ const useStyles = makeStyles({
   },
   overlay: {
     position: 'absolute',
-    top: '20px',
-    left: '20px'
+    top: '100px',
+    left: '-3px',
+    right: '-3px'
   },
   link: {
     textTransform: 'uppercase',
     color: '#616161',
     fontSize: '0.85em'
+  },
+  cardcontent: {
+    padding: '6px 12px',
+    '&:last-child': {
+      paddingBottom: '6px'
+    }
   }
 });
 
@@ -52,7 +58,7 @@ export default function Canvas(props: { sticker: Sticker; loadingSource: boolean
         </Box>
       </Fade>
       {!props.loadingSource && (
-        <CardContent>
+        <CardContent className={classes.cardcontent}>
           <Typography variant="body2" component="h2" noWrap>
             <Link href={props.sticker.source.url} className={classes.link}>
               {new URL(props.sticker.source.url).hostname}

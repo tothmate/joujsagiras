@@ -1,29 +1,20 @@
 import React from 'react';
-import { Box, makeStyles, Typography } from '@material-ui/core';
+import { makeStyles, Typography } from '@material-ui/core';
 import { Sticker } from '../src/models';
 
 const useStyles = makeStyles({
-  firstLabel: {
-    backgroundColor: '#ffcc02',
-    fontWeight: 'bold',
+  label: {
+    backgroundColor: '#5ac8fa',
     color: '#000000',
-    padding: '10px',
-    textAlign: 'center',
+    padding: '12px',
     textTransform: 'uppercase',
-    transform: 'rotate(-10deg)',
-    display: 'inline-block',
+    transform: 'rotate(-2deg)',
     fontFamily: 'Oswald, sans-serif'
   },
-  secondLabel: {
-    backgroundColor: '#5ac8fa',
-    marginLeft: '60px',
-    color: '#000000',
-    padding: '10px',
-    textAlign: 'center',
-    textTransform: 'uppercase',
-    transform: 'rotate(-10deg)',
-    display: 'inline-block',
-    fontFamily: 'Oswald, sans-serif'
+  filler: {
+    backgroundColor: '#ffffff',
+    height: '20px',
+    marginTop: '-12px'
   }
 });
 
@@ -31,12 +22,10 @@ export default function Overlay(props: { sticker: Sticker }) {
   const classes = useStyles();
   return (
     <>
-      <Typography variant="h3" className={classes.firstLabel}>
-        hopp!
+      <Typography variant="h4" className={classes.label}>
+        <b>Hopp!</b> Ez {props.sticker.reason.text}
       </Typography>
-      <Typography variant="h4" className={classes.secondLabel}>
-        Ez {props.sticker.reason.text}
-      </Typography>
+      <div className={classes.filler}></div>
     </>
   );
 }
