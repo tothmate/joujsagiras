@@ -58,9 +58,18 @@ const Page = (props: InferGetStaticPropsType<typeof getStaticProps>) => {
       {selectedItem && (
         <>
           <NewSectionLayout isDarkSection={false}>
-            Példák <br />
-            ... <br />
-            Lattal te is egy cikket ami nem {selectedItem.subtitle}? <Link href="/hopp">Ertekeld!</Link>
+            <Heading1>Példák</Heading1>
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <Heading1>
+              Láttál te is egy cikket, ami nem <i>{selectedItem.subtitle}</i>? <Link href="/hopp">Értékeld!</Link>
+            </Heading1>
           </NewSectionLayout>
           <NewSectionLayout isDarkSection={true}>
             <Heading1>

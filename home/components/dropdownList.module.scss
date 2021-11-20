@@ -39,10 +39,11 @@
 }
 
 .dropdownTitle {
-  background-color: $dark-color;
   color: $light-color;
-  margin: 0.7em 0.3em 0 0;
+  margin: 0.1em 0.3em 0.6em 0.1em;
   padding: 0;
+  border-top: 4px solid transparent;
+  border-bottom: 4px solid transparent;
   font-size: 1.5em;
   white-space: nowrap;
   text-transform: uppercase;
@@ -50,7 +51,7 @@
 }
 
 .dropdownTitle:hover {
-  border-bottom: 3px solid $primary-color;
+  border-bottom-color: $primary-color;
 }
 
 .closable {

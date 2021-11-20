@@ -3,15 +3,20 @@
 .layout {
   width: 90%;
   max-width: $max-width;
-  margin: 5vw auto 0;
+  margin: 2em auto 0;
+  overflow: hidden;
+
+  & p {
+    font-size: 1.2em;
+    line-height: 1.4;
+  }
 }
 
 .section {
   & .borderTop {
     height: 0;
-    border-style: solid;
-    border-bottom-width: 5em;
-    border-left-width: 100vw;
+    border-bottom: 2em solid transparent;
+    border-left: 100vw solid transparent;
   }
 }
 
@@ -21,7 +26,6 @@
   color: $light-color;
 
   & .borderTop {
-    border-bottom-color: $dark-color;
     border-left-color: $light-color;
   }
 }
@@ -32,8 +36,12 @@
   color: $dark-color;
 
   & .borderTop {
-    border-bottom-color: $light-color;
     border-left-color: $dark-color;
+  }
+
+  & h1 {
+    background-color: $light-color;
+    color: $dark-color;
   }
 }
 

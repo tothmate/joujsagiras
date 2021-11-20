@@ -9,8 +9,6 @@
     box-sizing: border-box;
     overflow: hidden;
     margin: 1em 0;
-    font-size: 1.2em;
-    line-height: 1.4;
 
     & .borderBottom {
         border-left: math.div($max-width, 2) solid transparent;

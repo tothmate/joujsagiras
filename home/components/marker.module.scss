@@ -29,22 +29,15 @@
 }
 
 h1.marker {
-  margin: 0;
+  margin: 0 0 0.5em 0;
   padding: 0;
   background-color: $dark-color;
   color: $light-color;
-  font-size: 3em;
-}
-
-@media (max-width: $max-width) {
-  h1.marker {
-    font-size: 12vw;
-  }
+  font-size: 2.5em;
 }
 
 h2.marker {
-  margin: 0.5em 0 0 0;
-  box-sizing: border-box;
+  margin: 0 0 0.5em 0;
   background-color: $primary-color;
   color: $dark-color;
   font-size: 1.5em;
