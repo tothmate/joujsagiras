@@ -58,10 +58,14 @@ const Page = (props: InferGetStaticPropsType<typeof getStaticProps>) => {
       {selectedItem && (
         <>
           <NewSectionLayout isDarkSection={false}>
-            <Heading1>Példák</Heading1>
+            <Heading1>Jó példák</Heading1>
             <br />
             <br />
             <br />
+            <br />
+            <br />
+            <br />
+            <Heading1>Rossz példák</Heading1>
             <br />
             <br />
             <br />

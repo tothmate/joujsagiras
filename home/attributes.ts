@@ -85,7 +85,7 @@ export const attributes: DropdownListCategory[] = [
         subtitle: "ütköztet",
         paragraphs: [
           "A jó újságírás ellentmondásos témákban a releváns tények mellett a vonatkozó véleményeket is mérlegeli és teret ad nekik.",
-          "Az olyan újságírás, amely ellentmondásos témákban csak az egyik oldal véleményét ismerteti, elfogult és részrehajló, ",
+          "Az olyan újságírás, amely ellentmondásos témákban csak az egyik oldal véleményét ismerteti, elfogult és részrehajló.",
         ],
       },
       {
