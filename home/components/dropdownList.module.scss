@@ -18,6 +18,7 @@
 .dropdownListWrapper {
   display: flex;
   align-items: flex-start;
+  padding: 0.05px; // to avoid margin collapsing
   margin-bottom: 2em;
 }
 
