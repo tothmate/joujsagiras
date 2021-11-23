@@ -111,23 +111,29 @@ export default function DropdownList(props: {
         </a>
       </Link>
       <div className={styles.dropdownList}>
-        <AnimateHeight duration={animateHeightDuration} height={noCategorySelected ? "auto" : 0}>
-          <div className={styles.spacerItem}></div>
-        </AnimateHeight>
-        {props.categories.map((category, i) => (
-          <Dropdown
-            key={i}
-            category={category}
-            color={gradient.rgbAt(i / lastIndex).toHexString()}
-            fadeInDelay={i * fadeInDelay}
-            visibility={{
-              isTitleVisible: props.selectedItem === undefined && (noCategorySelected || selectedCategory === category),
-              isItemsVisible: props.selectedItem === undefined && selectedCategory === category,
-              selectedItem: props.selectedItem,
-            }}
-            onCategorySelect={handleCategorySelected}
-            onItemSelect={handleItemSelected}
-          />
+        <div className={styles.dropdownListItems}>
+          <AnimateHeight duration={animateHeightDuration} height={noCategorySelected ? "auto" : 0}>
+            <div className={styles.spacerItem}></div>
+          </AnimateHeight>
+          {props.categories.map((category, i) => (
+            <Dropdown
+              key={i}
+              category={category}
+              color={gradient.rgbAt(i / lastIndex).toHexString()}
+              fadeInDelay={i * fadeInDelay}
+              visibility={{
+                isTitleVisible:
+                  props.selectedItem === undefined && (noCategorySelected || selectedCategory === category),
+                isItemsVisible: props.selectedItem === undefined && selectedCategory === category,
+                selectedItem: props.selectedItem,
+              }}
+              onCategorySelect={handleCategorySelected}
+              onItemSelect={handleItemSelected}
+            />
+          ))}
+        </div>
+        {props.selectedItem?.paragraphs.map((paragraph: string, i) => (
+          <p key={i}>{paragraph}</p>
         ))}
       </div>
     </div>

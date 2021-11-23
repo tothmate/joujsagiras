@@ -18,12 +18,15 @@
 .dropdownListWrapper {
   display: flex;
   align-items: flex-start;
-  padding: 0.05px; // to avoid margin collapsing
-  margin-bottom: 2em;
 }
 
 .dropdownList {
   flex-grow: 1;
+}
+
+.dropdownListItems {
+  padding: 0.05px; // to avoid margin collapsing that causes glitches in animation
+  margin-bottom: 2em;
 }
 
 .spacerItem {

@@ -51,9 +51,6 @@ const Page = (props: InferGetStaticPropsType<typeof getStaticProps>) => {
           onItemSelect={handleItemSelected}
           selectedItem={selectedItem}
         />
-        {selectedItem?.paragraphs.map((paragraph: string, i) => (
-          <p key={i}>{paragraph}</p>
-        ))}
       </Layout>
       {selectedItem && (
         <>
