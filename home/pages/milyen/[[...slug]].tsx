@@ -6,7 +6,7 @@ import { useCallback, useEffect, useState } from "react";
 import { useRouter } from "next/dist/client/router";
 import { foldAccents } from "../../utils";
 import { GetStaticPropsContext, InferGetStaticPropsType } from "next";
-import { Heading1 } from "../../components/marker";
+import { Heading2 } from "../../components/marker";
 
 const slugs = new Map<string, DropdownListItem>(
   attributes.flatMap((category) => category.list.map((item) => [foldAccents(item.subtitle), item]))
