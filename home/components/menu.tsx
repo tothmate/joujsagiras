@@ -6,7 +6,7 @@ export default function Menu() {
   return (
     <div className={styles.menu}>
       <nav>
-        <MenuItem href="/">Jó újságírás .hu</MenuItem>
+        <MenuItem href="/">Jó újságírás . hu</MenuItem>
       </nav>
       <nav>
         <MenuItem href="/van">Van.</MenuItem>
