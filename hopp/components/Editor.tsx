@@ -1,40 +1,32 @@
-import React, { useCallback, useState } from 'react';
-import { DateTime } from 'luxon';
-import Head from 'next/head';
+import React, { useCallback, useState } from "react";
+import { DateTime } from "luxon";
+import Head from "next/head";
 import {
+  Alert,
   Button,
   CircularProgress,
   Collapse,
   FormControl,
   Grid,
   InputLabel,
-  makeStyles,
   MenuItem,
   Select,
   Snackbar,
-  TextField
-} from '@material-ui/core';
-import { Alert } from '@material-ui/lab';
-import { reasons, Sticker, StickerStore, GeneratorMode, emptySticker } from '../src/models';
+  TextField,
+} from "@mui/material";
+import { reasons, Sticker, StickerStore, GeneratorMode, emptySticker } from "../src/models";
 import {
   getReasonBySlug,
   isValidUrl,
   updateSticker,
   getLocallizedDateString,
   getUrlForSticker,
-  capitalizeFirstLetter
-} from '../src/helpers';
-import ShareBox from './ShareBox';
-import Viewer from './Viewer';
-
-const useStyles = makeStyles({
-  unsavedPreview: {
-    border: '6px dashed #f1f1f1'
-  }
-});
+  capitalizeFirstLetter,
+} from "../src/helpers";
+import ShareBox from "./ShareBox";
+import Viewer from "./Viewer";
 
 export default function Editor(props: { store: StickerStore }) {
-  const classes = useStyles();
   const [sticker, setSticker] = useState<Sticker>(emptySticker);
   const [loadingSource, setLoadingSource] = useState(false);
   const [saving, setSaving] = useState(false);
@@ -51,7 +43,7 @@ export default function Editor(props: { store: StickerStore }) {
         url: url,
         title: data.title,
         date: getLocallizedDateString(DateTime.now()),
-        image: data.image
+        image: data.image,
       };
       setSticker((sticker) => updateSticker(sticker, { source: newSource }));
       setUrlCandidate(undefined);
@@ -60,7 +52,7 @@ export default function Editor(props: { store: StickerStore }) {
       setErrorMessage(undefined);
     } else {
       setUrlError(true);
-      setErrorMessage('Nem sikerült betölteni.');
+      setErrorMessage("Nem sikerült betölteni.");
       setLoadingSource(false);
     }
   }, []);
@@ -90,7 +82,7 @@ export default function Editor(props: { store: StickerStore }) {
   }, []);
 
   const handleStickerShared = useCallback(async () => {
-    if (sticker.source.url !== '' && sticker.reason.slug !== '') {
+    if (sticker.source.url !== "" && sticker.reason.slug !== "") {
       setSaving(true);
 
       const result = await props.store.save(sticker);
@@ -113,13 +105,13 @@ export default function Editor(props: { store: StickerStore }) {
   }, [props.store, sticker]);
 
   const handleBackClicked = useCallback(() => {
-    setSticker((sticker) => updateSticker(sticker, { id: '' }));
+    setSticker((sticker) => updateSticker(sticker, { id: "" }));
   }, []);
 
   const urlValue = urlCandidate || sticker.source.url;
-  const isUrlLoaded = urlValue !== '' && !urlError;
-  const isSaved = sticker.id !== '';
-  const isReasonSelected = sticker.reason.slug !== '';
+  const isUrlLoaded = urlValue !== "" && !urlError;
+  const isSaved = sticker.id !== "";
+  const isReasonSelected = sticker.reason.slug !== "";
 
   const showReasonSelector = isUrlLoaded;
   const showPreview = showReasonSelector;
@@ -140,7 +132,6 @@ export default function Editor(props: { store: StickerStore }) {
           <TextField
             label="Ide másold be a cikk URL-jét"
             fullWidth
-            variant="outlined"
             value={urlValue}
             error={urlError}
             onChange={(e) => handleUrlChange(e.target.value as string)}
@@ -169,7 +160,7 @@ export default function Editor(props: { store: StickerStore }) {
         </Grid>
       )}
       {showPreview && (
-        <Grid item xs={12} className={isSaved ? '' : classes.unsavedPreview}>
+        <Grid item xs={12}>
           <Viewer
             sticker={sticker}
             loadingSource={loadingSource}

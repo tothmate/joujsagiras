@@ -1,8 +1,8 @@
-import React, { useState } from 'react';
-import { Grid, Icon, IconButton, Link, TextField } from '@material-ui/core';
-import { CopyToClipboard } from 'react-copy-to-clipboard';
-import { GeneratorMode, Sticker } from '../src/models';
-import { getUrlForSticker } from '../src/helpers';
+import React, { useState } from "react";
+import { Grid, Icon, IconButton, Link, TextField } from "@mui/material";
+import { CopyToClipboard } from "react-copy-to-clipboard";
+import { GeneratorMode, Sticker } from "../src/models";
+import { getUrlForSticker } from "../src/helpers";
 
 export default function ShareBox(props: { sticker: Sticker }) {
   const [copiedLink, setCopiedLink] = useState(false);
@@ -11,8 +11,8 @@ export default function ShareBox(props: { sticker: Sticker }) {
   const pngLink = getUrlForSticker(props.sticker, GeneratorMode.Png);
 
   const downloadPng = () => {
-    const link = document.createElement('a');
-    link.download = 'hopp';
+    const link = document.createElement("a");
+    link.download = "hopp";
     link.href = pngLink;
     link.click();
   };
@@ -22,9 +22,10 @@ export default function ShareBox(props: { sticker: Sticker }) {
       <Grid item xs={9} sm={6}>
         <TextField
           fullWidth
+          variant="standard"
           label="Link"
           InputProps={{
-            readOnly: true
+            readOnly: true,
           }}
           value={link}
         ></TextField>
@@ -40,7 +41,7 @@ export default function ShareBox(props: { sticker: Sticker }) {
           }}
         >
           <IconButton size="small">
-            <Icon fontSize="small">{copiedLink ? 'check_circle' : 'content_copy'}</Icon>
+            <Icon fontSize="small">{copiedLink ? "check_circle" : "content_copy"}</Icon>
           </IconButton>
         </CopyToClipboard>
         <IconButton size="small">
@@ -52,9 +53,10 @@ export default function ShareBox(props: { sticker: Sticker }) {
       <Grid item xs={9} sm={6}>
         <TextField
           fullWidth
+          variant="standard"
           label="Kép"
           InputProps={{
-            readOnly: true
+            readOnly: true,
           }}
           value={pngLink}
         ></TextField>
@@ -70,7 +72,7 @@ export default function ShareBox(props: { sticker: Sticker }) {
           }}
         >
           <IconButton size="small">
-            <Icon fontSize="small">{copiedPngLink ? 'check_circle' : 'content_copy'}</Icon>
+            <Icon fontSize="small">{copiedPngLink ? "check_circle" : "content_copy"}</Icon>
           </IconButton>
         </CopyToClipboard>
         <IconButton size="small" onClick={downloadPng}>

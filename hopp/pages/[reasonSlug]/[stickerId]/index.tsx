@@ -1,16 +1,16 @@
-import { Grid } from '@material-ui/core';
-import { GetServerSidePropsContext, InferGetServerSidePropsType } from 'next';
-import ErrorPage from 'next/error';
-import ShareBox from '../../../components/ShareBox';
-import Viewer from '../../../components/Viewer';
-import { emptySticker, StickerStoreErrorType } from '../../../src/models';
-import store from '../../../src/SupabaseStore';
+import { Grid } from "@mui/material";
+import { GetServerSidePropsContext, InferGetServerSidePropsType } from "next";
+import ErrorPage from "next/error";
+import ShareBox from "../../../components/ShareBox";
+import Viewer from "../../../components/Viewer";
+import { emptySticker, StickerStoreErrorType } from "../../../src/models";
+import store from "../../../src/SupabaseStore";
 
 export async function getServerSideProps({ res, query }: GetServerSidePropsContext) {
   const result = await store.load(query.stickerId as string);
   return result.match(
     (sticker) => {
-      res.setHeader('Cache-Control', 's-maxage=3600, stale-while-revalidate=2678400');
+      res.setHeader("Cache-Control", "s-maxage=3600, stale-while-revalidate=2678400");
       return { props: { sticker, error: null } };
     },
     (error) => {

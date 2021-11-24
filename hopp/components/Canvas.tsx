@@ -1,77 +1,55 @@
-import React from 'react';
-import {
-  Card,
-  CardContent,
-  CardMedia,
-  Typography,
-  Link,
-  Box,
-  CircularProgress,
-  makeStyles,
-  Fade
-} from '@material-ui/core';
-import { Sticker } from '../src/models';
-import Overlay from './Overlay';
-
-const useStyles = makeStyles({
-  placeholder: {
-    height: '200px',
-    backgroundColor: '#fafafa'
-  },
-  overlay: {
-    position: 'absolute',
-    bottom: 0,
-    left: '-3px',
-    right: '-3px'
-  },
-  link: {
-    textTransform: 'uppercase',
-    color: '#616161',
-    fontSize: '0.85em'
-  },
-  cardMedia: {
-    height: '200px',
-    filter: (props: { hasOverlay: boolean }) => (props.hasOverlay ? 'grayscale(60%)' : 'none')
-  },
-  cardContent: {
-    padding: '6px 12px',
-    '&:last-child': {
-      paddingBottom: '6px'
-    }
-  }
-});
+import React from "react";
+import { Card, CardContent, CardMedia, Typography, Link, Box, CircularProgress, Fade } from "@mui/material";
+import { Sticker } from "../src/models";
+import Overlay from "./Overlay";
 
 export default function Canvas(props: { sticker: Sticker; loadingSource: boolean }) {
-  const hasOverlay = props.sticker.reason.text !== '';
-  const classes = useStyles({ hasOverlay });
+  const hasOverlay = props.sticker.reason.text !== "";
   return (
     <Card>
       {(!props.sticker.source.image || props.loadingSource) && (
-        <Box display="flex" alignItems="center" justifyContent="center" className={classes.placeholder}>
+        <Box
+          display="flex"
+          alignItems="center"
+          justifyContent="center"
+          height="200px"
+          sx={{ backgroundColor: "#fafafa" }}
+        >
           <CircularProgress size="1em" />
         </Box>
       )}
-      <div style={{ position: 'relative' }}>
+      <div style={{ position: "relative" }}>
         {props.sticker.source.image && !props.loadingSource && (
           <CardMedia
-            className={classes.cardMedia}
+            sx={{ height: "200px", filter: hasOverlay ? "grayscale(60%)" : "none" }}
             image={props.sticker.source.image}
             title={props.sticker.source.title}
           />
         )}
         <Fade in={hasOverlay}>
-          <Box className={classes.overlay}>
+          <Box sx={{ position: "absolute", bottom: 0, left: "-3px", right: "-3px" }}>
             <Overlay sticker={props.sticker} />
           </Box>
         </Fade>
       </div>
       {!props.loadingSource && (
-        <CardContent className={classes.cardContent}>
-          <Typography variant="body2" component="h2" noWrap>
-            <Link href={props.sticker.source.url} className={classes.link}>
-              {new URL(props.sticker.source.url).hostname}
-            </Link>
-          </Typography>
+        <CardContent
+          sx={{
+            padding: "6px 12px",
+            "&:last-child": {
+              paddingBottom: "6px",
+            },
+          }}
+        >
+          <Link
+            href={props.sticker.source.url}
+            underline="hover"
+            sx={{ textTransform: "uppercase", fontSize: "0.75em", color: "#616161" }}
+            variant="body2"
+            noWrap
+          >
+            {new URL(props.sticker.source.url).hostname}
+          </Link>
           <Typography gutterBottom variant="subtitle2" component="h3">
             {props.sticker.source.title}
           </Typography>
