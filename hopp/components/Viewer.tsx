@@ -1,10 +1,10 @@
 import React from "react";
 import { Box, Grid, Hidden, TextField, Typography } from "@mui/material";
+import { useTheme } from "@mui/material/styles";
 import Head from "next/head";
 import { Sticker, GeneratorMode } from "../src/models";
 import { capitalizeFirstLetter, getUrlForSticker } from "../src/helpers";
 import Canvas from "./Canvas";
-import { useTheme } from "@emotion/react";
 
 export default function Viewer(props: {
   sticker: Sticker;
