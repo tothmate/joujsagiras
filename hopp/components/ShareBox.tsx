@@ -41,12 +41,16 @@ export default function ShareBox(props: { sticker: Sticker }) {
           }}
         >
           <IconButton size="small">
-            <Icon fontSize="small">{copiedLink ? "check_circle" : "content_copy"}</Icon>
+            <Icon fontSize="small" sx={(theme) => ({ color: theme.palette.text.primary })}>
+              {copiedLink ? "check_circle" : "content_copy"}
+            </Icon>
           </IconButton>
         </CopyToClipboard>
         <IconButton size="small">
           <Link href={link} target="_blank" color="textSecondary">
-            <Icon fontSize="small">open_in_new</Icon>
+            <Icon fontSize="small" sx={(theme) => ({ color: theme.palette.text.primary })}>
+              open_in_new
+            </Icon>
           </Link>
         </IconButton>
       </Grid>
@@ -72,11 +76,15 @@ export default function ShareBox(props: { sticker: Sticker }) {
           }}
         >
           <IconButton size="small">
-            <Icon fontSize="small">{copiedPngLink ? "check_circle" : "content_copy"}</Icon>
+            <Icon fontSize="small" sx={(theme) => ({ color: theme.palette.text.primary })}>
+              {copiedPngLink ? "check_circle" : "content_copy"}
+            </Icon>
           </IconButton>
         </CopyToClipboard>
         <IconButton size="small" onClick={downloadPng}>
-          <Icon fontSize="small">file_download</Icon>
+          <Icon fontSize="small" sx={(theme) => ({ color: theme.palette.text.primary })}>
+            file_download
+          </Icon>
         </IconButton>
       </Grid>
     </Grid>

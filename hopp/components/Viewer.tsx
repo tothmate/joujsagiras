@@ -4,6 +4,7 @@ import Head from "next/head";
 import { Sticker, GeneratorMode } from "../src/models";
 import { capitalizeFirstLetter, getUrlForSticker } from "../src/helpers";
 import Canvas from "./Canvas";
+import { useTheme } from "@emotion/react";
 
 export default function Viewer(props: {
   sticker: Sticker;
@@ -11,10 +12,11 @@ export default function Viewer(props: {
   canEditExplanation: boolean;
   onExplanationChange?: (explanation: string) => void;
 }) {
+  const theme = useTheme();
   const title = `HOPP! ${capitalizeFirstLetter(props.sticker.reason.text)}`;
 
   return (
-    <Box p={2} border={props.canEditExplanation ? "6px dashed #f1f1f1" : "none"}>
+    <Box p={2} border={(theme) => (props.canEditExplanation ? `6px dashed ${theme.palette.text.secondary}` : "none")}>
       <Grid container spacing={1}>
         <Head>
           <title>{title}</title>
@@ -31,7 +33,7 @@ export default function Viewer(props: {
               viewBox="0 0 1580 1620"
               style={{ width: "100%", marginTop: "40px" }}
             >
-              <g fill="#979797">
+              <g fill={theme.palette.text.secondary}>
                 <g>
                   <path d="M138 1378 c-53 -47 -61 -102 -29 -209 11 -35 29 -99 40 -142 40 -148 85 -207 158 -207 36 0 89 33 98 59 3 12 9 21 13 21 4 0 44 -31 90 -69 128 -106 286 -216 540 -376 128 -80 238 -148 245 -150 10 -5 109 138 119 172 2 6 -98 75 -222 153 -345 218 -477 312 -650 470 l-55 49 43 1 42 0 0 114 0 115 -152 5 c-84 3 -175 8 -203 11 -43 5 -54 3 -77 -17z"></path>
                 </g>

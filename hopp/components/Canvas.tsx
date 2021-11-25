@@ -6,7 +6,7 @@ import Overlay from "./Overlay";
 export default function Canvas(props: { sticker: Sticker; loadingSource: boolean }) {
   const hasOverlay = props.sticker.reason.text !== "";
   return (
-    <Card>
+    <Card elevation={0}>
       {(!props.sticker.source.image || props.loadingSource) && (
         <Box
           display="flex"
@@ -44,7 +44,7 @@ export default function Canvas(props: { sticker: Sticker; loadingSource: boolean
           <Link
             href={props.sticker.source.url}
             underline="hover"
-            sx={{ textTransform: "uppercase", fontSize: "0.75em", color: "#616161" }}
+            sx={(theme) => ({ textTransform: "uppercase", fontSize: "0.75em", color: theme.palette.text.secondary })}
             variant="body2"
             noWrap
           >
