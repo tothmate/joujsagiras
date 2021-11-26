@@ -43,8 +43,8 @@
   }
 
   & h1 {
-    background-color: $light-color;
-    color: $dark-color;
+    background-color: $light-color !important;
+    color: $dark-color !important;
   }
 }
 
