@@ -5,16 +5,8 @@ import { Box, Container, CssBaseline } from "@mui/material";
 
 const theme = createTheme({
   palette: {
-    mode: "dark",
-    background: {
-      default: "#15151f",
-      paper: "#292929",
-    },
     primary: {
       main: "#5ac8fa",
-    },
-    text: {
-      primary: "#f0f0e9",
     },
   },
 });

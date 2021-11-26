@@ -10,7 +10,6 @@ export default function Overlay(props: { sticker: Sticker }) {
         variant="h4"
         sx={(theme) => ({
           backgroundColor: theme.palette.primary.main,
-          color: theme.palette.background.default,
           padding: "12px",
           textTransform: "uppercase",
           transform: "rotate(-2deg)",

@@ -6,7 +6,7 @@ import Overlay from "./Overlay";
 export default function Canvas(props: { sticker: Sticker; loadingSource: boolean }) {
   const hasOverlay = props.sticker.reason.text !== "";
   return (
-    <Card elevation={0}>
+    <Card>
       {(!props.sticker.source.image || props.loadingSource) && (
         <Box
           display="flex"
