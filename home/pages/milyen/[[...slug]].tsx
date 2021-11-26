@@ -6,7 +6,7 @@ import { useCallback, useEffect, useState } from "react";
 import { useRouter } from "next/dist/client/router";
 import { foldAccents } from "../../utils";
 import { GetStaticPropsContext, InferGetStaticPropsType } from "next";
-import { Heading2 } from "../../components/marker";
+import { Heading1 } from "../../components/marker";
 
 const slugs = new Map<string, DropdownListItem>(
   attributes.flatMap((category) => category.list.map((item) => [foldAccents(item.subtitle), item]))
@@ -55,28 +55,28 @@ const Page = (props: InferGetStaticPropsType<typeof getStaticProps>) => {
       {selectedItem && (
         <>
           <NewSectionLayout isDarkSection={false}>
-            <Heading2>Jó példák</Heading2>
+            <Heading1>Jó példák</Heading1>
             <br />
             <br />
             <br />
             <br />
             <br />
             <br />
-            <Heading2>Rossz példák</Heading2>
+            <Heading1>Rossz példák</Heading1>
             <br />
             <br />
             <br />
             <br />
             <br />
-            <Heading2>
+            <Heading1>
               Láttál te is egy cikket, ami nem <i>{selectedItem.subtitle}</i>? <Link href="/hopp">Értékeld!</Link>
-            </Heading2>
+            </Heading1>
           </NewSectionLayout>
           <NewSectionLayout isDarkSection={true}>
-            <Heading2>
+            <Heading1>
               Milyen a még jó újságírás? <br />
               <Link href="/milyen">Katt ide.</Link>
-            </Heading2>
+            </Heading1>
           </NewSectionLayout>
         </>
       )}
