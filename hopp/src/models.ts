@@ -60,14 +60,6 @@ export const reasons: Reason[] = [
     ]
   },
   {
-    slug: 'nem-kiegyensulyozott',
-    text: 'nem kiegyensúlyozott',
-    details: [
-      'A jó újságírás kiegyensúlyozottan tájékoztat, ezért megkérdez és meghallgat minden releváns felet.',
-      'A nem kiegyensúlyozott újságírás részrehajló és félrevezeti az olvasóját – akár szándékosan vagy hanyagságból teszi.'
-    ]
-  },
-  {
     slug: "nem-hiteles",
     text: "nem hiteles",
     details: [
