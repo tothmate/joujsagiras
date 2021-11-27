@@ -1,6 +1,6 @@
-import { DateTime } from 'luxon';
-import { Result } from 'neverthrow';
-import { getLocallizedDateString } from './helpers';
+import { DateTime } from "luxon";
+import { Result } from "neverthrow";
+import { getLocallizedDateString } from "./helpers";
 
 export type Reason = {
   slug: string;
@@ -30,50 +30,48 @@ export type StickerChange = {
 };
 
 export enum GeneratorMode {
-  Edit = 1,
-  Share,
-  View,
-  Png
+  Share = 1,
+  Png,
 }
 
 export const reasons: Reason[] = [
   {
-    slug: 'nem-tenyszeru',
-    text: 'nem tényszerű',
+    slug: "nem-tenyszeru",
+    text: "nem tényszerű",
     details: [
-      'A jó újságírás tényszerűen tájékoztat, ezért ellenőrzi a tényszerűségét annak ami ír.',
-      'A nem tényszerű újságírás félrevezeti olvasóját – akár szándékosan vagy hanyagságból teszi.'
-    ]
+      "A jó újságírás tényszerűen tájékoztat, ezért ellenőrzi a tényszerűségét annak ami ír.",
+      "A nem tényszerű újságírás félrevezeti olvasóját – akár szándékosan vagy hanyagságból teszi.",
+    ],
   },
   {
-    slug: 'nem-hiteles',
-    text: 'nem hiteles',
+    slug: "nem-hiteles",
+    text: "nem hiteles",
     details: [
-      'A jó újságírás hitelesen tájékoztat, ezért visszakövethetővé és ezzel ellenőrizhetővé teszi az írásban hivatkozott tényeket.',
-      'A nem hiteles újságírás – mivel nehezebben ellenőrizhető – könnyebben elferdítheti a valóságot.'
-    ]
+      "A jó újságírás hitelesen tájékoztat, ezért visszakövethetővé és ezzel ellenőrizhetővé teszi az írásban hivatkozott tényeket.",
+      "A nem hiteles újságírás – mivel nehezebben ellenőrizhető – könnyebben elferdítheti a valóságot.",
+    ],
   },
   {
-    slug: 'nem-pontos',
-    text: 'nem pontos',
+    slug: "nem-pontos",
+    text: "nem pontos",
     details: [
-      'A jó újságírás pontosan tájékoztat, ezért adatokkal támasztja alá az állításait.',
-      'A pontatlan újságírás félrevezeti olvasóját – akár szándékosan vagy hanyagságból teszi.'
-    ]
-  }
+      "A jó újságírás pontosan tájékoztat, ezért adatokkal támasztja alá az állításait.",
+      "A pontatlan újságírás félrevezeti olvasóját – akár szándékosan vagy hanyagságból teszi.",
+    ],
+  },
 ];
 
 export const emptySticker: Sticker = {
-  id: '',
-  reason: { slug: '', text: '', details: [] },
-  explanation: '',
-  source: { url: '', title: '', date: getLocallizedDateString(DateTime.now()) }
+  id: "",
+  reason: { slug: "", text: "", details: [] },
+  explanation: "",
+  source: { url: "", title: "", date: getLocallizedDateString(DateTime.now()) },
 };
 
 export enum StickerStoreErrorType {
   NotFound = 1,
   CouldNotLoad,
-  CouldNotSave
+  CouldNotSave,
 }
 
 export type StickerStoreError = {

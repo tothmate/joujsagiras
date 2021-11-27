@@ -3,7 +3,7 @@ import DropdownList, { DropdownListItem } from "../../components/dropdownList";
 import Layout, { NewSectionLayout } from "../../components/layout";
 import { attributes } from "../../attributes";
 import { useCallback, useEffect, useState } from "react";
-import { useRouter } from "next/dist/client/router";
+import { useRouter } from "next/router";
 import { foldAccents } from "../../utils";
 import { GetStaticPropsContext, InferGetStaticPropsType } from "next";
 import { Heading1 } from "../../components/marker";

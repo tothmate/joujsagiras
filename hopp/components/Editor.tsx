@@ -57,7 +57,7 @@ export default function Editor(props: { store: StickerStore }) {
     }
   }, []);
 
-  const handleUrlChange = useCallback(
+  const handleUrlChanged = useCallback(
     (value: string) => {
       setUrlCandidate(value);
       if (isValidUrl(value)) {
@@ -70,14 +70,14 @@ export default function Editor(props: { store: StickerStore }) {
     [reloadSource]
   );
 
-  const handleReasonChange = useCallback((value: string) => {
+  const handleReasonChanged = useCallback((value: string) => {
     const newReason = getReasonBySlug(value);
     if (newReason !== undefined) {
       setSticker((sticker) => updateSticker(sticker, { reason: newReason }));
     }
   }, []);
 
-  const handleExplanationChange = useCallback((value: string) => {
+  const handleExplanationChanged = useCallback((value: string) => {
     setSticker((sticker) => updateSticker(sticker, { explanation: value }));
   }, []);
 
@@ -90,6 +90,7 @@ export default function Editor(props: { store: StickerStore }) {
         (stickerId) => {
           const newSticker = updateSticker(sticker, { id: stickerId });
           setSticker(newSticker);
+          history.pushState({}, "", getUrlForSticker(newSticker, GeneratorMode.Share));
 
           if (!process.env.NEXT_PUBLIC_IS_LOCAL) {
             fetch(getUrlForSticker(newSticker, GeneratorMode.Png));
@@ -134,7 +135,7 @@ export default function Editor(props: { store: StickerStore }) {
             fullWidth
             value={urlValue}
             error={urlError}
-            onChange={(e) => handleUrlChange(e.target.value as string)}
+            onChange={(e) => handleUrlChanged(e.target.value as string)}
           />
         </Collapse>
       </Grid>
@@ -145,7 +146,7 @@ export default function Editor(props: { store: StickerStore }) {
               <InputLabel id="reason-selector-label">Mi a baj vele?</InputLabel>
               <Select
                 value={sticker.reason.slug}
-                onChange={(e) => handleReasonChange(e.target.value as string)}
+                onChange={(e) => handleReasonChanged(e.target.value as string)}
                 labelId="reason-selector-label"
                 label="Mi a baj vele?"
               >
@@ -165,7 +166,7 @@ export default function Editor(props: { store: StickerStore }) {
             sticker={sticker}
             loadingSource={loadingSource}
             canEditExplanation={!saving && !isSaved}
-            onExplanationChange={handleExplanationChange}
+            onExplanationChange={handleExplanationChanged}
           />
         </Grid>
       )}
