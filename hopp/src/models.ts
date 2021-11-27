@@ -1,6 +1,6 @@
-import { DateTime } from 'luxon';
-import { Result } from 'neverthrow';
-import { getLocallizedDateString } from './helpers';
+import { DateTime } from "luxon";
+import { Result } from "neverthrow";
+import { getLocallizedDateString } from "./helpers";
 
 export type Reason = {
   slug: string;
@@ -30,16 +30,14 @@ export type StickerChange = {
 };
 
 export enum GeneratorMode {
-  Edit = 1,
-  Share,
-  View,
-  Png
+  Share = 1,
+  Png,
 }
 
 export const reasons: Reason[] = [
   {
-    slug: 'nem-tenyszeru',
-    text: 'nem tényszerű',
+    slug: "nem-tenyszeru",
+    text: "nem tényszerű",
     details: [
       'A jó újságírás tényszerűen tájékoztat, ezért ellenőrzi a tényszerűségét annak ami ír.',
       'A nem valósághű újságírás félrevezeti olvasóját – akár szándékosan vagy hanyagságból teszi.'
@@ -70,8 +68,8 @@ export const reasons: Reason[] = [
     ]
   },
   {
-    slug: 'nem-hiteles',
-    text: 'nem hiteles',
+    slug: "nem-hiteles",
+    text: "nem hiteles",
     details: [
       'A jó újságírás hitelesen tájékoztat, ezért a szerző a saját nevével vállalja amit ír.',
       'Az az újságíró vagy szerkesztőség, aki nem vállalja fel névvel amit ír, könnyen enged meg magának szakmaiatlan, félrevezető vagy rossz munkát – akár szándékosan vagy hanyagságból teszi.'
@@ -111,16 +109,16 @@ export const reasons: Reason[] = [
 ];
 
 export const emptySticker: Sticker = {
-  id: '',
-  reason: { slug: '', text: '', details: [] },
-  explanation: '',
-  source: { url: '', title: '', date: getLocallizedDateString(DateTime.now()) }
+  id: "",
+  reason: { slug: "", text: "", details: [] },
+  explanation: "",
+  source: { url: "", title: "", date: getLocallizedDateString(DateTime.now()) },
 };
 
 export enum StickerStoreErrorType {
   NotFound = 1,
   CouldNotLoad,
-  CouldNotSave
+  CouldNotSave,
 }
 
 export type StickerStoreError = {
