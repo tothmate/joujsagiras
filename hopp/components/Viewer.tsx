@@ -2,12 +2,12 @@ import React, { useState } from "react";
 import { Button, Grid, Typography, Link } from "@mui/material";
 import Head from "next/head";
 import { Sticker, GeneratorMode } from "../src/models";
-import { getUrlForSticker } from "../src/helpers";
+import { capitalizeFirstLetter, getUrlForSticker } from "../src/helpers";
 import Canvas from "./Canvas";
 import CopyToClipboard from "react-copy-to-clipboard";
 
 export default function Viewer(props: { sticker: Sticker }) {
-  const title = `HOPP! ${props.sticker.reason.text}.`;
+  const title = `HOPP! ${capitalizeFirstLetter(props.sticker.reason.text)}.`;
 
   const [copiedLink, setCopiedLink] = useState(false);
   const link = getUrlForSticker(props.sticker, GeneratorMode.Share);
