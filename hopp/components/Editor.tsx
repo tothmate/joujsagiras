@@ -136,6 +136,7 @@ export default function Editor(props: { store: StickerStore }) {
           </Typography>
           <TextField
             label="Másold be ide a cikk URL-jét"
+            color="secondary"
             fullWidth
             value={urlValue}
             error={urlError}
@@ -151,12 +152,15 @@ export default function Editor(props: { store: StickerStore }) {
           </Grid>
           <Grid item xs={12} sm={6}>
             <FormControl fullWidth>
-              <InputLabel id="reason-selector-label">Mi a baj vele?</InputLabel>
+              <InputLabel id="reason-selector-label" color="secondary">
+                Mi a baj vele?
+              </InputLabel>
               <Select
                 value={sticker.reason.slug}
                 onChange={(e) => handleReasonChanged(e.target.value as string)}
                 labelId="reason-selector-label"
                 label="Mi a baj vele?"
+                color="secondary"
               >
                 {reasons.map((r) => (
                   <MenuItem key={r.slug} value={r.slug}>
@@ -168,6 +172,7 @@ export default function Editor(props: { store: StickerStore }) {
                 <>
                   <TextField
                     label="Miért?"
+                    color="secondary"
                     fullWidth
                     multiline
                     rows={4}

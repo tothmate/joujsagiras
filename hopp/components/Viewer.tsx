@@ -76,6 +76,9 @@ export default function Viewer(props: { sticker: Sticker }) {
             {detail}
           </Typography>
         ))}
+        <Button variant="contained" color="primary" size="large" fullWidth>
+          Megosztás
+        </Button>
       </Grid>
     </Grid>
   );

@@ -23,12 +23,23 @@ const theme = createTheme({
     body1: {
       fontSize: "1.2rem",
     },
+    button: {
+      textTransform: "none",
+      fontWeight: "bold",
+    },
   },
   components: {
     MuiOutlinedInput: {
       styleOverrides: {
         notchedOutline: {
           borderColor: "#000000",
+        },
+      },
+    },
+    MuiButton: {
+      styleOverrides: {
+        root: {
+          padding: "1rem",
         },
       },
     },
