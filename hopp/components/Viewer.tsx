@@ -28,36 +28,42 @@ export default function Viewer(props: { sticker: Sticker }) {
         <meta property="og:image" content={getUrlForSticker(props.sticker, GeneratorMode.Png)} key="image" />
       </Head>
       <Grid item xs={12} sm={6}>
-        <Canvas sticker={props.sticker} loadingSource={false} />
-        <Grid container justifyContent="space-between" mt={2}>
-          <Grid item>
-            <CopyToClipboard
-              text={link}
-              onCopy={() => {
-                setCopiedLink(true);
-                setTimeout(() => {
-                  setCopiedLink(false);
-                }, 2000);
-              }}
-            >
-              <Button variant="outlined" color={copiedLink ? "success" : "secondary"} size="large">
-                Link másolása
+        <Grid container direction="column" sx={{ height: "100%" }} justifyContent="space-between">
+          <Canvas sticker={props.sticker} loadingSource={false} />
+          <Grid container justifyContent="space-between" mt={2} spacing={1}>
+            <Grid item flexGrow={1}>
+              <CopyToClipboard
+                text={link}
+                onCopy={() => {
+                  setCopiedLink(true);
+                  setTimeout(() => {
+                    setCopiedLink(false);
+                  }, 2000);
+                }}
+              >
+                <Button variant="outlined" color={copiedLink ? "success" : "secondary"} size="large" fullWidth>
+                  Link másolása
+                </Button>
+              </CopyToClipboard>
+            </Grid>
+            <Grid item flexGrow={1}>
+              <Button variant="outlined" color="secondary" size="large" onClick={downloadPng} fullWidth>
+                Kép letöltése
               </Button>
-            </CopyToClipboard>
-          </Grid>
-          <Grid item>
-            <Button variant="outlined" color="secondary" size="large" onClick={downloadPng}>
-              Kép letöltése
-            </Button>
+            </Grid>
           </Grid>
         </Grid>
       </Grid>
       <Grid item xs={12} sm={1} sx={{ display: { xs: "none", sm: "block" } }}>
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1580 1620" style={{ width: "100%" }}>
-          <g fill="#000000">
-            <g>
-              <path d="M138 1378 c-53 -47 -61 -102 -29 -209 11 -35 29 -99 40 -142 40 -148 85 -207 158 -207 36 0 89 33 98 59 3 12 9 21 13 21 4 0 44 -31 90 -69 128 -106 286 -216 540 -376 128 -80 238 -148 245 -150 10 -5 109 138 119 172 2 6 -98 75 -222 153 -345 218 -477 312 -650 470 l-55 49 43 1 42 0 0 114 0 115 -152 5 c-84 3 -175 8 -203 11 -43 5 -54 3 -77 -17z"></path>
-            </g>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 -1000 960 1026" style={{ width: "100%", marginTop: "10px" }}>
+          <g fill="#000000" transform="scale(0.8,-0.8)">
+            <path
+              d="M960 1026 c-87 -36 -138 -64 -235 -130 -113 -76 -323 -284 -429 -426
+-44 -58 -82 -109 -86 -113 -4 -5 -36 10 -71 32 -44 28 -66 37 -70 28 -8 -16
+-43 -386 -37 -393 6 -5 348 198 348 207 0 3 -27 23 -60 43 -33 21 -60 40 -60
+43 0 22 177 238 284 345 147 148 310 262 447 313 40 14 45 20 41 41 -2 13 -7
+26 -11 28 -3 2 -31 -6 -61 -18z"
+            />
           </g>
         </svg>
       </Grid>
