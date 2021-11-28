@@ -1,7 +1,6 @@
 import { Grid } from "@mui/material";
 import { GetServerSidePropsContext, InferGetServerSidePropsType } from "next";
 import ErrorPage from "next/error";
-import ShareBox from "../../../components/ShareBox";
 import Viewer from "../../../components/Viewer";
 import { emptySticker, StickerStoreErrorType } from "../../../src/models";
 import store from "../../../src/SupabaseStore";
@@ -27,14 +26,5 @@ export default function Page(props: InferGetServerSidePropsType<typeof getServer
     return <ErrorPage statusCode={500} title={title} />;
   }
 
-  return (
-    <Grid container spacing={3}>
-      <Grid item xs={12}>
-        <Viewer sticker={props.sticker} loadingSource={false} canEditExplanation={false} />
-      </Grid>
-      <Grid item xs={12}>
-        <ShareBox sticker={props.sticker} />
-      </Grid>
-    </Grid>
-  );
+  return <Viewer sticker={props.sticker} />;
 }

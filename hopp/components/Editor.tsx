@@ -24,7 +24,6 @@ import {
   getUrlForSticker,
   capitalizeFirstLetter,
 } from "../src/helpers";
-import ShareBox from "./ShareBox";
 import Viewer from "./Viewer";
 import Canvas from "./Canvas";
 
@@ -145,7 +144,7 @@ export default function Editor(props: { store: StickerStore }) {
         </Collapse>
       </Grid>
 
-      {isUrlLoaded && (
+      {!isSaved && isUrlLoaded && (
         <>
           <Grid item xs={12} sm={6}>
             <Canvas sticker={sticker} loadingSource={loadingSource} />
@@ -188,6 +187,8 @@ export default function Editor(props: { store: StickerStore }) {
           </Grid>
         </>
       )}
+
+      {isSaved && <Viewer sticker={sticker} />}
     </Grid>
   );
 }
