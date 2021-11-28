@@ -2,11 +2,15 @@ import React from "react";
 import { AppProps } from "next/app";
 import { ThemeProvider, createTheme } from "@mui/material/styles";
 import { Box, Container, CssBaseline } from "@mui/material";
+import { grey } from "@mui/material/colors";
 
 const theme = createTheme({
   palette: {
     primary: {
       main: "#5ac8fa",
+    },
+    secondary: {
+      main: "#000000",
     },
   },
   typography: {
@@ -24,7 +28,7 @@ const theme = createTheme({
     MuiOutlinedInput: {
       styleOverrides: {
         notchedOutline: {
-          borderColor: "black",
+          borderColor: "#000000",
         },
       },
     },

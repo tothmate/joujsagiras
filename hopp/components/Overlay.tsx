@@ -7,20 +7,16 @@ export default function Overlay(props: { sticker: Sticker }) {
   return (
     <>
       <Typography
-        variant="h4"
-        sx={(theme) => ({
-          backgroundColor: theme.palette.primary.main,
+        variant="h1"
+        sx={{
+          backgroundColor: (theme) => theme.palette.primary.main,
           padding: "12px",
-          textTransform: "uppercase",
           transform: "rotate(-2deg)",
-          fontFamily: "Oswald, sans-serif",
-        })}
+        }}
       >
         <b>Hopp!</b> Ez {props.sticker.reason.text}
       </Typography>
-      <Box
-        sx={(theme) => ({ backgroundColor: theme.palette.background.paper, height: "20px", marginTop: "-12px" })}
-      ></Box>
+      <Box sx={{ backgroundColor: (theme) => theme.palette.grey[100], height: "20px", marginTop: "-12px" }}></Box>
     </>
   );
 }

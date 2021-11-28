@@ -13,9 +13,9 @@ export default function Canvas(props: { sticker: Sticker; loadingSource: boolean
           alignItems="center"
           justifyContent="center"
           height="200px"
-          sx={{ backgroundColor: "#fafafa" }}
+          sx={{ backgroundColor: (theme) => theme.palette.grey[100] }}
         >
-          <CircularProgress size="1em" />
+          <CircularProgress size="1em" color="secondary" />
         </Box>
       )}
       <div style={{ position: "relative" }}>
@@ -35,22 +35,23 @@ export default function Canvas(props: { sticker: Sticker; loadingSource: boolean
       {!props.loadingSource && (
         <CardContent
           sx={{
-            padding: "6px 12px",
+            padding: "0 12px",
             "&:last-child": {
               paddingBottom: "6px",
             },
+            backgroundColor: (theme) => theme.palette.grey[100],
           }}
         >
           <Link
             href={props.sticker.source.url}
             underline="hover"
-            sx={(theme) => ({ textTransform: "uppercase", fontSize: "0.75em", color: theme.palette.text.secondary })}
+            sx={(theme) => ({ textTransform: "uppercase", fontSize: "0.7em", color: theme.palette.text.secondary })}
             variant="body2"
             noWrap
           >
             {new URL(props.sticker.source.url).hostname}
           </Link>
-          <Typography gutterBottom variant="subtitle2" component="h3">
+          <Typography variant="subtitle1" component="h3" fontWeight="bold" lineHeight="1.5em">
             {props.sticker.source.title}
           </Typography>
         </CardContent>

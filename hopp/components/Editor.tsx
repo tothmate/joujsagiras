@@ -26,6 +26,7 @@ import {
 } from "../src/helpers";
 import ShareBox from "./ShareBox";
 import Viewer from "./Viewer";
+import Canvas from "./Canvas";
 
 export default function Editor(props: { store: StickerStore }) {
   const [sticker, setSticker] = useState<Sticker>(emptySticker);
@@ -115,12 +116,6 @@ export default function Editor(props: { store: StickerStore }) {
   const isSaved = sticker.id !== "";
   const isReasonSelected = sticker.reason.slug !== "";
 
-  const showReasonSelector = isUrlLoaded;
-  const showPreview = showReasonSelector;
-  const showShareButton = showPreview && !isSaved && isReasonSelected;
-  const showShareBox = showPreview && isSaved;
-  const showBackButton = showShareBox;
-
   return (
     <Grid container spacing={3} justifyContent="center">
       <Head>
@@ -149,9 +144,13 @@ export default function Editor(props: { store: StickerStore }) {
           />
         </Collapse>
       </Grid>
-      {showReasonSelector && (
-        <Grid item xs={12} sm={6}>
-          <Collapse in={!isSaved}>
+
+      {isUrlLoaded && (
+        <>
+          <Grid item xs={12} sm={6}>
+            <Canvas sticker={sticker} loadingSource={loadingSource} />
+          </Grid>
+          <Grid item xs={12} sm={6}>
             <FormControl fullWidth>
               <InputLabel id="reason-selector-label">Mi a baj vele?</InputLabel>
               <Select
@@ -166,41 +165,28 @@ export default function Editor(props: { store: StickerStore }) {
                   </MenuItem>
                 ))}
               </Select>
+              {isReasonSelected && (
+                <>
+                  <TextField
+                    label="Miért?"
+                    fullWidth
+                    multiline
+                    rows={4}
+                    margin="normal"
+                    value={sticker.explanation}
+                    onChange={(e) => handleExplanationChanged(e.target.value as string)}
+                  />
+                  {!saving && (
+                    <Button variant="contained" color="secondary" size="large" fullWidth onClick={handleStickerShared}>
+                      Következő
+                    </Button>
+                  )}
+                  {saving && <CircularProgress size="1em" color="secondary" sx={{ margin: "1em auto" }} />}
+                </>
+              )}
             </FormControl>
-          </Collapse>
-        </Grid>
-      )}
-      {showPreview && (
-        <Grid item xs={12}>
-          <Viewer
-            sticker={sticker}
-            loadingSource={loadingSource}
-            canEditExplanation={!saving && !isSaved}
-            onExplanationChange={handleExplanationChanged}
-          />
-        </Grid>
-      )}
-      {showShareButton && (
-        <Grid item xs={6} sm={3}>
-          {!saving && (
-            <Button variant="contained" color="primary" fullWidth onClick={handleStickerShared}>
-              Megosztom
-            </Button>
-          )}
-          {saving && <CircularProgress size="1em" />}
-        </Grid>
-      )}
-      {showShareBox && (
-        <Grid item xs={12}>
-          <ShareBox sticker={sticker} />
-        </Grid>
-      )}
-      {showBackButton && (
-        <Grid item xs={6} sm={3}>
-          <Button variant="contained" color="primary" fullWidth onClick={handleBackClicked}>
-            Szerkesztés
-          </Button>
-        </Grid>
+          </Grid>
+        </>
       )}
     </Grid>
   );
