@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Button, Grid, Typography } from "@mui/material";
+import { Button, Grid, Typography, Link } from "@mui/material";
 import Head from "next/head";
 import { Sticker, GeneratorMode } from "../src/models";
 import { getUrlForSticker } from "../src/helpers";
@@ -82,9 +82,11 @@ export default function Viewer(props: { sticker: Sticker }) {
             {detail}
           </Typography>
         ))}
-        <Button variant="contained" color="primary" size="large" fullWidth>
-          Megosztás
-        </Button>
+        <Link href={`https://www.facebook.com/sharer/sharer.php?u=${link}`} underline="none">
+          <Button variant="contained" color="primary" size="large" fullWidth>
+            Megosztás
+          </Button>
+        </Link>
       </Grid>
     </Grid>
   );
