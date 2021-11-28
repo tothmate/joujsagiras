@@ -9,6 +9,26 @@ const theme = createTheme({
       main: "#5ac8fa",
     },
   },
+  typography: {
+    fontFamily: "PT Sans, sans-serif",
+    h1: {
+      fontFamily: "Oswald, sans-serif",
+      fontSize: "2rem",
+      textTransform: "uppercase",
+    },
+    body1: {
+      fontSize: "1.2rem",
+    },
+  },
+  components: {
+    MuiOutlinedInput: {
+      styleOverrides: {
+        notchedOutline: {
+          borderColor: "black",
+        },
+      },
+    },
+  },
 });
 
 export default function MyApp(props: AppProps) {

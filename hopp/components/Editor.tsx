@@ -13,6 +13,7 @@ import {
   Select,
   Snackbar,
   TextField,
+  Typography,
 } from "@mui/material";
 import { reasons, Sticker, StickerStore, GeneratorMode, emptySticker } from "../src/models";
 import {
@@ -130,8 +131,17 @@ export default function Editor(props: { store: StickerStore }) {
       </Snackbar>
       <Grid item xs={12}>
         <Collapse in={!isSaved}>
+          <Typography component="h1" variant="h1">
+            Rossz újságírással találkoztál? Tedd szóvá!
+          </Typography>
+          <Typography component="p" variant="body1" mt="2em" mb="1em">
+            Láttál egy cikket, amely nem felel meg a jó újságírás elvárásainak?
+          </Typography>
+          <Typography component="p" variant="body1" mt="1em" mb="2em">
+            Jelentsd be, oszd meg Facebookon és hívd fel mások figyelmét is erre!
+          </Typography>
           <TextField
-            label="Ide másold be a cikk URL-jét"
+            label="Másold be ide a cikk URL-jét"
             fullWidth
             value={urlValue}
             error={urlError}
@@ -142,7 +152,7 @@ export default function Editor(props: { store: StickerStore }) {
       {showReasonSelector && (
         <Grid item xs={12} sm={6}>
           <Collapse in={!isSaved}>
-            <FormControl fullWidth variant="outlined">
+            <FormControl fullWidth>
               <InputLabel id="reason-selector-label">Mi a baj vele?</InputLabel>
               <Select
                 value={sticker.reason.slug}
