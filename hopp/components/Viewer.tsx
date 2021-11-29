@@ -2,12 +2,12 @@ import React, { useState } from "react";
 import { Button, Grid, Typography, Link } from "@mui/material";
 import Head from "next/head";
 import { Sticker, GeneratorMode } from "../src/models";
-import { capitalizeFirstLetter, getUrlForSticker } from "../src/helpers";
+import { getUrlForSticker } from "../src/helpers";
 import Canvas from "./Canvas";
 import CopyToClipboard from "react-copy-to-clipboard";
 
 export default function Viewer(props: { sticker: Sticker }) {
-  const title = `HOPP! ${capitalizeFirstLetter(props.sticker.reason.text)}.`;
+  const title = `HOPP! Ez ${props.sticker.reason.text}.`;
 
   const [copiedLink, setCopiedLink] = useState(false);
   const link = getUrlForSticker(props.sticker, GeneratorMode.Share);
@@ -28,31 +28,7 @@ export default function Viewer(props: { sticker: Sticker }) {
         <meta property="og:image" content={getUrlForSticker(props.sticker, GeneratorMode.Png)} key="image" />
       </Head>
       <Grid item xs={12} sm={6}>
-        <Grid container direction="column" sx={{ height: "100%" }} justifyContent="space-between">
-          <Canvas sticker={props.sticker} loadingSource={false} />
-          <Grid container justifyContent="space-between" mt={2} spacing={1}>
-            <Grid item flexGrow={1}>
-              <CopyToClipboard
-                text={link}
-                onCopy={() => {
-                  setCopiedLink(true);
-                  setTimeout(() => {
-                    setCopiedLink(false);
-                  }, 2000);
-                }}
-              >
-                <Button variant="outlined" color={copiedLink ? "success" : "secondary"} size="large" fullWidth>
-                  Link másolása
-                </Button>
-              </CopyToClipboard>
-            </Grid>
-            <Grid item flexGrow={1}>
-              <Button variant="outlined" color="secondary" size="large" onClick={downloadPng} fullWidth>
-                Kép letöltése
-              </Button>
-            </Grid>
-          </Grid>
-        </Grid>
+        <Canvas sticker={props.sticker} loadingSource={false} />
       </Grid>
       <Grid item xs={12} sm={1} sx={{ display: { xs: "none", sm: "block" } }}>
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 -1000 960 1026" style={{ width: "100%", marginTop: "10px" }}>
@@ -69,10 +45,10 @@ export default function Viewer(props: { sticker: Sticker }) {
       </Grid>
       <Grid item xs={12} sm={5}>
         <Typography variant="h1" gutterBottom>
-          {props.sticker.reason.text}.
+          HOPP! Ez {props.sticker.reason.text}.
         </Typography>
         <Typography variant="body1" gutterBottom>
-          {props.sticker.explanation}
+          {props.sticker.explanation || "Hogy miért baj ez?"}
         </Typography>
         <Typography variant="h1" gutterBottom>
           Ez nem jó újságírás.
@@ -82,6 +58,40 @@ export default function Viewer(props: { sticker: Sticker }) {
             {detail}
           </Typography>
         ))}
+      </Grid>
+      <Grid item xs={6} sm={3}>
+        <CopyToClipboard
+          text={link}
+          onCopy={() => {
+            setCopiedLink(true);
+            setTimeout(() => setCopiedLink(false), 2000);
+          }}
+        >
+          <Button
+            variant="outlined"
+            sx={{ boxShadow: (theme) => theme.shadows[1] }}
+            color={copiedLink ? "success" : "secondary"}
+            size="large"
+            fullWidth
+          >
+            Link másolása
+          </Button>
+        </CopyToClipboard>
+      </Grid>
+      <Grid item xs={6} sm={3}>
+        <Button
+          variant="outlined"
+          sx={{ boxShadow: (theme) => theme.shadows[1] }}
+          color="secondary"
+          size="large"
+          onClick={downloadPng}
+          fullWidth
+        >
+          Kép letöltése
+        </Button>
+      </Grid>
+      <Grid item xs={0} sm={1} />
+      <Grid item xs={12} sm={5}>
         <Link href={`https://www.facebook.com/sharer/sharer.php?u=${link}`} underline="none">
           <Button variant="contained" color="primary" size="large" fullWidth>
             Megosztás

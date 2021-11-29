@@ -1,6 +1,7 @@
 import React, { useCallback, useState } from "react";
 import { DateTime } from "luxon";
 import Head from "next/head";
+import { useRouter } from "next/router";
 import {
   Alert,
   Button,
@@ -24,10 +25,10 @@ import {
   getUrlForSticker,
   capitalizeFirstLetter,
 } from "../src/helpers";
-import Viewer from "./Viewer";
 import Canvas from "./Canvas";
 
 export default function Editor(props: { store: StickerStore }) {
+  const router = useRouter();
   const [sticker, setSticker] = useState<Sticker>(emptySticker);
   const [loadingSource, setLoadingSource] = useState(false);
   const [saving, setSaving] = useState(false);
@@ -91,11 +92,12 @@ export default function Editor(props: { store: StickerStore }) {
         (stickerId) => {
           const newSticker = updateSticker(sticker, { id: stickerId });
           setSticker(newSticker);
-          history.pushState({}, "", getUrlForSticker(newSticker, GeneratorMode.Share));
 
           if (!process.env.NEXT_PUBLIC_IS_LOCAL) {
             fetch(getUrlForSticker(newSticker, GeneratorMode.Png));
           }
+
+          router.push(getUrlForSticker(newSticker, GeneratorMode.Share), undefined, { shallow: true });
         },
         (error) => {
           setErrorMessage(`Sikertelen mentés, hiba: ${error?.message}`);
@@ -104,34 +106,29 @@ export default function Editor(props: { store: StickerStore }) {
 
       setSaving(false);
     }
-  }, [props.store, sticker]);
-
-  const handleBackClicked = useCallback(() => {
-    setSticker((sticker) => updateSticker(sticker, { id: "" }));
-  }, []);
+  }, [props.store, sticker, router]);
 
   const urlValue = urlCandidate || sticker.source.url;
   const isUrlLoaded = urlValue !== "" && !urlError;
-  const isSaved = sticker.id !== "";
   const isReasonSelected = sticker.reason.slug !== "";
 
   return (
     <Grid container spacing={3} justifyContent="center">
       <Head>
-        <title>Hopp!</title>
+        <title>HOPP!</title>
       </Head>
       <Snackbar open={errorMessage !== undefined} autoHideDuration={6000} onClose={() => setErrorMessage(undefined)}>
         <Alert severity="error">{errorMessage}</Alert>
       </Snackbar>
       <Grid item xs={12}>
-        <Collapse in={!isSaved}>
-          <Typography component="h1" variant="h1">
+        <Collapse in={true}>
+          <Typography variant="h1" gutterBottom>
             Rossz újságírással találkoztál? Tedd szóvá!
           </Typography>
-          <Typography component="p" variant="body1" mt="2em" mb="1em">
+          <Typography variant="body1" gutterBottom>
             Láttál egy cikket, amely nem felel meg a jó újságírás elvárásainak?
           </Typography>
-          <Typography component="p" variant="body1" mt="1em" mb="2em">
+          <Typography variant="body1" gutterBottom>
             Jelentsd be, oszd meg Facebookon és hívd fel mások figyelmét is erre!
           </Typography>
           <TextField
@@ -141,11 +138,12 @@ export default function Editor(props: { store: StickerStore }) {
             value={urlValue}
             error={urlError}
             onChange={(e) => handleUrlChanged(e.target.value as string)}
+            margin="normal"
           />
         </Collapse>
       </Grid>
 
-      {!isSaved && isUrlLoaded && (
+      {isUrlLoaded && (
         <>
           <Grid item xs={12} sm={6}>
             <Canvas sticker={sticker} loadingSource={loadingSource} />
@@ -172,11 +170,10 @@ export default function Editor(props: { store: StickerStore }) {
                 <>
                   <TextField
                     label="Miért?"
-                    color="secondary"
-                    fullWidth
                     multiline
                     rows={4}
                     margin="normal"
+                    color="secondary"
                     value={sticker.explanation}
                     onChange={(e) => handleExplanationChanged(e.target.value as string)}
                   />
@@ -192,8 +189,6 @@ export default function Editor(props: { store: StickerStore }) {
           </Grid>
         </>
       )}
-
-      {isSaved && <Viewer sticker={sticker} />}
     </Grid>
   );
 }
