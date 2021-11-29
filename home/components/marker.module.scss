@@ -16,7 +16,6 @@
 
   &.clickable {
     cursor: pointer;
-    border: 4px solid transparent;
   }
 
   & a {
@@ -24,7 +23,8 @@
   }
 
   &.clickable:hover {
-    border: 4px solid $light-color;
+    filter: brightness(1.2);
+    filter: saturate(1.5);
   }
 }
 
