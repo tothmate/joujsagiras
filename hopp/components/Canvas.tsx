@@ -3,10 +3,10 @@ import { Card, CardContent, CardMedia, Typography, Link, Box, CircularProgress, 
 import { Sticker } from "../src/models";
 import Overlay from "./Overlay";
 
-export default function Canvas(props: { sticker: Sticker; loadingSource: boolean }) {
+export default function Canvas(props: { sticker: Sticker; loadingSource: boolean; noCardContent?: boolean }) {
   const hasOverlay = props.sticker.reason.text !== "";
   return (
-    <Card>
+    <Card elevation={props.noCardContent ? 0 : 1}>
       {(!props.sticker.source.image || props.loadingSource) && (
         <Box
           display="flex"
@@ -32,7 +32,7 @@ export default function Canvas(props: { sticker: Sticker; loadingSource: boolean
           </Box>
         </Fade>
       </div>
-      {!props.loadingSource && (
+      {!props.noCardContent && !props.loadingSource && (
         <CardContent
           sx={{
             padding: "0 12px",
