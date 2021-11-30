@@ -1,4 +1,4 @@
-import React, { useCallback, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import { DateTime } from "luxon";
 import Head from "next/head";
 import {
@@ -26,6 +26,7 @@ import {
 import Canvas from "./Canvas";
 import Viewer from "./Viewer";
 import Arrow from "./Arrow";
+import { useRouter } from "next/router";
 
 enum Step {
   INITIAL = 1,
@@ -39,6 +40,8 @@ enum Step {
 }
 
 export default function Editor(props: { store: StickerStore }) {
+  const router = useRouter();
+
   const [sticker, setSticker] = useState<Sticker>(emptySticker);
   const [step, setStep] = useState<Step>(Step.INITIAL);
   const [urlCandidate, setUrlCandidate] = useState<string>("");
@@ -93,7 +96,8 @@ export default function Editor(props: { store: StickerStore }) {
           fetch(getUrlForSticker(newSticker, GeneratorMode.Png));
         }
 
-        history.pushState({}, "", getUrlForSticker(newSticker, GeneratorMode.Share));
+        const currentUrl = `${process.env.NEXT_PUBLIC_BASE_URL}${router.pathname}`;
+        router.push(currentUrl, getUrlForSticker(newSticker, GeneratorMode.Share), { shallow: true });
         setStep(Step.SAVED);
       },
       (error) => {
@@ -101,7 +105,17 @@ export default function Editor(props: { store: StickerStore }) {
         setErrorMessage(`Sikertelen mentés, hiba: ${error?.message}`);
       }
     );
-  }, [props.store, sticker]);
+  }, [props.store, sticker, router]);
+
+  useEffect(() => {
+    router.beforePopState(({ as }) => {
+      if (as === `${router.basePath}${router.pathname}`) {
+        setStep(Step.INITIAL);
+        return false;
+      }
+      return true;
+    });
+  }, [router]);
 
   return (
     <>
