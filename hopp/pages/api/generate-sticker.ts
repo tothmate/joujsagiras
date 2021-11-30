@@ -17,13 +17,15 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
   });
 
   const page = await browser.newPage();
-  await page.goto(url, { waitUntil: process.env.IS_LOCAL ? "networkidle2" : "networkidle0" });
+  console.log("goto", url);
+  await page.goto(url, { waitUntil: "networkidle2" });
+  console.log("done");
 
   const height = await page.evaluate(() => {
     return document.body.clientHeight;
   });
 
-  await page.setViewport({ width: 600, height: height + 40, deviceScaleFactor: 2 });
+  await page.setViewport({ width: 1200, height: height + 40, deviceScaleFactor: 2 });
   const screenshot = await page.screenshot({ encoding: "binary" });
   await browser.close();
 
