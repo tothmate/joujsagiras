@@ -18,58 +18,58 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
 
   const page = await browser.newPage();
 
-  page.on("AAA close", (msg) => {
+  page.on("AAA close", (msg: any) => {
     console.log("close", msg);
   });
-  page.on("AAA console", (msg) => {
+  page.on("AAA console", (msg: any) => {
     console.log("console", msg);
   });
-  page.on("AAA dialog", (msg) => {
+  page.on("AAA dialog", (msg: any) => {
     console.log("dialog", msg);
   });
-  page.on("AAA domcontentloaded", (msg) => {
+  page.on("AAA domcontentloaded", (msg: any) => {
     console.log("domcontentloaded", msg);
   });
-  page.on("AAA error", (msg) => {
+  page.on("AAA error", (msg: any) => {
     console.log("error", msg);
   });
-  page.on("AAA frameattached", (msg) => {
+  page.on("AAA frameattached", (msg: any) => {
     console.log("frameattached", msg);
   });
-  page.on("AAA framedetached", (msg) => {
+  page.on("AAA framedetached", (msg: any) => {
     console.log("framedetached", msg);
   });
-  page.on("AAA framenavigated", (msg) => {
+  page.on("AAA framenavigated", (msg: any) => {
     console.log("framenavigated", msg);
   });
-  page.on("AAA load", (msg) => {
+  page.on("AAA load", (msg: any) => {
     console.log("load", msg);
   });
-  page.on("AAA metrics", (msg) => {
+  page.on("AAA metrics", (msg: any) => {
     console.log("metrics", msg);
   });
-  page.on("AAA pageerror", (msg) => {
+  page.on("AAA pageerror", (msg: any) => {
     console.log("pageerror", msg);
   });
-  page.on("AAA popup", (msg) => {
+  page.on("AAA popup", (msg: any) => {
     console.log("popup", msg);
   });
-  page.on("AAA request", (msg) => {
+  page.on("AAA request", (msg: any) => {
     console.log("request", msg);
   });
-  page.on("AAA requestfailed", (msg) => {
+  page.on("AAA requestfailed", (msg: any) => {
     console.log("requestfailed", msg);
   });
-  page.on("AAA requestfinished", (msg) => {
+  page.on("AAA requestfinished", (msg: any) => {
     console.log("requestfinished", msg);
   });
-  page.on("AAA response", (msg) => {
+  page.on("AAA response", (msg: any) => {
     console.log("response", msg);
   });
-  page.on("AAA workercreated", (msg) => {
+  page.on("AAA workercreated", (msg: any) => {
     console.log("workercreated", msg);
   });
-  page.on("AAA workerdestroyed", (msg) => {
+  page.on("AAA workerdestroyed", (msg: any) => {
     console.log("workerdestroyed", msg);
   });
 
