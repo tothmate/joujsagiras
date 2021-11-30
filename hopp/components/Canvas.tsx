@@ -1,25 +1,23 @@
 import React from "react";
-import { Card, CardContent, CardMedia, Typography, Link, Box, CircularProgress, Fade } from "@mui/material";
+import { Card, CardContent, CardMedia, Typography, Link, Box, Fade } from "@mui/material";
 import { Sticker } from "../src/models";
 import Overlay from "./Overlay";
 
-export default function Canvas(props: { sticker: Sticker; loadingSource: boolean; noCardContent?: boolean }) {
+export default function Canvas(props: { sticker: Sticker; noCardContent?: boolean }) {
   const hasOverlay = props.sticker.reason.text !== "";
   return (
     <Card elevation={props.noCardContent ? 0 : 1}>
-      {(!props.sticker.source.image || props.loadingSource) && (
+      {!props.sticker.source.image && (
         <Box
           display="flex"
           alignItems="center"
           justifyContent="center"
           height="200px"
-          sx={{ backgroundColor: (theme) => theme.palette.grey[100] }}
-        >
-          <CircularProgress size="1em" color="secondary" />
-        </Box>
+          sx={{ backgroundColor: (theme) => theme.palette.grey[500] }}
+        ></Box>
       )}
       <div style={{ position: "relative" }}>
-        {props.sticker.source.image && !props.loadingSource && (
+        {props.sticker.source.image && (
           <CardMedia
             sx={{ height: "200px", filter: hasOverlay ? "grayscale(60%)" : "none" }}
             image={props.sticker.source.image}
@@ -32,7 +30,7 @@ export default function Canvas(props: { sticker: Sticker; loadingSource: boolean
           </Box>
         </Fade>
       </div>
-      {!props.noCardContent && !props.loadingSource && (
+      {!props.noCardContent && (
         <CardContent
           sx={{
             padding: "0 12px",

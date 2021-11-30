@@ -24,7 +24,7 @@ export default function Page(props: InferGetServerSidePropsType<typeof getServer
 
   return (
     <Container maxWidth="sm">
-      <Canvas sticker={props.sticker} loadingSource={false} noCardContent />
+      <Canvas sticker={props.sticker} noCardContent />
     </Container>
   );
 }

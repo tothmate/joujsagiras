@@ -1,11 +1,8 @@
 import React, { useCallback, useState } from "react";
 import { DateTime } from "luxon";
 import Head from "next/head";
-import { useRouter } from "next/router";
 import {
   Alert,
-  Button,
-  CircularProgress,
   Collapse,
   FormControl,
   Grid,
@@ -16,6 +13,7 @@ import {
   TextField,
   Typography,
 } from "@mui/material";
+import LoadingButton from "@mui/lab/LoadingButton";
 import { reasons, Sticker, StickerStore, GeneratorMode, emptySticker } from "../src/models";
 import {
   getReasonBySlug,
@@ -26,56 +24,56 @@ import {
   capitalizeFirstLetter,
 } from "../src/helpers";
 import Canvas from "./Canvas";
+import Viewer from "./Viewer";
+import Arrow from "./Arrow";
+
+enum Step {
+  INITIAL = 1,
+  URL_LOADING,
+  URL_ERROR,
+  URL_LOADED,
+  REASON_SELECTED,
+  SAVING,
+  SAVE_ERROR,
+  SAVED,
+}
 
 export default function Editor(props: { store: StickerStore }) {
-  const router = useRouter();
   const [sticker, setSticker] = useState<Sticker>(emptySticker);
-  const [loadingSource, setLoadingSource] = useState(false);
-  const [saving, setSaving] = useState(false);
+  const [step, setStep] = useState<Step>(Step.INITIAL);
+  const [urlCandidate, setUrlCandidate] = useState<string>("");
   const [errorMessage, setErrorMessage] = useState<string | undefined>(undefined);
-  const [urlCandidate, setUrlCandidate] = useState<string | undefined>(undefined);
-  const [urlError, setUrlError] = useState(false);
 
-  const reloadSource = useCallback(async (url: string) => {
-    setLoadingSource(true);
-    const response = await fetch(`api/fetch-opengraph-data?url=${url}`);
+  const handleUrlSubmitted = useCallback(async () => {
+    setStep(Step.URL_LOADING);
+    if (!isValidUrl(urlCandidate)) {
+      setStep(Step.URL_ERROR);
+      return;
+    }
+
+    const response = await fetch(`api/fetch-opengraph-data?url=${urlCandidate}`);
     if (response.ok) {
       const data = await response.json();
       const newSource = {
-        url: url,
+        url: urlCandidate,
         title: data.title,
         date: getLocallizedDateString(DateTime.now()),
         image: data.image,
       };
       setSticker((sticker) => updateSticker(sticker, { source: newSource }));
-      setUrlCandidate(undefined);
-      setUrlError(false);
-      setLoadingSource(false);
+      setStep(Step.URL_LOADED);
       setErrorMessage(undefined);
     } else {
-      setUrlError(true);
+      setStep(Step.URL_ERROR);
       setErrorMessage("Nem sikerült betölteni.");
-      setLoadingSource(false);
     }
-  }, []);
-
-  const handleUrlChanged = useCallback(
-    (value: string) => {
-      setUrlCandidate(value);
-      if (isValidUrl(value)) {
-        setUrlError(false);
-        reloadSource(value);
-      } else {
-        setUrlError(true);
-      }
-    },
-    [reloadSource]
-  );
+  }, [urlCandidate]);
 
   const handleReasonChanged = useCallback((value: string) => {
     const newReason = getReasonBySlug(value);
     if (newReason !== undefined) {
       setSticker((sticker) => updateSticker(sticker, { reason: newReason }));
+      setStep(Step.REASON_SELECTED);
     }
   }, []);
 
@@ -83,112 +81,142 @@ export default function Editor(props: { store: StickerStore }) {
     setSticker((sticker) => updateSticker(sticker, { explanation: value }));
   }, []);
 
-  const handleStickerShared = useCallback(async () => {
-    if (sticker.source.url !== "" && sticker.reason.slug !== "") {
-      setSaving(true);
+  const handleStickerDone = useCallback(async () => {
+    setStep(Step.SAVING);
+    const result = await props.store.save(sticker);
+    result.match(
+      (stickerId) => {
+        const newSticker = updateSticker(sticker, { id: stickerId });
+        setSticker(newSticker);
 
-      const result = await props.store.save(sticker);
-      result.match(
-        (stickerId) => {
-          const newSticker = updateSticker(sticker, { id: stickerId });
-          setSticker(newSticker);
-
-          if (!process.env.NEXT_PUBLIC_IS_LOCAL) {
-            fetch(getUrlForSticker(newSticker, GeneratorMode.Png));
-          }
-
-          router.push(getUrlForSticker(newSticker, GeneratorMode.Share), undefined, { shallow: true });
-        },
-        (error) => {
-          setErrorMessage(`Sikertelen mentés, hiba: ${error?.message}`);
+        if (!process.env.NEXT_PUBLIC_IS_LOCAL) {
+          fetch(getUrlForSticker(newSticker, GeneratorMode.Png));
         }
-      );
 
-      setSaving(false);
-    }
-  }, [props.store, sticker, router]);
-
-  const urlValue = urlCandidate || sticker.source.url;
-  const isUrlLoaded = urlValue !== "" && !urlError;
-  const isReasonSelected = sticker.reason.slug !== "";
+        history.pushState({}, "", getUrlForSticker(newSticker, GeneratorMode.Share));
+        setStep(Step.SAVED);
+      },
+      (error) => {
+        setStep(Step.SAVE_ERROR);
+        setErrorMessage(`Sikertelen mentés, hiba: ${error?.message}`);
+      }
+    );
+  }, [props.store, sticker]);
 
   return (
-    <Grid container spacing={3} justifyContent="center">
+    <>
       <Head>
         <title>HOPP!</title>
       </Head>
+
       <Snackbar open={errorMessage !== undefined} autoHideDuration={6000} onClose={() => setErrorMessage(undefined)}>
         <Alert severity="error">{errorMessage}</Alert>
       </Snackbar>
-      <Grid item xs={12}>
-        <Collapse in={true}>
-          <Typography variant="h1" gutterBottom>
-            Rossz újságírással találkoztál? Tedd szóvá!
-          </Typography>
-          <Typography variant="body1" gutterBottom>
-            Láttál egy cikket, amely nem felel meg a jó újságírás elvárásainak?
-          </Typography>
-          <Typography variant="body1" gutterBottom>
-            Jelentsd be, oszd meg Facebookon és hívd fel mások figyelmét is erre!
-          </Typography>
-          <TextField
-            label="Másold be ide a cikk URL-jét"
-            color="secondary"
-            fullWidth
-            value={urlValue}
-            error={urlError}
-            onChange={(e) => handleUrlChanged(e.target.value as string)}
-            margin="normal"
-          />
-        </Collapse>
-      </Grid>
 
-      {isUrlLoaded && (
-        <>
-          <Grid item xs={12} sm={6}>
-            <Canvas sticker={sticker} loadingSource={loadingSource} />
-          </Grid>
-          <Grid item xs={12} sm={6}>
-            <FormControl fullWidth>
-              <InputLabel id="reason-selector-label" color="secondary">
-                Mi a baj vele?
-              </InputLabel>
-              <Select
-                value={sticker.reason.slug}
-                onChange={(e) => handleReasonChanged(e.target.value as string)}
-                labelId="reason-selector-label"
-                label="Mi a baj vele?"
+      <Collapse in={step < Step.URL_LOADED}>
+        <form
+          onSubmit={(e) => {
+            e.preventDefault();
+            handleUrlSubmitted();
+          }}
+        >
+          <Grid container spacing={2} justifyContent="center">
+            <Grid item xs={12}>
+              <Typography variant="h1" gutterBottom>
+                Rossz újságírással találkoztál? Tedd szóvá!
+              </Typography>
+              <Typography variant="body1" gutterBottom>
+                Láttál egy cikket, amely nem felel meg a jó újságírás elvárásainak?
+              </Typography>
+              <Typography variant="body1" gutterBottom>
+                Jelentsd be, oszd meg Facebookon és hívd fel mások figyelmét is erre!
+              </Typography>
+            </Grid>
+            <Grid item xs={12} sm={7}>
+              <TextField
+                label="Másold be ide a cikk URL-jét"
                 color="secondary"
+                fullWidth
+                error={step === Step.URL_ERROR}
+                value={urlCandidate}
+                onChange={(e) => setUrlCandidate(e.target.value as string)}
+              />
+            </Grid>
+            <Grid item xs={12} sm={5}>
+              <LoadingButton
+                type="submit"
+                loading={step === Step.URL_LOADING}
+                variant="contained"
+                color="primary"
+                fullWidth
               >
-                {reasons.map((r) => (
-                  <MenuItem key={r.slug} value={r.slug}>
-                    {capitalizeFirstLetter(r.text)}
-                  </MenuItem>
-                ))}
-              </Select>
-              {isReasonSelected && (
-                <>
-                  <TextField
-                    label="Miért?"
-                    multiline
-                    rows={4}
-                    margin="normal"
-                    color="secondary"
-                    value={sticker.explanation}
-                    onChange={(e) => handleExplanationChanged(e.target.value as string)}
-                  />
-                  {!saving && (
-                    <Button variant="contained" color="secondary" size="large" fullWidth onClick={handleStickerShared}>
-                      Következő
-                    </Button>
-                  )}
-                  {saving && <CircularProgress size="1em" color="secondary" sx={{ margin: "1em auto" }} />}
-                </>
-              )}
-            </FormControl>
+                Következő
+              </LoadingButton>
+            </Grid>
           </Grid>
-        </>
-      )}
-    </Grid>
+        </form>
+      </Collapse>
+
+      <Collapse in={step >= Step.URL_LOADED && step < Step.SAVED}>
+        <form
+          onSubmit={(e) => {
+            e.preventDefault();
+            handleStickerDone();
+          }}
+        >
+          <Grid container spacing={2} justifyContent="center">
+            <Grid item xs={12} sm={6}>
+              {step >= Step.URL_LOADED && <Canvas sticker={sticker} />}
+            </Grid>
+            <Grid item xs={12} sm={1} sx={{ display: { xs: "none", sm: "block" } }}>
+              <Arrow />
+            </Grid>
+            <Grid item xs={12} sm={5}>
+              <FormControl fullWidth>
+                <InputLabel id="reason-selector-label" color="secondary">
+                  Mi a baj vele?
+                </InputLabel>
+                <Select
+                  labelId="reason-selector-label"
+                  label="Mi a baj vele?"
+                  color="secondary"
+                  value={sticker.reason.slug}
+                  onChange={(e) => handleReasonChanged(e.target.value as string)}
+                >
+                  {reasons.map((r) => (
+                    <MenuItem key={r.slug} value={r.slug}>
+                      {capitalizeFirstLetter(r.text)}
+                    </MenuItem>
+                  ))}
+                </Select>
+                {step >= Step.REASON_SELECTED && (
+                  <>
+                    <TextField
+                      label="Miért?"
+                      multiline
+                      rows={4}
+                      margin="normal"
+                      color="secondary"
+                      value={sticker.explanation}
+                      onChange={(e) => handleExplanationChanged(e.target.value as string)}
+                    />
+                    <LoadingButton
+                      type="submit"
+                      loading={step === Step.SAVING}
+                      variant="contained"
+                      color="primary"
+                      fullWidth
+                    >
+                      Következő
+                    </LoadingButton>
+                  </>
+                )}
+              </FormControl>
+            </Grid>
+          </Grid>
+        </form>
+      </Collapse>
+      <Collapse in={step >= Step.SAVED}>{step >= Step.SAVED && <Viewer sticker={sticker}></Viewer>}</Collapse>
+    </>
   );
 }
