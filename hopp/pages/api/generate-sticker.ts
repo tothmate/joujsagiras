@@ -17,9 +17,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
   });
 
   const page = await browser.newPage();
-  console.log("goto", url);
   await page.goto(url, { waitUntil: "networkidle0" });
-  console.log("done", url);
 
   const height = await page.evaluate(() => {
     return document.body.clientHeight;
