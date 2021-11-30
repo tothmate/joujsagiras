@@ -22,5 +22,9 @@ export default function Page(props: InferGetServerSidePropsType<typeof getServer
     return <div />;
   }
 
-  return <Container maxWidth="sm">yo</Container>;
+  return (
+    <Container maxWidth="sm">
+      <Canvas sticker={props.sticker} noCardContent />
+    </Container>
+  );
 }
