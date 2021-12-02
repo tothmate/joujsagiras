@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Button, Grid, Typography, Link } from "@mui/material";
+import { Button, Grid, Typography } from "@mui/material";
 import Head from "next/head";
 import { Sticker, GeneratorMode } from "../src/models";
 import { getUrlForSticker } from "../src/helpers";
@@ -75,7 +75,7 @@ export default function Viewer(props: { sticker: Sticker }) {
           color="primary"
           size="large"
           fullWidth
-          onClick={(e) => {
+          onClick={() => {
             window.open(
               `https://www.facebook.com/sharer/sharer.php?u=${link}`,
               "",

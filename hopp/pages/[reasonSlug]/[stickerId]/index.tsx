@@ -1,4 +1,3 @@
-import { Grid } from "@mui/material";
 import { GetServerSidePropsContext, InferGetServerSidePropsType } from "next";
 import ErrorPage from "next/error";
 import Viewer from "../../../components/Viewer";
