@@ -19,11 +19,8 @@ function getUrlSuffixByMode(mode: GeneratorMode) {
 }
 
 export function getUrlForSticker(sticker: Sticker, mode: GeneratorMode): string {
-  const host = process.env.NEXT_PUBLIC_BASE_URL;
-  if (!sticker.id) {
-    return `${host}/`;
-  }
-  return `${host}/${sticker.reason.slug}/${sticker.id}${getUrlSuffixByMode(mode)}`;
+  const host = typeof window !== "undefined" ? window.location.origin : process.env.NEXT_PUBLIC_BASE_URL;
+  return `${host}/hopp/${sticker.reason.slug}/${sticker.id}${getUrlSuffixByMode(mode)}`;
 }
 
 export function isValidUrl(url: string) {

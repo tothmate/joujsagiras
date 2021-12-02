@@ -7,7 +7,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     return;
   }
 
-  const url = `${process.env.NEXT_PUBLIC_BASE_URL}/${req.query.reasonSlug}/${req.query.stickerId}/screenshot`;
+  const url = `${process.env.NEXT_PUBLIC_BASE_URL}/hopp/${req.query.reasonSlug}/${req.query.stickerId}/screenshot`;
 
   const browser = await chromium.puppeteer.launch({
     args: chromium.args,
