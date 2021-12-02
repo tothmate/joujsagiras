@@ -70,11 +70,21 @@ export default function Viewer(props: { sticker: Sticker }) {
       </Grid>
       <Grid item xs={0} sm={1} />
       <Grid item xs={12} sm={5}>
-        <Link href={`https://www.facebook.com/sharer/sharer.php?u=${link}`} underline="none">
-          <Button variant="contained" color="primary" size="large" fullWidth>
-            Megosztás
-          </Button>
-        </Link>
+        <Button
+          variant="contained"
+          color="primary"
+          size="large"
+          fullWidth
+          onClick={(e) => {
+            window.open(
+              `https://www.facebook.com/sharer/sharer.php?u=${link}`,
+              "",
+              "width=550, height=400, toolbar=0, location=0, menubar=0, directories=0, scrollbars=0"
+            );
+          }}
+        >
+          Megosztás
+        </Button>
       </Grid>
     </Grid>
   );
