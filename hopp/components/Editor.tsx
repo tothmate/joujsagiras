@@ -96,8 +96,6 @@ export default function Editor(props: { store: StickerStore }) {
           fetch(getUrlForSticker(newSticker, GeneratorMode.Png));
         }
 
-        const currentUrl = `${process.env.NEXT_PUBLIC_BASE_URL}${router.pathname}`;
-        router.push(currentUrl, getUrlForSticker(newSticker, GeneratorMode.Share), { shallow: true });
         setStep(Step.SAVED);
       },
       (error) => {
@@ -105,7 +103,13 @@ export default function Editor(props: { store: StickerStore }) {
         setErrorMessage(`Sikertelen mentés, hiba: ${error?.message}`);
       }
     );
-  }, [props.store, sticker, router]);
+  }, [props.store, sticker]);
+
+  useEffect(() => {
+    if (step === Step.SAVED) {
+      history.pushState({}, "", getUrlForSticker(sticker, GeneratorMode.Share));
+    }
+  }, [step, sticker]);
 
   useEffect(() => {
     router.beforePopState(({ as }) => {
