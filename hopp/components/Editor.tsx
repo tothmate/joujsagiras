@@ -68,7 +68,7 @@ export default function Editor(props: { store: StickerStore }) {
       setErrorMessage(undefined);
     } else {
       setStep(Step.URL_ERROR);
-      setErrorMessage("Nem sikerült betölteni.");
+      setErrorMessage("Nem sikerült betölteni az URL-t");
     }
   }, [urlCandidate]);
 
@@ -128,7 +128,7 @@ export default function Editor(props: { store: StickerStore }) {
       </Head>
 
       <Snackbar open={errorMessage !== undefined} autoHideDuration={6000} onClose={() => setErrorMessage(undefined)}>
-        <Alert severity="error">{errorMessage}</Alert>
+        <Alert severity="error">Hopp! {errorMessage}</Alert>
       </Snackbar>
 
       <Collapse in={step < Step.URL_LOADED}>
@@ -168,7 +168,7 @@ export default function Editor(props: { store: StickerStore }) {
                 color="primary"
                 fullWidth
               >
-                Következő
+                Tovább
               </LoadingButton>
             </Grid>
           </Grid>
@@ -210,7 +210,7 @@ export default function Editor(props: { store: StickerStore }) {
                 {step >= Step.REASON_SELECTED && (
                   <>
                     <TextField
-                      label="Miért?"
+                      label="Miért? (opcionális)"
                       multiline
                       rows={4}
                       margin="normal"
@@ -225,7 +225,7 @@ export default function Editor(props: { store: StickerStore }) {
                       color="primary"
                       fullWidth
                     >
-                      Következő
+                      Szóvá teszem!
                     </LoadingButton>
                   </>
                 )}
