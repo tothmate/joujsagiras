@@ -2,13 +2,14 @@ import React, { useState } from "react";
 import { Button, Grid, Typography } from "@mui/material";
 import Head from "next/head";
 import { Sticker, GeneratorMode } from "../src/models";
-import { getUrlForSticker } from "../src/helpers";
+import { getSourceHostname, getUrlForSticker } from "../src/helpers";
 import Canvas from "./Canvas";
 import CopyToClipboard from "react-copy-to-clipboard";
 import Arrow from "./Arrow";
 
 export default function Viewer(props: { sticker: Sticker }) {
-  const title = `HOPP! Ez ${props.sticker.reason.text}.`;
+  const title = `HOPP! Ez ${props.sticker.reason.text}`;
+  const opengraphTitle = `${title}: ${props.sticker.source.title} (${getSourceHostname(props.sticker)})`;
 
   const [copiedLink, setCopiedLink] = useState(false);
   const link = getUrlForSticker(props.sticker, GeneratorMode.Share);
@@ -25,7 +26,7 @@ export default function Viewer(props: { sticker: Sticker }) {
     <Grid container spacing={2}>
       <Head>
         <title>{title}</title>
-        <meta property="og:title" content={title} key="title" />
+        <meta property="og:title" content={opengraphTitle} key="title" />
         <meta property="og:image" content={getUrlForSticker(props.sticker, GeneratorMode.Png)} key="image" />
       </Head>
       <Grid item xs={12} sm={6}>

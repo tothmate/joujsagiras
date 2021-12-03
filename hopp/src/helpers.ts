@@ -34,3 +34,7 @@ export function getLocallizedDateString(datetime: DateTime) {
 export function capitalizeFirstLetter(text: string) {
   return text.charAt(0).toUpperCase() + text.slice(1);
 }
+
+export function getSourceHostname(sticker: Sticker) {
+  return new URL(sticker.source.url).hostname;
+}

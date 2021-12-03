@@ -2,6 +2,7 @@ import React from "react";
 import { Card, CardContent, CardMedia, Typography, Link, Box, Fade } from "@mui/material";
 import { Sticker } from "../src/models";
 import Overlay from "./Overlay";
+import { getSourceHostname } from "../src/helpers";
 
 export default function Canvas(props: { sticker: Sticker; noCardContent?: boolean }) {
   const hasOverlay = props.sticker.reason.text !== "";
@@ -48,7 +49,7 @@ export default function Canvas(props: { sticker: Sticker; noCardContent?: boolea
             noWrap
             target="_blank"
           >
-            {new URL(props.sticker.source.url).hostname}
+            {getSourceHostname(props.sticker)}
           </Link>
           <Typography variant="subtitle1" component="h3" fontWeight="bold" lineHeight="1.5em">
             {props.sticker.source.title}
