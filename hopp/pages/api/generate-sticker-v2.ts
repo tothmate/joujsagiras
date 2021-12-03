@@ -9,7 +9,7 @@ if (
 }
 
 import { NextApiRequest, NextApiResponse } from "next";
-import { createCanvas } from "canvas";
+// import { createCanvas } from "canvas";
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
   if (!req.headers.host || !req.url || !req.query.reasonSlug || !req.query.stickerId) {
@@ -17,25 +17,27 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     return;
   }
 
-  const canvas = createCanvas(200, 200);
-  const ctx = canvas.getContext("2d");
+  res.status(200).json({ path: process.env.LD_LIBRARY_PATH });
 
-  ctx.font = "30px Impact";
-  ctx.rotate(0.1);
-  ctx.fillText("Awesome!", 50, 100);
+  //   const canvas = createCanvas(200, 200);
+  //   const ctx = canvas.getContext("2d");
 
-  var text = ctx.measureText("Awesome!");
-  ctx.strokeStyle = "rgba(0,0,0,0.5)";
-  ctx.beginPath();
-  ctx.lineTo(50, 102);
-  ctx.lineTo(50 + text.width, 102);
-  ctx.stroke();
+  //   ctx.font = "30px Impact";
+  //   ctx.rotate(0.1);
+  //   ctx.fillText("Awesome!", 50, 100);
 
-  const screenshot = canvas.createPNGStream();
+  //   var text = ctx.measureText("Awesome!");
+  //   ctx.strokeStyle = "rgba(0,0,0,0.5)";
+  //   ctx.beginPath();
+  //   ctx.lineTo(50, 102);
+  //   ctx.lineTo(50 + text.width, 102);
+  //   ctx.stroke();
 
-  res.setHeader("Content-Type", "image/png");
-  if (!process.env.IS_LOCAL) {
-    res.setHeader("Cache-Control", "s-maxage=3600, stale-while-revalidate=2678400");
-  }
-  res.status(200).send(screenshot);
+  //   const screenshot = canvas.createPNGStream();
+
+  //   res.setHeader("Content-Type", "image/png");
+  //   if (!process.env.IS_LOCAL) {
+  //     res.setHeader("Cache-Control", "s-maxage=3600, stale-while-revalidate=2678400");
+  //   }
+  //   res.status(200).send(screenshot);
 }
