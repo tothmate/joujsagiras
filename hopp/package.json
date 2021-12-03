@@ -30,7 +30,7 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "start": "LD_PRELOAD=/var/task/node_modules/canvas/build/Release/libz.so.1 next start",
+    "start": "next start",
     "lint": "next lint"
   },
   "devDependencies": {
