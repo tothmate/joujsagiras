@@ -46,6 +46,7 @@ export default function Canvas(props: { sticker: Sticker; noCardContent?: boolea
             sx={(theme) => ({ textTransform: "uppercase", fontSize: "0.7em", color: theme.palette.text.secondary })}
             variant="body2"
             noWrap
+            target="_blank"
           >
             {new URL(props.sticker.source.url).hostname}
           </Link>
