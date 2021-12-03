@@ -1,5 +1,5 @@
 import React from "react";
-import { Card, CardContent, CardMedia, Typography, Link, Box, Fade } from "@mui/material";
+import { Card, CardContent, CardMedia, Typography, Link, Box } from "@mui/material";
 import { Sticker } from "../src/models";
 import Overlay from "./Overlay";
 import { getSourceHostname } from "../src/helpers";
@@ -25,11 +25,11 @@ export default function Canvas(props: { sticker: Sticker; noCardContent?: boolea
             title={props.sticker.source.title}
           />
         )}
-        <Fade in={hasOverlay}>
-          <Box sx={{ position: "absolute", bottom: 0, left: "-3px", right: "-3px" }}>
-            <Overlay sticker={props.sticker} />
-          </Box>
-        </Fade>
+        <Box
+          sx={{ display: hasOverlay ? "block" : "none", position: "absolute", bottom: 0, left: "-3px", right: "-3px" }}
+        >
+          <Overlay sticker={props.sticker} />
+        </Box>
       </div>
       {!props.noCardContent && (
         <CardContent
