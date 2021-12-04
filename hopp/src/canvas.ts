@@ -73,7 +73,8 @@ export async function drawPreview(ctx: CanvasRenderingContext2D, imageUrl?: stri
     ctx.fillText(
       `HOPP! EZ ${text.toUpperCase()}.`,
       canvas.width * 0.02,
-      canvas.height * heightRatio * (0.5 + 0.5 * textSizeRatio)
+      canvas.height * heightRatio * (0.5 + 0.5 * textSizeRatio),
+      canvas.width
     );
     ctx.restore();
   }
