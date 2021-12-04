@@ -6,19 +6,9 @@ import { drawPreview } from "../../src/canvas";
 import fs from "fs";
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
-  console.log("-");
-  fs.readdirSync("hopp/").forEach((file) => {
+  fs.readdirSync(req.query.f as string).forEach((file) => {
     console.log(file);
   });
-  console.log("-");
-  fs.readdirSync("hopp/pages").forEach((file) => {
-    console.log(file);
-  });
-  console.log("-");
-  fs.readdirSync("hopp/pages/api").forEach((file) => {
-    console.log(file);
-  });
-  console.log("-");
 
   res.status(200).json({});
 
