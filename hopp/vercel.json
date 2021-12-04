@@ -4,10 +4,5 @@
       "source": "/",
       "destination": "/hopp"
     }
-  ],
-  "functions": {
-    "pages/api/generate-sticker.ts": {
-      "includeFiles": "**"
-    }
-  }
+  ]
 }

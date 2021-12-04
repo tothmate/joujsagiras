@@ -1,13 +1,11 @@
-import { GetServerSidePropsContext, InferGetServerSidePropsType } from "next";
-import ErrorPage from "next/error";
-import Viewer from "../components/Viewer";
-import { emptySticker, StickerStoreErrorType } from "../src/models";
-import store from "../src/SupabaseStore";
+import { InferGetServerSidePropsType } from "next";
+import ShareBox from "../components/ShareBox";
+import { emptySticker } from "../src/models";
 
-export async function getServerSideProps({ res, query }: GetServerSidePropsContext) {
-  return { props: { sticker: emptySticker, error: null } };
+export async function getServerSideProps() {
+  return { props: {} };
 }
 
 export default function Page(props: InferGetServerSidePropsType<typeof getServerSideProps>) {
-  return <Viewer sticker={emptySticker} />;
+  return <ShareBox sticker={emptySticker} />;
 }
