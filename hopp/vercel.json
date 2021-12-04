@@ -6,7 +6,7 @@
     }
   ],
   "functions": {
-    "api/generate-sticker.ts": {
+    "pages/api/generate-sticker.ts": {
       "includeFiles": "Oswald-VariableFont_wght.ttf"
     }
   }
