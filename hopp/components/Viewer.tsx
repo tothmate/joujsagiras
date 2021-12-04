@@ -22,13 +22,13 @@ export default function Viewer(props: { sticker: Sticker }) {
         <meta property="og:description" content={props.sticker.reason.details.join(" ")} />
       </Head>
       <Grid item xs={12} sm={6}>
-        {/* <Preview sticker={props.sticker} useCanvas={false} /> */}
+        <Preview sticker={props.sticker} useCanvas={false} />
       </Grid>
       <Grid item xs={12} sm={1} sx={{ display: { xs: "none", sm: "block" } }}>
         <Arrow />
       </Grid>
       <Grid item xs={12} sm={5}>
-        <ShareBox sticker={props.sticker} />
+        {/* <ShareBox sticker={props.sticker} /> */}
       </Grid>
     </Grid>
   );
