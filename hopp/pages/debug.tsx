@@ -10,7 +10,8 @@ export async function getServerSideProps() {
 export default function Page(props: InferGetServerSidePropsType<typeof getServerSideProps>) {
   return (
     <>
-      <Button startIcon={<Done />} variant="contained" color="secondary" size="large" fullWidth>
+      <Done />
+      <Button variant="contained" color="secondary" size="large" fullWidth>
         Link másolása
       </Button>
     </>
