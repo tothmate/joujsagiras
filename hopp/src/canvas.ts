@@ -44,46 +44,37 @@ export async function drawPreview(ctx: CanvasRenderingContext2D, imageUrl?: stri
   const heightRatio = 0.25;
   const textSizeRatio = 0.55;
 
-  ctx.fillStyle = "#123456";
-  ctx.font = `20px sans-serif`;
-  ctx.fillText(
-    `HOPP! EZ YO.`,
-    canvas.width * 0.02,
-    canvas.height * heightRatio * (0.5 + 0.5 * textSizeRatio),
-    canvas.width
-  );
+  ctx.fillStyle = "#f5f5f5";
+  ctx.fillRect(0, 0, canvas.width, canvas.height);
 
-  //   ctx.fillStyle = "#f5f5f5";
-  //   ctx.fillRect(0, 0, canvas.width, canvas.height);
+  if (imageUrl) {
+    try {
+      const image = await loadImage(imageUrl);
+      drawImageProp(ctx, image);
+    } catch (e) {}
+  }
 
-  //   if (imageUrl) {
-  //     try {
-  //       const image = await loadImage(imageUrl);
-  //       drawImageProp(ctx, image);
-  //     } catch (e) {}
-  //   }
+  if (text) {
+    ctx.globalCompositeOperation = "saturation";
+    ctx.fillStyle = "#00000099";
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
+    ctx.globalCompositeOperation = "source-over";
 
-  //   if (text) {
-  //     ctx.globalCompositeOperation = "saturation";
-  //     ctx.fillStyle = "#00000099";
-  //     ctx.fillRect(0, 0, canvas.width, canvas.height);
-  //     ctx.globalCompositeOperation = "source-over";
-
-  //     ctx.save();
-  //     ctx.translate(0, (1 - heightRatio) * canvas.height);
-  //     ctx.fillStyle = "#f5f5f5";
-  //     ctx.fillRect(0, 0, canvas.width, canvas.height * heightRatio);
-  //     ctx.rotate(-(2 * Math.PI) / 180);
-  //     ctx.fillStyle = "#5ac8fa";
-  //     ctx.fillRect(-100, 0, canvas.width + 100, canvas.height * heightRatio);
-  //     ctx.fillStyle = "#000000";
-  //     ctx.font = `${canvas.height * heightRatio * textSizeRatio}px Oswald, sans-serif`;
-  //     ctx.fillText(
-  //       `HOPP! EZ ${text.toUpperCase()}.`,
-  //       canvas.width * 0.02,
-  //       canvas.height * heightRatio * (0.5 + 0.5 * textSizeRatio),
-  //       canvas.width
-  //     );
-  //     ctx.restore();
-  //   }
+    ctx.save();
+    ctx.translate(0, (1 - heightRatio) * canvas.height);
+    ctx.fillStyle = "#f5f5f5";
+    ctx.fillRect(0, 0, canvas.width, canvas.height * heightRatio);
+    ctx.rotate(-(2 * Math.PI) / 180);
+    ctx.fillStyle = "#5ac8fa";
+    ctx.fillRect(-100, 0, canvas.width + 100, canvas.height * heightRatio);
+    ctx.fillStyle = "#000000";
+    ctx.font = `${Math.floor(canvas.height * heightRatio * textSizeRatio)}px Oswald, sans-serif`;
+    ctx.fillText(
+      `HOPP! EZ ${text.toUpperCase()}.`,
+      canvas.width * 0.02,
+      canvas.height * heightRatio * (0.5 + 0.5 * textSizeRatio),
+      canvas.width
+    );
+    ctx.restore();
+  }
 }

@@ -9,5 +9,5 @@ export async function getServerSideProps({ res, query }: GetServerSidePropsConte
 }
 
 export default function Page(props: InferGetServerSidePropsType<typeof getServerSideProps>) {
-  return <Viewer sticker={props.sticker} />;
+  return <Viewer sticker={emptySticker} />;
 }
