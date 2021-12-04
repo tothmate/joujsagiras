@@ -33,7 +33,7 @@ export default function ShareBox(props: { sticker: Sticker }) {
         }}
       >
         <Button
-          //   startIcon={copiedLink ? <Done /> : <ContentCopy />}
+          startIcon={copiedLink ? <Done /> : <ContentCopy />}
           variant="contained"
           color={copiedLink ? "success" : "secondary"}
           size="large"
@@ -43,7 +43,7 @@ export default function ShareBox(props: { sticker: Sticker }) {
         </Button>
       </CopyToClipboard>
       <Button
-        startIcon={<Facebook />}
+        // startIcon={<Facebook />}
         variant="contained"
         sx={{ mt: 2 }}
         color="primary"

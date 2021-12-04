@@ -3,19 +3,15 @@ import { createCanvas, registerFont } from "canvas";
 import store from "../../src/SupabaseStore";
 import { StickerStoreErrorType } from "../../src/models";
 import { drawPreview } from "../../src/canvas";
-import fs from "fs";
+import { saveOswaldIfNeeded } from "../../src/font";
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
-  if (req.query.f) {
-    fs.readdirSync(req.query.f as string).forEach((file) => {
-      console.log(file);
-    });
-  }
-
   const result = await store.load(req.query.stickerId as string);
   result.match(
     async (sticker) => {
-      registerFont("src/Oswald-VariableFont_wght.ttf.ts", { family: "Oswald" });
+      const oswaldFilename = "Oswald-VariableFont_wght.ttf";
+      saveOswaldIfNeeded(oswaldFilename);
+      registerFont(oswaldFilename, { family: "Oswald" });
       const canvas = createCanvas(1200, 628);
       await drawPreview(canvas.getContext("2d"), sticker.source.image, sticker.reason.text);
       const screenshot = canvas.createPNGStream();

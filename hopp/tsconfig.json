@@ -32,7 +32,6 @@
     "pages/[reasonSlug]/[[...slug]].tsx"
   ],
   "exclude": [
-    "node_modules",
-    "src/Oswald-VariableFont_wght.ttf.ts"
+    "node_modules"
   ]
 }
