@@ -37,5 +37,5 @@ export function capitalizeFirstLetter(text: string) {
 }
 
 export function getSourceHostname(sticker: Sticker) {
-  return new URL(sticker.source.url).hostname;
+  return sticker.source.url ? new URL(sticker.source.url).hostname : "";
 }

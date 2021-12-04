@@ -41,6 +41,18 @@ function drawImageProp(ctx: CanvasRenderingContext2D, img: Image) {
 
 export async function drawPreview(ctx: CanvasRenderingContext2D, imageUrl?: string, text?: string) {
   const canvas = ctx.canvas;
+  const heightRatio = 0.25;
+  const textSizeRatio = 0.55;
+
+  ctx.fillStyle = "#123456";
+  ctx.font = `${canvas.height * heightRatio * textSizeRatio}px Oswald, sans-serif`;
+  ctx.fillText(
+    `HOPP! EZ YO.`,
+    canvas.width * 0.02,
+    canvas.height * heightRatio * (0.5 + 0.5 * textSizeRatio),
+    canvas.width
+  );
+  return;
 
   ctx.fillStyle = "#f5f5f5";
   ctx.fillRect(0, 0, canvas.width, canvas.height);
@@ -58,9 +70,6 @@ export async function drawPreview(ctx: CanvasRenderingContext2D, imageUrl?: stri
     ctx.fillRect(0, 0, canvas.width, canvas.height);
     ctx.globalCompositeOperation = "source-over";
 
-    const heightRatio = 0.25;
-    const textSizeRatio = 0.55;
-
     ctx.save();
     ctx.translate(0, (1 - heightRatio) * canvas.height);
     ctx.fillStyle = "#f5f5f5";
@@ -69,7 +78,7 @@ export async function drawPreview(ctx: CanvasRenderingContext2D, imageUrl?: stri
     ctx.fillStyle = "#5ac8fa";
     ctx.fillRect(-100, 0, canvas.width + 100, canvas.height * heightRatio);
     ctx.fillStyle = "#000000";
-    ctx.font = `${canvas.height * heightRatio * textSizeRatio}px Arial, sans-serif`;
+    ctx.font = `${canvas.height * heightRatio * textSizeRatio}px Oswald, sans-serif`;
     ctx.fillText(
       `HOPP! EZ ${text.toUpperCase()}.`,
       canvas.width * 0.02,
