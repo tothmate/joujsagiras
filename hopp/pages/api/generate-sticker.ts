@@ -6,18 +6,20 @@ import { drawPreview } from "../../src/canvas";
 import fs from "fs";
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
-  fs.readdir(".", (err, files) => {
-    files.forEach((file) => {
-      console.log(file);
-    });
-    console.log(err);
+  console.log("-");
+  fs.readdirSync("hopp/").forEach((file) => {
+    console.log(file);
   });
-  fs.readdir("..", (err, files) => {
-    files.forEach((file) => {
-      console.log(file);
-    });
-    console.log(err);
+  console.log("-");
+  fs.readdirSync("hopp/pages").forEach((file) => {
+    console.log(file);
   });
+  console.log("-");
+  fs.readdirSync("hopp/pages/api").forEach((file) => {
+    console.log(file);
+  });
+  console.log("-");
+
   res.status(200).json({});
 
   // const result = await store.load(req.query.stickerId as string);
