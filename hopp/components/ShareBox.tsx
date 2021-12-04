@@ -25,7 +25,7 @@ export default function ShareBox(props: { sticker: Sticker }) {
           {detail}
         </Typography>
       ))}
-      <CopyToClipboard
+      {/* <CopyToClipboard
         text={link}
         onCopy={() => {
           setCopiedLink(true);
@@ -58,7 +58,7 @@ export default function ShareBox(props: { sticker: Sticker }) {
         }}
       >
         Megosztás
-      </Button>
+      </Button> */}
     </>
   );
 }

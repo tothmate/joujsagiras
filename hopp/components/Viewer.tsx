@@ -28,7 +28,7 @@ export default function Viewer(props: { sticker: Sticker }) {
         <Arrow />
       </Grid>
       <Grid item xs={12} sm={5}>
-        {/* <ShareBox sticker={props.sticker} /> */}
+        <ShareBox sticker={props.sticker} />
       </Grid>
     </Grid>
   );
