@@ -7,7 +7,7 @@
   ],
   "functions": {
     "pages/api/generate-sticker.ts": {
-      "includeFiles": "**f"
+      "includeFiles": "**"
     }
   }
 }
