@@ -1,6 +1,7 @@
 import React, { useCallback, useEffect, useState } from "react";
 import { DateTime } from "luxon";
 import Head from "next/head";
+import { useRouter } from "next/router";
 import {
   Alert,
   Collapse,
@@ -23,10 +24,9 @@ import {
   getUrlForSticker,
   capitalizeFirstLetter,
 } from "../src/helpers";
-import Canvas from "./Canvas";
-import Viewer from "./Viewer";
+import Preview from "./Preview";
 import Arrow from "./Arrow";
-import { useRouter } from "next/router";
+import ShareBox from "./ShareBox";
 
 enum Step {
   INITIAL = 1,
@@ -124,7 +124,7 @@ export default function Editor(props: { store: StickerStore }) {
   return (
     <>
       <Head>
-        <title>HOPP!</title>
+        <title>HOPP! {sticker.reason.text ? `Ez ${sticker.reason.text}` : ""}</title>
       </Head>
 
       <Snackbar open={errorMessage !== undefined} autoHideDuration={6000} onClose={() => setErrorMessage(undefined)}>
@@ -175,46 +175,48 @@ export default function Editor(props: { store: StickerStore }) {
         </form>
       </Collapse>
 
-      <Collapse in={step >= Step.URL_LOADED && step < Step.SAVED}>
-        <form
-          onSubmit={(e) => {
-            e.preventDefault();
-            handleStickerDone();
-          }}
-        >
-          <Grid container spacing={2} justifyContent="center">
-            <Grid item xs={12} sm={6}>
-              {step >= Step.URL_LOADED && <Canvas sticker={sticker} />}
-            </Grid>
-            <Grid item xs={12} sm={1} sx={{ display: { xs: "none", sm: "block" } }}>
-              <Arrow />
-            </Grid>
-            <Grid item xs={12} sm={5}>
-              <FormControl fullWidth>
-                <InputLabel id="reason-selector-label" color="secondary">
-                  Mi a baj vele?
-                </InputLabel>
-                <Select
-                  labelId="reason-selector-label"
-                  label="Mi a baj vele?"
-                  color="secondary"
-                  value={sticker.reason.slug}
-                  onChange={(e) => handleReasonChanged(e.target.value as string)}
-                >
-                  {reasons.map((r) => (
-                    <MenuItem key={r.slug} value={r.slug}>
-                      {capitalizeFirstLetter(r.text)}
-                    </MenuItem>
-                  ))}
-                </Select>
-                {step >= Step.REASON_SELECTED && (
-                  <>
+      <Collapse in={step >= Step.URL_LOADED}>
+        <Grid container spacing={2} justifyContent="center">
+          <Grid item xs={12} sm={6}>
+            {step >= Step.URL_LOADED && <Preview sticker={sticker} useCanvas />}
+          </Grid>
+          <Grid item xs={12} sm={1} sx={{ display: { xs: "none", sm: "block" } }}>
+            <Arrow />
+          </Grid>
+
+          <Grid item xs={12} sm={5}>
+            <Collapse in={step < Step.SAVED}>
+              <form
+                onSubmit={(e) => {
+                  e.preventDefault();
+                  handleStickerDone();
+                }}
+              >
+                <FormControl fullWidth>
+                  <InputLabel id="reason-selector-label" color="secondary">
+                    Mi a baj vele?
+                  </InputLabel>
+                  <Select
+                    labelId="reason-selector-label"
+                    label="Mi a baj vele?"
+                    color="secondary"
+                    value={sticker.reason.slug}
+                    onChange={(e) => handleReasonChanged(e.target.value as string)}
+                  >
+                    {reasons.map((r) => (
+                      <MenuItem key={r.slug} value={r.slug}>
+                        {capitalizeFirstLetter(r.text)}
+                      </MenuItem>
+                    ))}
+                  </Select>
+                  <Collapse in={step >= Step.REASON_SELECTED && step < Step.SAVED}>
                     <TextField
                       label="Miért? (opcionális)"
                       multiline
                       rows={4}
                       margin="normal"
                       color="secondary"
+                      fullWidth
                       value={sticker.explanation}
                       onChange={(e) => handleExplanationChanged(e.target.value as string)}
                     />
@@ -227,14 +229,16 @@ export default function Editor(props: { store: StickerStore }) {
                     >
                       Szóvá teszem!
                     </LoadingButton>
-                  </>
-                )}
-              </FormControl>
-            </Grid>
+                  </Collapse>
+                </FormControl>
+              </form>
+            </Collapse>
+            <Collapse in={step === Step.SAVED}>
+              <ShareBox sticker={sticker} />
+            </Collapse>
           </Grid>
-        </form>
+        </Grid>
       </Collapse>
-      <Collapse in={step >= Step.SAVED}>{step >= Step.SAVED && <Viewer sticker={sticker}></Viewer>}</Collapse>
     </>
   );
 }

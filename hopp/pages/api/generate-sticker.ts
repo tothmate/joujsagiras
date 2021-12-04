@@ -1,35 +1,30 @@
 import { NextApiRequest, NextApiResponse } from "next";
-import chromium from "chrome-aws-lambda";
+import { createCanvas, registerFont } from "canvas";
+import store from "../../src/SupabaseStore";
+import { StickerStoreErrorType } from "../../src/models";
+import { drawPreview } from "../../src/canvas";
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
-  if (!req.headers.host || !req.url || !req.query.reasonSlug || !req.query.stickerId) {
-    res.status(400).json({ error: "sticker not specified" });
-    return;
-  }
+  const result = await store.load(req.query.stickerId as string);
+  result.match(
+    async (sticker) => {
+      registerFont("Oswald-VariableFont_wght.ttf", { family: "Oswald" });
+      const canvas = createCanvas(1200, 628);
+      await drawPreview(canvas.getContext("2d"), sticker.source.image || "", sticker.reason.text);
+      const screenshot = canvas.createPNGStream();
 
-  const url = `https://joujsagiras.hu/hopp/${req.query.reasonSlug}/${req.query.stickerId}/screenshot`;
-
-  const browser = await chromium.puppeteer.launch({
-    args: chromium.args,
-    defaultViewport: { width: 1200, height: 630, deviceScaleFactor: 2 },
-    executablePath: await chromium.executablePath,
-    headless: chromium.headless,
-  });
-
-  const page = await browser.newPage();
-  await page.goto(url, { waitUntil: "networkidle0" });
-
-  const height = await page.evaluate(() => {
-    return document.body.clientHeight;
-  });
-
-  await page.setViewport({ width: 600, height: height + 40, deviceScaleFactor: 2 });
-  const screenshot = await page.screenshot({ encoding: "binary" });
-  await browser.close();
-
-  res.setHeader("Content-Type", "image/png");
-  if (!process.env.IS_LOCAL) {
-    res.setHeader("Cache-Control", "s-maxage=3600, stale-while-revalidate=2678400");
-  }
-  res.status(200).send(screenshot);
+      res.setHeader("Content-Type", "image/png");
+      if (!process.env.IS_LOCAL) {
+        res.setHeader("Cache-Control", "s-maxage=3600, stale-while-revalidate=2678400");
+      }
+      res.status(200).send(screenshot);
+    },
+    async (error) => {
+      if (error?.type === StickerStoreErrorType.NotFound) {
+        res.status(404).json({ error: "not_found" });
+      } else {
+        res.status(500).json({ error: error?.message });
+      }
+    }
+  );
 }

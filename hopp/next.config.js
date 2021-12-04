@@ -15,7 +15,7 @@ module.exports = {
     return [
       {
         source: '/:reasonSlug/:stickerId.png',
-        destination: '/api/generate-sticker/?reasonSlug=:reasonSlug&stickerId=:stickerId',
+        destination: '/api/generate-sticker/?stickerId=:stickerId',
       },
     ]
   }
