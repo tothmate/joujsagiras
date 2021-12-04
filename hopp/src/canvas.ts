@@ -45,7 +45,7 @@ export async function drawPreview(ctx: CanvasRenderingContext2D, imageUrl?: stri
   const textSizeRatio = 0.55;
 
   ctx.fillStyle = "#123456";
-  ctx.font = `${canvas.height * heightRatio * textSizeRatio}px Oswald, sans-serif`;
+  ctx.font = `20px sans-serif`;
   ctx.fillText(
     `HOPP! EZ YO.`,
     canvas.width * 0.02,
