@@ -15,7 +15,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
   const result = await store.load(req.query.stickerId as string);
   result.match(
     async (sticker) => {
-      registerFont("src/Oswald-VariableFont_wght.ttf", { family: "Oswald" });
+      registerFont("src/Oswald-VariableFont_wght.ttf.ts", { family: "Oswald" });
       const canvas = createCanvas(1200, 628);
       await drawPreview(canvas.getContext("2d"), sticker.source.image, sticker.reason.text);
       const screenshot = canvas.createPNGStream();
