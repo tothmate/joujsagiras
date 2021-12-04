@@ -8,7 +8,7 @@ import CopyToClipboard from "react-copy-to-clipboard";
 import { ContentCopy, Done, Facebook } from "@mui/icons-material";
 
 export async function getServerSideProps() {
-  return { props: { sticker: emptySticker } };
+  return { props: {} };
 }
 
 export default function Page(props: InferGetServerSidePropsType<typeof getServerSideProps>) {
