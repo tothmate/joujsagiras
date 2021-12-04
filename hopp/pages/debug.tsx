@@ -11,9 +11,6 @@ export default function Page(props: InferGetServerSidePropsType<typeof getServer
   return (
     <>
       <Done />
-      <Button variant="contained" color="secondary" size="large" fullWidth>
-        Link másolása
-      </Button>
     </>
   );
 }
