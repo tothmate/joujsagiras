@@ -3,7 +3,7 @@ import ShareBox from "../components/ShareBox";
 import { emptySticker } from "../src/models";
 
 export async function getServerSideProps() {
-  return { props: { sticker: emptySticker, error: null } };
+  return { props: { sticker: emptySticker } };
 }
 
 export default function Page(props: InferGetServerSidePropsType<typeof getServerSideProps>) {
