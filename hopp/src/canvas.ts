@@ -69,15 +69,9 @@ export async function drawPreview(ctx: CanvasRenderingContext2D, imageUrl?: stri
     ctx.fillRect(-100, 0, canvas.width + 100, canvas.height * heightRatio);
     ctx.fillStyle = "#000000";
     // ctx.font = `${canvas.height * heightRatio * textSizeRatio}px Oswald, sans-serif`;
-    // ctx.fillText(
-    //   `HOPP! EZ ${text.toUpperCase()}.`,
-    //   canvas.width * 0.02,
-    //   canvas.height * heightRatio * (0.5 + 0.5 * textSizeRatio),
-    //   canvas.width
-    // );
     ctx.font = `20px sans-serif`;
     ctx.fillText(
-      `HOPP! EZ YO.`,
+      `HOPP! EZ ${text.toUpperCase()}.`,
       canvas.width * 0.02,
       canvas.height * heightRatio * (0.5 + 0.5 * textSizeRatio),
       canvas.width
