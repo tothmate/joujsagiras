@@ -1,5 +1,6 @@
 import { InferGetServerSidePropsType } from "next";
-import ShareBox from "../components/ShareBox";
+import { Button } from "@mui/material";
+import { Done } from "@mui/icons-material";
 import { emptySticker } from "../src/models";
 
 export async function getServerSideProps() {
@@ -7,5 +8,9 @@ export async function getServerSideProps() {
 }
 
 export default function Page(props: InferGetServerSidePropsType<typeof getServerSideProps>) {
-  return <ShareBox sticker={emptySticker} />;
+  return (
+    <Button startIcon={<Done />} variant="contained" color="secondary" size="large" fullWidth>
+      Link másolása
+    </Button>
+  );
 }
