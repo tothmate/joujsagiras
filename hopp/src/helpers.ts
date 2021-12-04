@@ -19,7 +19,7 @@ function getUrlSuffixByMode(mode: GeneratorMode) {
 }
 
 export function getUrlForSticker(sticker: Sticker, mode: GeneratorMode): string {
-  const host = typeof window !== "undefined" ? window.location.origin : process.env.VERCEL_URL;
+  const host = typeof window !== "undefined" ? window.location.origin : `https://joujsagiras.hu`;
   return `${host}/hopp/${sticker.reason.slug}/${sticker.id}${getUrlSuffixByMode(mode)}`;
 }
 
