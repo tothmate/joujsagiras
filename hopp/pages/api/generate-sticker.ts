@@ -10,7 +10,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     async (sticker) => {
       registerFont("Oswald-VariableFont_wght.ttf", { family: "Oswald" });
       const canvas = createCanvas(1200, 628);
-      await drawPreview(canvas.getContext("2d"), sticker.source.image || "", sticker.reason.text);
+      await drawPreview(canvas.getContext("2d"), sticker.source.image, sticker.reason.text);
       const screenshot = canvas.createPNGStream();
 
       res.setHeader("Content-Type", "image/png");

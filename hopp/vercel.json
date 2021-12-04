@@ -1,8 +1,13 @@
 {
   "redirects": [
     {
-        "source": "/",
-        "destination": "/hopp"
+      "source": "/",
+      "destination": "/hopp"
     }
-  ]
+  ],
+  "functions": {
+    "pages/api/generate-sticker.ts": {
+      "includeFiles": "Oswald-VariableFont_wght.ttf"
+    }
+  }
 }
