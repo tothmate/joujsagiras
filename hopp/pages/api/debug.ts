@@ -10,12 +10,8 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
   const canvas = createCanvas(800, 600);
   const ctx = canvas.getContext("2d");
 
-  ctx.font = "4px Oswald";
-
+  ctx.font = "16px Oswald";
   ctx.fillStyle = "#000000";
-  ctx.scale(6, 6);
-  ctx.fillText("HOPP", 0, 50, 1000);
-  ctx.fillText("HOPP", 10, 50, 5000);
   ctx.fillText("HOPP", 20, 50);
 
   const screenshot = canvas.createPNGStream();
