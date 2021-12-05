@@ -22,6 +22,32 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
   ctx.font = "16px sans-serif";
   ctx.fillText("HOPP! EZ NEM ELLENŐRIZHETŐ.", 0, 170, 500);
 
+  ctx.fillStyle = "#ff0000";
+  ctx.font = "86px sans-serif";
+  ctx.fillText("HOPP! EZ NEM ELLENŐRIZHETŐ.", 30, 100, 5000);
+
+  ctx.font = "46px sans-serif";
+  ctx.fillText("HOPP! EZ NEM ELLENŐRIZHETŐ.", 30, 140, 5000);
+
+  ctx.font = "26px sans-serif";
+  ctx.fillText("HOPP! EZ NEM ELLENŐRIZHETŐ.", 30, 160, 5000);
+
+  ctx.font = "16px sans-serif";
+  ctx.fillText("HOPP! EZ NEM ELLENŐRIZHETŐ.", 30, 170, 5000);
+
+  ctx.fillStyle = "#00ff00";
+  ctx.font = "86px sans-serif";
+  ctx.fillText("HOPP! EZ NEM ELLENŐRIZHETŐ.", 60, 100);
+
+  ctx.font = "46px sans-serif";
+  ctx.fillText("HOPP! EZ NEM ELLENŐRIZHETŐ.", 60, 140);
+
+  ctx.font = "26px sans-serif";
+  ctx.fillText("HOPP! EZ NEM ELLENŐRIZHETŐ.", 60, 160);
+
+  ctx.font = "16px sans-serif";
+  ctx.fillText("HOPP! EZ NEM ELLENŐRIZHETŐ.", 60, 170);
+
   const screenshot = canvas.createPNGStream();
   res.setHeader("Content-Type", "image/png");
   res.status(200).send(screenshot);
