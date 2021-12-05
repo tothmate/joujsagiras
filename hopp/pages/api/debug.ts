@@ -14,7 +14,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
   ctx.save();
   ctx.translate(0, 86);
   ctx.scale(86.0 / 12.0, 86.0 / 12.0);
-  ctx.fillText("HOPP! EZ NEM ELLENŐRIZHETŐ.", 0, 0);
+  ctx.fillText("HOPP", 0, 0);
   ctx.restore();
 
   const screenshot = canvas.createPNGStream();
