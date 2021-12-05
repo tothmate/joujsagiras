@@ -12,8 +12,10 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
 
   ctx.font = "16px Oswald";
   ctx.fillStyle = "#000000";
+  ctx.fillText("HOPP Hahahahah ah aha ha ah ah HOPP Hahahahah ah aha ha ah ah", 20, 50);
   ctx.scale(2, 2);
-  ctx.fillText("HOPP Hahahahah ah aha ha ah ah", 20, 50);
+  ctx.fillText("HOPP Hahahahah ah aha ha ah ah HOPP Hahahahah ah aha ha ah ah", 20, 100);
+  ctx.fillText("HOPP Hahahahah ah aha ha ah ah HOPP Hahahahah ah aha ha ah ah", 20, 150);
 
   const screenshot = canvas.createPNGStream();
   res.setHeader("Content-Type", "image/png");
