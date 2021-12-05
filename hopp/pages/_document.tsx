@@ -8,6 +8,7 @@ export default class MyDocument extends Document {
         <Head>
           <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=PT+Sans&display=swap" />
           <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Oswald&display=swap" />
+          <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
         </Head>
         <body>
           <Main />

@@ -1,9 +1,8 @@
 import React, { useState } from "react";
-import { Button, Typography } from "@mui/material";
+import { Button, Icon, Typography } from "@mui/material";
 import { Sticker, GeneratorMode } from "../src/models";
 import { getUrlForSticker } from "../src/helpers";
 import CopyToClipboard from "react-copy-to-clipboard";
-import { ContentCopy, Done, Facebook } from "@mui/icons-material";
 
 export default function ShareBox(props: { sticker: Sticker }) {
   const [copiedLink, setCopiedLink] = useState(false);
@@ -33,7 +32,7 @@ export default function ShareBox(props: { sticker: Sticker }) {
         }}
       >
         <Button
-          // startIcon={copiedLink ? <Done /> : <ContentCopy />}
+          startIcon={<Icon>{copiedLink ? "check_circle" : "content_copy"}</Icon>}
           variant="contained"
           color={copiedLink ? "success" : "secondary"}
           size="large"
@@ -43,7 +42,7 @@ export default function ShareBox(props: { sticker: Sticker }) {
         </Button>
       </CopyToClipboard>
       <Button
-        // startIcon={<Facebook />}
+        startIcon={<Icon>facebook</Icon>}
         variant="contained"
         sx={{ mt: 2 }}
         color="primary"
