@@ -10,8 +10,8 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
   const ctx = canvas.getContext("2d");
 
   ctx.fillStyle = "#000000";
-  ctx.font = "86px Oswald, sans-serif";
-  ctx.fillText("HOPP! EZ NEM ELLENŐRIZHETŐ.", 0, 121, 1200);
+  ctx.font = "86px sans-serif";
+  ctx.fillText("HOPP! EZ NEM ELLENŐRIZHETŐ.", 0, 100, 500);
 
   const screenshot = canvas.createPNGStream();
   res.setHeader("Content-Type", "image/png");
