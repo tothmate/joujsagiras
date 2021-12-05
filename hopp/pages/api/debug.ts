@@ -6,11 +6,11 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
   const ctx = canvas.getContext("2d");
 
   ctx.fillStyle = "#000000";
-  ctx.font = "24px serif";
+  ctx.font = "24px Arial";
   ctx.scale(2, 2);
   ctx.fillText("HOPP", 0, 50);
 
-  ctx.font = "12px serif";
+  ctx.font = "12px Arial";
   ctx.scale(2, 2);
   ctx.fillText("HOPP", 0, 100);
 
