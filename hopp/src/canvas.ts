@@ -66,7 +66,7 @@ export async function drawPreview(ctx: CanvasRenderingContext2D, imageUrl?: stri
     ctx.fillRect(0, 0, canvas.width, canvas.height * heightRatio);
     ctx.rotate(-(2 * Math.PI) / 180);
     ctx.fillStyle = "#5ac8fa";
-    ctx.fillRect(-150, 0, canvas.width + 150, canvas.height * heightRatio);
+    ctx.fillRect(-100, 0, canvas.width + 150, canvas.height * heightRatio);
     ctx.fillStyle = "#000000";
     ctx.font = `${canvas.height * heightRatio * textSizeRatio}px Oswald, sans-serif`;
     ctx.fillText(
