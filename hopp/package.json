@@ -28,7 +28,7 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "start": "next xstart",
+    "start": "next start",
     "lint": "next lint"
   },
   "devDependencies": {
