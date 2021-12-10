@@ -13,14 +13,14 @@ export default function ShareBox(props: { sticker: Sticker }) {
       <Typography variant="h1" gutterBottom>
         HOPP! Ez {props.sticker.reason.text}.
       </Typography>
-      <Typography variant="body1" gutterBottom>
+      <Typography variant="body2" gutterBottom>
         {props.sticker.explanation || "Hogy miért baj ez?"}
       </Typography>
       <Typography variant="h1" gutterBottom>
         Ez nem jó újságírás.
       </Typography>
       {props.sticker.reason.details.map((detail) => (
-        <Typography variant="body1" gutterBottom key={detail}>
+        <Typography variant="body2" gutterBottom key={detail}>
           {detail}
         </Typography>
       ))}

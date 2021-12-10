@@ -17,7 +17,7 @@ const theme = createTheme({
       fontSize: "2rem",
       textTransform: "uppercase",
     },
-    body1: {
+    body2: {
       fontSize: "1.2rem",
     },
     button: {
@@ -50,13 +50,15 @@ export default function MyApp(props: AppProps) {
     <ThemeProvider theme={theme}>
       <CssBaseline />
       <Container maxWidth="md">
-        <Box m={3}>
+        <Box m={2}>
           <Menu />
         </Box>
-        <Box m={3}>
+        <Box m={2}>
           <Component {...pageProps} />
         </Box>
       </Container>
+      {/* Preload characters so canvas painting don't have ot wait */}
+      <span style={{ fontSize: "1px", visibility: "hidden", fontFamily: theme.typography.h1.fontFamily }}>őűŐŰ</span>
     </ThemeProvider>
   );
 }
