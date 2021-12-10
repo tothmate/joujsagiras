@@ -2,6 +2,7 @@ import React from "react";
 import { AppProps } from "next/app";
 import { ThemeProvider, createTheme } from "@mui/material/styles";
 import { Box, Container, CssBaseline } from "@mui/material";
+import Menu from "../components/Menu";
 
 const theme = createTheme({
   palette: {
@@ -49,6 +50,9 @@ export default function MyApp(props: AppProps) {
     <ThemeProvider theme={theme}>
       <CssBaseline />
       <Container maxWidth="md">
+        <Box m={3}>
+          <Menu />
+        </Box>
         <Box m={3}>
           <Component {...pageProps} />
         </Box>
