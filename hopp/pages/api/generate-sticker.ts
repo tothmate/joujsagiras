@@ -12,7 +12,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
       const fontFilepath = "/tmp/Oswald-VariableFont_wght.ttf";
       saveOswaldIfNeeded(fontFilepath);
       registerFont(fontFilepath, { family: "Oswald" });
-      const canvas = createCanvas(1200, 675);
+      const canvas = createCanvas(1200, 628);
       await drawPreview(canvas.getContext("2d"), sticker.source.image, sticker.reason.text);
       const screenshot = canvas.createPNGStream();
 

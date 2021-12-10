@@ -25,14 +25,14 @@ export default function Preview(props: { sticker: Sticker; useCanvas: boolean })
     <Card>
       {props.useCanvas && (
         <CardMedia sx={{ lineHeight: 0 }}>
-          <canvas ref={canvasRef} style={{ width: "100%", aspectRatio: "16/9" }} />
+          <canvas ref={canvasRef} style={{ width: "100%", aspectRatio: "1.91" }} />
         </CardMedia>
       )}
       {!props.useCanvas && (
         <CardMedia
           image={getUrlForSticker(props.sticker, GeneratorMode.Png)}
           title={props.sticker.source.title}
-          style={{ width: "100%", aspectRatio: "16/9" }}
+          style={{ width: "100%", aspectRatio: "1.91" }}
         />
       )}
       <CardContent
