@@ -143,6 +143,8 @@ export default function Editor(props: { store: StickerStore }) {
             <Grid item xs={12}>
               <Typography variant="h1" gutterBottom>
                 Rossz újságírással találkoztál? Tedd szóvá!
+                {/* Preload characters so canvas painting don't have ot wait */}
+                <span style={{ visibility: "hidden" }}>őűŐŰ</span>
               </Typography>
               <Typography variant="body1" gutterBottom>
                 Láttál egy cikket, amely nem felel meg a jó újságírás elvárásainak?
