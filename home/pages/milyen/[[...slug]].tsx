@@ -44,7 +44,7 @@ const Page = (props: InferGetStaticPropsType<typeof getStaticProps>) => {
 
   return (
     <>
-      <Layout>
+      <Layout withMenu>
         <DropdownList
           prefix="A jó újságírás"
           categories={attributes}

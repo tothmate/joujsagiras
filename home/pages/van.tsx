@@ -4,7 +4,7 @@ import Layout from "../components/layout";
 import { Heading1, Heading2 } from "../components/marker";
 
 const Page = () => (
-  <Layout>
+  <Layout withMenu>
     <Heading1>Van jó újságírás</Heading1>
 
     <Heading2>A jó újságírás a rossz újságírás ellentéte.</Heading2>

@@ -3,7 +3,7 @@
 .layout {
   width: 90%;
   max-width: $max-width;
-  margin: 2em auto 0;
+  margin: 0 auto;
   padding-bottom: 4em;
   overflow: hidden;
 
@@ -46,6 +46,10 @@
     background-color: $light-color !important;
     color: $dark-color !important;
   }
+}
+
+.homeWrapper {
+  height: 100vh;
 }
 
 .home {
