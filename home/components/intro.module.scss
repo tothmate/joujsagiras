@@ -42,4 +42,8 @@
     color: inherit;
     text-underline-offset: 3px;
   }
+
+  & li a:hover {
+    text-decoration-color: $primary-color;
+  }
 }

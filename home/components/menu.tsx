@@ -11,7 +11,7 @@ export default function Menu() {
       <nav>
         <MenuItem href="/van">Van.</MenuItem>
         <MenuItem href="/milyen">Milyen?</MenuItem>
-        <MenuItem href="/hopp">Értékelj!</MenuItem>
+        <MenuItem href="/hopp">Tedd szóvá!</MenuItem>
       </nav>
     </div>
   );

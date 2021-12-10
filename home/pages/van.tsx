@@ -59,8 +59,7 @@ const Page = () => (
     <Paragraph>Ahogy vannak jó rendőrök, úgy vannak jó újságírók is. Akik jó újságírást művelnek.</Paragraph>
 
     <Heading1>
-      Milyen a jó újságírás? <br />
-      <Link href="/milyen">Katt ide.</Link>
+      Milyen a jó újságírás? <Link href="/milyen">Katt&nbsp;ide.</Link>
     </Heading1>
   </Layout>
 );

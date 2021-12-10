@@ -69,13 +69,12 @@ const Page = (props: InferGetStaticPropsType<typeof getStaticProps>) => {
             <br />
             <br />
             <Heading1>
-              Láttál te is egy cikket, ami nem <i>{selectedItem.subtitle}</i>? <Link href="/hopp">Értékeld!</Link>
+              Láttál te is egy cikket, ami nem <i>{selectedItem.subtitle}</i>? <Link href="/hopp">Tedd szóvá!</Link>
             </Heading1>
           </NewSectionLayout>
           <NewSectionLayout isDarkSection={true}>
             <Heading1>
-              Milyen a még jó újságírás? <br />
-              <Link href="/milyen">Katt ide.</Link>
+              Milyen még a jó újságírás? <Link href="/milyen">Katt&nbsp;ide.</Link>
             </Heading1>
           </NewSectionLayout>
         </>
