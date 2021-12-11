@@ -10,8 +10,12 @@
     width: 25%;
   }
 
-  & p {
+  & p, ol {
     margin-left: 25%;
+    font-size: 1.3em;
+    line-height: 1.4;
+    font-family: "PT Sans", sans-serif;
+    margin-top: 0;
   }
 
   @media (max-width: $max-width) {
@@ -19,18 +23,18 @@
       width: 100%;
     }
 
-    & p {
+    & p, ol {
       margin-left: 0;
     }
   }
 
   & ol {
-    padding-left: 0;
+    padding-left: 2.275em;
+    margin-top: 0.5em;
   }
 
   & li {
     margin-bottom: 1.25em;
-    list-style-position: inside;
   }
 
   & li::marker {

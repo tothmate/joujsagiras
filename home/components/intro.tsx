@@ -20,16 +20,14 @@ export default function Intro() {
       </div>
       <div className={styles.intro}>
         <h1>Mit tehetsz?</h1>
-        <p>
-          <ol>
-            <li>
-              Ismerd meg, hogy <Link href="/milyen">milyen a jó újságírás</Link>.
-            </li>
-            <li>Ismerd fel, ismerd el és támogasd, ami jó!</li>
-            <li>Tedd szóvá és kérd számon azt, ami rossz.</li>
-            <li>Írd alá a peticiónkat, melyben követeljük, hogy a sajtó ellássa és elláthassa a feladatát.</li>
-          </ol>
-        </p>
+        <ol>
+          <li>
+            Ismerd meg, hogy <Link href="/milyen">milyen a jó újságírás</Link>.
+          </li>
+          <li>Ismerd fel, ismerd el és támogasd, ami jó!</li>
+          <li>Tedd szóvá és kérd számon azt, ami rossz.</li>
+          <li>Írd alá a peticiónkat, melyben követeljük, hogy a sajtó ellássa és elláthassa a feladatát.</li>
+        </ol>
       </div>
     </>
   );
