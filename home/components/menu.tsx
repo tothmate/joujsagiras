@@ -4,7 +4,7 @@ import styles from "./menu.module.scss";
 
 export default function Menu() {
   return (
-    <div className={styles.menu}>
+    <header className={styles.menu}>
       <nav>
         <MenuItem href="/">Jó újságírás</MenuItem>
       </nav>
@@ -13,7 +13,7 @@ export default function Menu() {
         <MenuItem href="/milyen">Milyen?</MenuItem>
         <MenuItem href="/hopp">Tedd szóvá!</MenuItem>
       </nav>
-    </div>
+    </header>
   );
 }
 

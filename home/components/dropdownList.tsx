@@ -12,7 +12,6 @@ export interface DropdownListCategory {
   title: string;
   list: DropdownListItem[];
 }
-
 interface DropdownVisibility {
   isTitleVisible: boolean;
   isItemsVisible: boolean;
@@ -26,7 +25,11 @@ function Closable(props: { closed: boolean; children: React.ReactNode }) {
   return (
     <div className={styles.closable}>
       {props.children}
-      <span className={styles.closableButton} style={{ visibility: props.closed ? "hidden" : "visible" }}>
+      <span
+        className={styles.closableButton}
+        style={{ visibility: props.closed ? "hidden" : "visible" }}
+        aria-hidden="true"
+      >
         ✕
       </span>
     </div>
@@ -111,27 +114,30 @@ export default function DropdownList(props: {
         </a>
       </Link>
       <div className={styles.dropdownList}>
-        <div className={styles.dropdownListItems}>
-          <AnimateHeight duration={animateHeightDuration} height={noCategorySelected ? "auto" : 0}>
-            <div className={styles.spacerItem}></div>
-          </AnimateHeight>
+        <ul className={styles.dropdownListItems}>
+          <li>
+            <AnimateHeight duration={animateHeightDuration} height={noCategorySelected ? "auto" : 0}>
+              <div className={styles.spacerItem}></div>
+            </AnimateHeight>
+          </li>
           {props.categories.map((category, i) => (
-            <Dropdown
-              key={i}
-              category={category}
-              color={gradient.rgbAt(i / lastIndex).toHexString()}
-              fadeInDelay={i * fadeInDelay}
-              visibility={{
-                isTitleVisible:
-                  props.selectedItem === undefined && (noCategorySelected || selectedCategory === category),
-                isItemsVisible: props.selectedItem === undefined && selectedCategory === category,
-                selectedItem: props.selectedItem,
-              }}
-              onCategorySelect={handleCategorySelected}
-              onItemSelect={handleItemSelected}
-            />
+            <li key={i}>
+              <Dropdown
+                category={category}
+                color={gradient.rgbAt(i / lastIndex).toHexString()}
+                fadeInDelay={i * fadeInDelay}
+                visibility={{
+                  isTitleVisible:
+                    props.selectedItem === undefined && (noCategorySelected || selectedCategory === category),
+                  isItemsVisible: props.selectedItem === undefined && selectedCategory === category,
+                  selectedItem: props.selectedItem,
+                }}
+                onCategorySelect={handleCategorySelected}
+                onItemSelect={handleItemSelected}
+              />
+            </li>
           ))}
-        </div>
+        </ul>
         {props.selectedItem?.paragraphs.map((paragraph: string, i) => (
           <p key={i}>{paragraph}</p>
         ))}

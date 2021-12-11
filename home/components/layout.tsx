@@ -6,18 +6,18 @@ export default function Layout(props: { children: React.ReactNode; withMenu: boo
   return (
     <>
       {props.withMenu && <Menu />}
-      <div className={styles.layout}>{props.children}</div>
+      <main className={styles.layout}>{props.children}</main>
     </>
   );
 }
 
 export function NewSectionLayout(props: { children: React.ReactNode; isDarkSection: boolean }) {
   return (
-    <div className={props.isDarkSection ? styles.darkSection : styles.lightSection}>
+    <section className={props.isDarkSection ? styles.darkSection : styles.lightSection}>
       <div className={styles.borderTop} />
       <Layout withMenu={false}>{props.children}</Layout>
       <div className={styles.borderBottom} />
-    </div>
+    </section>
   );
 }
 
@@ -25,7 +25,7 @@ export function HomeLayout(props: { children: React.ReactNode }) {
   return (
     <div className={styles.homeWrapper}>
       <Menu />
-      <div className={styles.home}>{props.children}</div>
+      <main className={styles.home}>{props.children}</main>
     </div>
   );
 }

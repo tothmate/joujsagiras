@@ -25,6 +25,8 @@
 }
 
 .dropdownListItems {
+  list-style-type: none;
+  margin-block: 0;
   padding: 0.05px; // to avoid margin collapsing that causes glitches in animation
   margin-bottom: 2em;
 }
