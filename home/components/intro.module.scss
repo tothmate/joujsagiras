@@ -10,7 +10,8 @@
     width: 25%;
   }
 
-  & p, ol {
+  & p,
+  ol {
     margin-left: 25%;
     font-size: 1.3em;
     line-height: 1.4;
@@ -23,7 +24,8 @@
       width: 100%;
     }
 
-    & p, ol {
+    & p,
+    ol {
       margin-left: 0;
     }
   }
