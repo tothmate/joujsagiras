@@ -23,6 +23,7 @@ import {
   getLocallizedDateString,
   getUrlForSticker,
   capitalizeFirstLetter,
+  track,
 } from "../src/helpers";
 import Preview from "./Preview";
 import Arrow from "./Arrow";
@@ -66,9 +67,11 @@ export default function Editor(props: { store: StickerStore }) {
       setSticker((sticker) => updateSticker(sticker, { source: newSource }));
       setStep(Step.URL_LOADED);
       setErrorMessage(undefined);
+      track("submit-url", "click");
     } else {
       setStep(Step.URL_ERROR);
       setErrorMessage("Nem sikerült betölteni az URL-t");
+      track("submit-url", "error");
     }
   }, [urlCandidate]);
 
@@ -77,6 +80,7 @@ export default function Editor(props: { store: StickerStore }) {
     if (newReason !== undefined) {
       setSticker((sticker) => updateSticker(sticker, { reason: newReason }));
       setStep(Step.REASON_SELECTED);
+      track("select-reason", "click");
     }
   }, []);
 
@@ -98,10 +102,13 @@ export default function Editor(props: { store: StickerStore }) {
           fetch(getUrlForSticker(newSticker, GeneratorMode.Png));
           fetch(getUrlForSticker(newSticker, GeneratorMode.Share));
         }
+
+        track("save-sticker", "click");
       },
       (error) => {
         setStep(Step.SAVE_ERROR);
         setErrorMessage(`Sikertelen mentés, hiba: ${error?.message}`);
+        track("save-sticker", "error");
       }
     );
   }, [props.store, sticker]);
@@ -142,7 +149,7 @@ export default function Editor(props: { store: StickerStore }) {
           <Grid container spacing={2} justifyContent="center">
             <Grid item xs={12}>
               <Typography variant="h1" gutterBottom>
-                Rossz újságírással találkoztál? Tedd szóvá!
+                Rossz újságírással találkoztál? Tedd&nbsp;szóvá!
               </Typography>
               <Typography variant="body2" gutterBottom>
                 Láttál egy cikket, amely nem felel meg a jó újságírás elvárásainak?

@@ -39,3 +39,9 @@ export function capitalizeFirstLetter(text: string) {
 export function getSourceHostname(sticker: Sticker) {
   return sticker.source.url ? new URL(sticker.source.url).hostname : "";
 }
+
+export function track(eventName: string, eventType: string) {
+  if (typeof window !== "undefined" && (<any>window).umami) {
+    (<any>window).umami.trackEvent(eventName, eventType);
+  }
+}

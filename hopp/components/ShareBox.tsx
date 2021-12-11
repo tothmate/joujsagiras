@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Button, Icon, Typography } from "@mui/material";
 import { Sticker, GeneratorMode } from "../src/models";
-import { getUrlForSticker } from "../src/helpers";
+import { getUrlForSticker, track } from "../src/helpers";
 import CopyToClipboard from "react-copy-to-clipboard";
 
 export default function ShareBox(props: { sticker: Sticker }) {
@@ -29,6 +29,7 @@ export default function ShareBox(props: { sticker: Sticker }) {
         onCopy={() => {
           setCopiedLink(true);
           setTimeout(() => setCopiedLink(false), 2000);
+          track("copy-link", "click");
         }}
       >
         <Button
@@ -54,6 +55,7 @@ export default function ShareBox(props: { sticker: Sticker }) {
             "",
             "width=550, height=400, toolbar=0, location=0, menubar=0, directories=0, scrollbars=0"
           );
+          track("share-facebook", "click");
         }}
       >
         Megosztás
