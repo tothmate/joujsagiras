@@ -94,6 +94,7 @@ export default function DropdownList(props: {
   const handleItemSelected = useCallback(
     (item) => {
       onItemSelect(selectedItem === item ? undefined : item);
+      window.scrollTo(0, 0);
     },
     [onItemSelect, selectedItem]
   );
