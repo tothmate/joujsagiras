@@ -6,7 +6,7 @@ import { useCallback, useEffect, useState } from "react";
 import { useRouter } from "next/router";
 import { foldAccents } from "../../utils";
 import { GetStaticPropsContext, InferGetStaticPropsType } from "next";
-import { Heading1 } from "../../components/marker";
+import Marker, { Heading1 } from "../../components/marker";
 
 const slugs = new Map<string, DropdownListItem>(
   attributes.flatMap((category) => category.list.map((item) => [foldAccents(item.subtitle), item]))
@@ -56,16 +56,17 @@ const Page = (props: InferGetStaticPropsType<typeof getStaticProps>) => {
         <>
           <NewSectionLayout isDarkSection={false}>
             <Heading1>Jó példák</Heading1>
+            Még nincsenek példák.
             <br />
             <br />
-            <br />
-            <br />
+            <Marker color="#ed6c03">Szeretnél részt venni a gyűjtésben? Küldj egy emailt: akos@tothmate.com</Marker>
             <br />
             <br />
             <Heading1>Rossz példák</Heading1>
+            Még nincsenek példák.
             <br />
             <br />
-            <br />
+            <Marker color="#ed6c03">Szeretnél részt venni a gyűjtésben? Küldj egy emailt: akos@tothmate.com</Marker>
             <br />
             <br />
             <Heading1>

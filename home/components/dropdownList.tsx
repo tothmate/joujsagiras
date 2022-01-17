@@ -138,6 +138,24 @@ export default function DropdownList(props: {
               />
             </li>
           ))}
+          <li>
+            <Dropdown
+              category={{
+                title:
+                  "A szempontrendszer még nem végleges. Szeretnél részt venni a kidolgozásában? Küldj egy emailt: akos@tothmate.com",
+                list: [],
+              }}
+              color="#ed6c03"
+              fadeInDelay={props.categories.length * fadeInDelay}
+              visibility={{
+                isTitleVisible: props.selectedItem === undefined && noCategorySelected,
+                isItemsVisible: false,
+                selectedItem: undefined,
+              }}
+              onCategorySelect={() => {}}
+              onItemSelect={() => {}}
+            />
+          </li>
         </ul>
         {props.selectedItem?.paragraphs.map((paragraph: string, i) => (
           <p key={i}>{paragraph}</p>
