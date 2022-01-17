@@ -25,8 +25,9 @@ export default function Intro() {
             Ismerd meg, hogy <Link href="/milyen">milyen a jó újságírás</Link>.
           </li>
           <li>Ismerd fel, ismerd el és támogasd, ami jó!</li>
-          <li>Tedd szóvá és kérd számon azt, ami rossz.</li>
-          <li>Írd alá a peticiónkat, melyben követeljük, hogy a sajtó ellássa és elláthassa a feladatát.</li>
+          <li>
+            <Link href="/hopp">Tedd szóvá</Link> és kérd számon azt, ami rossz.
+          </li>
         </ol>
       </div>
     </>
