@@ -44,12 +44,12 @@
     font-family: Oswald;
   }
 
-  & li a {
+  & a {
     color: inherit;
     text-underline-offset: 3px;
   }
 
-  & li a:hover {
+  & a:hover {
     text-decoration-color: $primary-color;
   }
 }

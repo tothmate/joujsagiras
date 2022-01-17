@@ -30,6 +30,14 @@ export default function Intro() {
           </li>
         </ol>
       </div>
+      <div className={styles.intro}>
+        <h1>Elérhetőségeink </h1>
+        <p>
+          akos@tothmate.com
+          <br />
+          <Link href="https://github.com/tothmate/joujsagiras">https://github.com/tothmate/joujsagiras</Link>
+        </p>
+      </div>
     </>
   );
 }
