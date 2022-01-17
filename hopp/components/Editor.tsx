@@ -174,6 +174,12 @@ export default function Editor(props: { store: StickerStore }) {
                 Tovább
               </LoadingButton>
             </Grid>
+            <Grid item xs={12}>
+              <Alert severity="warning" variant="filled">
+                A szempontrendszer még nem végleges. Szeretnél részt venni a kidolgozásában? Küldj egy emailt:
+                akos@tothmate.com
+              </Alert>
+            </Grid>
           </Grid>
         </form>
       </Collapse>

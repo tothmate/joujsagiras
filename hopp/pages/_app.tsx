@@ -40,6 +40,13 @@ const theme = createTheme({
         },
       },
     },
+    MuiAlert: {
+      styleOverrides: {
+        root: {
+          fontSize: "1rem",
+        },
+      },
+    },
   },
 });
 
