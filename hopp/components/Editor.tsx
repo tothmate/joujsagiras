@@ -95,14 +95,9 @@ export default function Editor(props: { store: StickerStore }) {
       (stickerId) => {
         const newSticker = updateSticker(sticker, { id: stickerId });
         setSticker(newSticker);
-
         setStep(Step.SAVED);
-
-        if (!process.env.NEXT_PUBLIC_IS_LOCAL) {
-          fetch(getUrlForSticker(newSticker, GeneratorMode.Png));
-          fetch(getUrlForSticker(newSticker, GeneratorMode.Share));
-        }
-
+        fetch(getUrlForSticker(newSticker, GeneratorMode.Png));
+        fetch(getUrlForSticker(newSticker, GeneratorMode.Share));
         track("save-sticker", "click");
       },
       (error) => {

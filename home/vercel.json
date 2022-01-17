@@ -8,5 +8,18 @@
       "source": "/hopp/:match*",
       "destination": "https://joujsagiras-hopp.vercel.app/hopp/:match*"
     }
+  ],
+  "redirects": [
+    {
+      "source": "/",
+      "has": [
+        {
+          "type": "host",
+          "value": "rosszujsagiras.hu"
+        }
+      ],
+      "destination": "/hopp",
+      "permanent": true
+    }
   ]
 }

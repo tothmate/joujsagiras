@@ -19,9 +19,7 @@ function getUrlSuffixByMode(mode: GeneratorMode) {
 }
 
 export function getUrlForSticker(sticker: Sticker, mode: GeneratorMode): string {
-  const serverUrl = `${process.env.IS_LOCAL ? "http" : "https"}://${process.env.VERCEL_URL}`;
-  const host = typeof window !== "undefined" ? window.location.origin : serverUrl;
-  return `${host}/hopp/${sticker.reason.slug}/${sticker.id}${getUrlSuffixByMode(mode)}`;
+  return `${process.env.NEXT_PUBLIC_BASE_URL}/hopp/${sticker.reason.slug}/${sticker.id}${getUrlSuffixByMode(mode)}`;
 }
 
 export function isValidUrl(url: string) {
