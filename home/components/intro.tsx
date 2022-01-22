@@ -31,11 +31,11 @@ export default function Intro() {
         </ol>
       </div>
       <div className={styles.intro}>
-        <h1>Elérhetőségeink </h1>
+        <h1>Kapcsolat</h1>
         <p>
           akos@tothmate.com
           <br />
-          <Link href="https://github.com/tothmate/joujsagiras">https://github.com/tothmate/joujsagiras</Link>
+          <Link href="https://github.com/tothmate/joujsagiras">Github</Link>
         </p>
       </div>
     </>

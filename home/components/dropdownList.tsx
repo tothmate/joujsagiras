@@ -141,8 +141,7 @@ export default function DropdownList(props: {
           <li>
             <Dropdown
               category={{
-                title:
-                  "A szempontrendszer még nem végleges. Szeretnél részt venni a kidolgozásában? Küldj egy emailt: akos@tothmate.com",
+                title: "Ez az oldal még nincs kész. Segíts! - akos@tothmate.com",
                 list: [],
               }}
               color="#ed6c03"
