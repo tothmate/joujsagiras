@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Button, Icon, Typography } from "@mui/material";
 import { Sticker, GeneratorMode } from "../src/models";
-import { getUrlForSticker, track } from "../src/helpers";
+import { getDescriptiveTitle, getUrlForSticker, track } from "../src/helpers";
 import CopyToClipboard from "react-copy-to-clipboard";
 
 export default function ShareBox(props: { sticker: Sticker }) {
@@ -11,7 +11,7 @@ export default function ShareBox(props: { sticker: Sticker }) {
   return (
     <>
       <Typography variant="h1" gutterBottom>
-        HOPP! Ez {props.sticker.reason.text}.
+        {getDescriptiveTitle(props.sticker.reason.text)}
       </Typography>
       <Typography variant="body2" gutterBottom>
         {props.sticker.explanation || "Hogy miért baj ez?"}

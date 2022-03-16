@@ -24,6 +24,7 @@ import {
   getUrlForSticker,
   capitalizeFirstLetter,
   track,
+  getDescriptiveTitle,
 } from "../src/helpers";
 import Preview from "./Preview";
 import Arrow from "./Arrow";
@@ -127,7 +128,7 @@ export default function Editor(props: { store: StickerStore }) {
   return (
     <>
       <Head>
-        <title>HOPP! {sticker.reason.text ? `Ez ${sticker.reason.text}` : ""}</title>
+        <title>{getDescriptiveTitle(sticker.reason.text)}</title>
       </Head>
 
       <Snackbar open={errorMessage !== undefined} autoHideDuration={6000} onClose={() => setErrorMessage(undefined)}>

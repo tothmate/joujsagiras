@@ -9,6 +9,13 @@ export function getReasonBySlug(slug: string) {
   return reasons.find((r) => slug === r.slug);
 }
 
+export function getDescriptiveTitle(text: String) {
+  const exclamation = "HOPP!";
+  const prefix = !text || text.startsWith("Ez") ? "" : " Ez ";
+  const end = text ? `${text}.` : "";
+  return `${exclamation}${prefix}${end}`;
+}
+
 function getUrlSuffixByMode(mode: GeneratorMode) {
   switch (mode) {
     case GeneratorMode.Share:

@@ -2,13 +2,13 @@ import React from "react";
 import { Grid } from "@mui/material";
 import Head from "next/head";
 import { Sticker, GeneratorMode } from "../src/models";
-import { getSourceHostname, getUrlForSticker } from "../src/helpers";
+import { getDescriptiveTitle, getSourceHostname, getUrlForSticker } from "../src/helpers";
 import Preview from "./Preview";
 import Arrow from "./Arrow";
 import ShareBox from "./ShareBox";
 
 export default function Viewer(props: { sticker: Sticker }) {
-  const title = `HOPP! Ez ${props.sticker.reason.text}`;
+  const title = getDescriptiveTitle(props.sticker.reason.text);
   const opengraphTitle = `${title}: ${props.sticker.source.title} (${getSourceHostname(props.sticker)})`;
 
   return (

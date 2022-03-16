@@ -1,4 +1,5 @@
 import { Image, loadImage } from "canvas";
+import { getDescriptiveTitle } from "./helpers";
 
 // By Ken Fyrstenberg Nilsen
 function drawImageProp(ctx: CanvasRenderingContext2D, img: Image) {
@@ -70,7 +71,7 @@ export async function drawPreview(ctx: CanvasRenderingContext2D, imageUrl?: stri
     ctx.fillStyle = "#000000";
     ctx.font = `${canvas.height * heightRatio * textSizeRatio}px Oswald, sans-serif`;
     ctx.fillText(
-      `HOPP! EZ ${text.toUpperCase()}.`,
+      getDescriptiveTitle(text).toUpperCase(),
       canvas.width * 0.02,
       canvas.height * heightRatio * (0.5 + 0.5 * textSizeRatio),
       canvas.width
