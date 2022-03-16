@@ -19,7 +19,7 @@ export function getDescriptiveTitle(text: String) {
     return `${exclamation} ${text}`;
   }
 
-  return `${exclamation} Ez ${text}.`;
+  return `${exclamation} Ez ${text}`;
 }
 
 function getUrlSuffixByMode(mode: GeneratorMode) {
