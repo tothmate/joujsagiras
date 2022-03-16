@@ -1,8 +1,24 @@
 import React, { useState } from "react";
-import { Button, Icon, Typography } from "@mui/material";
+import { Button, Icon, Link, Typography } from "@mui/material";
 import { Sticker, GeneratorMode } from "../src/models";
 import { getDescriptiveTitle, getUrlForSticker, track } from "../src/helpers";
 import CopyToClipboard from "react-copy-to-clipboard";
+
+function linkify(text: string) {
+  const textToLink = "jó újságírás";
+  const parts = text.split(textToLink, 2);
+  if (parts.length == 2) {
+    return [
+      parts[0],
+      <Link key="link" href="https://joujsagiras.hu/milyen">
+        {textToLink}
+      </Link>,
+      parts[1],
+    ];
+  }
+
+  return [text];
+}
 
 export default function ShareBox(props: { sticker: Sticker }) {
   const [copiedLink, setCopiedLink] = useState(false);
@@ -21,7 +37,7 @@ export default function ShareBox(props: { sticker: Sticker }) {
       </Typography>
       {props.sticker.reason.details.map((detail) => (
         <Typography variant="body2" gutterBottom key={detail}>
-          {detail}
+          {linkify(detail)}
         </Typography>
       ))}
       <CopyToClipboard
