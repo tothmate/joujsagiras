@@ -11,9 +11,15 @@ export function getReasonBySlug(slug: string) {
 
 export function getDescriptiveTitle(text: String) {
   const exclamation = "HOPP!";
-  const prefix = !text || text.startsWith("Ez") ? "" : " Ez ";
-  const end = text ? `${text}.` : "";
-  return `${exclamation}${prefix}${end}`;
+  if (!text) {
+    return exclamation;
+  }
+
+  if (text.startsWith("Ez")) {
+    return `${exclamation} ${text}`;
+  }
+
+  return `${exclamation} Ez ${text}.`;
 }
 
 function getUrlSuffixByMode(mode: GeneratorMode) {
