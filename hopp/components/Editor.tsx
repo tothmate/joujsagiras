@@ -79,7 +79,15 @@ export default function Editor(props: { store: StickerStore }) {
   const handleReasonChanged = useCallback((value: string) => {
     const newReason = getReasonBySlug(value);
     if (newReason !== undefined) {
-      setSticker((sticker) => updateSticker(sticker, { reason: newReason }));
+      setSticker((sticker) =>
+        updateSticker(sticker, {
+          reason: newReason,
+          explanation:
+            sticker.explanation == sticker.reason.defaultExplanation
+              ? newReason.defaultExplanation
+              : sticker.explanation,
+        })
+      );
       setStep(Step.REASON_SELECTED);
       track("select-reason", "click");
     }
