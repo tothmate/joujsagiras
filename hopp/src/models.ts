@@ -40,91 +40,101 @@ export const reasons: Reason[] = [
     slug: "egy-kiragadott-reszlet",
     text: "egy kiragadott részlet",
     details: ["A jó újságírás hiteles, tényszerű és értelmezhető."],
-    defaultExplanation: "yooyoy",
+    defaultExplanation:
+      "Félrevezető, mert a szövegkörnyezetből kiragadott részletet használ. Ha teljes képet mutatná, mást jelentene.",
   },
   {
     slug: "felrevezeto",
     text: "félrevezető",
     details: ["A jó újságírás hiteles, tényszerű és méltányos."],
-    defaultExplanation: "mixxads",
+    defaultExplanation:
+      "Elferdíti a szereplő valós megnyilvánulását és ezzel torzítja az álláspontját, amelyet így könnyebben tud támadni.",
   },
   {
     slug: "lejaratas",
     text: "lejáratás",
     details: ["A jó újságírás hiteles, kiegyensúlyozott és méltányos."],
-    defaultExplanation: "",
+    defaultExplanation:
+      "A ellenfél álláspontját félrevetően idézi vagy mutatja be, ezzel az idézett személy hitelességét rontja.",
   },
   {
     slug: "szemelyeskedes",
     text: "személyeskedés",
     details: ["A jó újságírás hiteles, tényszerű és méltányos."],
-    defaultExplanation: "",
+    defaultExplanation:
+      "Személyeskedés, mert elsősorban egy személy ellen irányulnak a kritikák. A cikk a közszereplő személyét rágalmazza és nem a megszólalását értékeli teljes egészében. ",
   },
   {
     slug: "megalazo",
     text: "megalázó",
     details: ["A jó újságírás méltányos."],
-    defaultExplanation: "",
+    defaultExplanation: "Nem a hírt helyezi előtérbe, hanem a személyt.",
   },
   {
     slug: "meltanytalan",
     text: "méltánytalan",
     details: ["A jó újságírás méltányos."],
-    defaultExplanation: "",
+    defaultExplanation: "Nem szolgál plusz információval, nem etikus mások emberi méltóságát megsérteni.",
   },
   {
     slug: "hergel",
     text: "hergel",
     details: ["A jó újságírás higgadt."],
-    defaultExplanation: "",
+    defaultExplanation: "Ellehetetleníti az értelmes vitát, mert azt érzelmi alapra helyezi.",
   },
   {
     slug: "politikailag-befolyasolt",
     text: "politikailag befolyásolt",
     details: ["A jó újságírás őszinte és elfogulatlan."],
-    defaultExplanation: "",
+    defaultExplanation:
+      "Nem az olvasó érdekeit szolgálja, hanem az adott politikiai szereplőét. Könnyen egyoldalúvá válik, nem teljeskörűen tájékoztat. Ide tartozik a propaganda is.",
   },
   {
     slug: "velemeny-nem-teny",
     text: "vélemény, nem tény",
     details: ["A jó újságírás megkülönbözteti a véleményt a ténytől."],
-    defaultExplanation: "",
+    defaultExplanation:
+      "Egy szubjektív álláspontot mutat be tényként, ami egy ember saját preferenciáján alapszik, és nem több forrásból alátámasztott hiteles állításokon.   ",
   },
   {
     slug: "egy-nevtelen-cikk",
     text: "egy névtelen cikk",
     details: ["A jó újságírás hiteles és ellenőrizhető."],
-    defaultExplanation: "",
+    defaultExplanation:
+      "Nehezen számonkérhető, hiteltelenné teszi a cikket. Könnyebb elbújni és szakmaiatlannak lenni, hiszen nem lesz következménye.",
   },
   {
     slug: "egyoldalu",
     text: "egyoldalú",
     details: ["A jó újságírás kiegyensúlyozott."],
-    defaultExplanation: "",
+    defaultExplanation: "Ha nem kérdezi meg az érintettet, akkor a másiknak nincs esélye sem megvédeni magát.",
   },
   {
     slug: "jeloletlen-bulvar",
     text: "jelöletlen bulvár",
     details: ["A jó újságírás releváns."],
-    defaultExplanation: "",
+    defaultExplanation:
+      "Hatásvadász, szenzációhajhász, nem releváns, nem informatív. Nincs megfelelően jelezve, hogy ez a bulvár kategória.",
   },
   {
     slug: "bolhabol-elefant",
     text: "bolhából elefánt",
     details: ["A jó újságírás releváns."],
-    defaultExplanation: "",
+    defaultExplanation:
+      "Azzal, hogy felnagyít egy problémát eltorzítja, hogy mi a fontos. Akár feleselges pánikot is kelthet.",
   },
   {
     slug: "nincs-hivatkozva",
     text: "nincs hivatkozva",
     details: ["A jó újságírás megalapozott, ellenőrizhető és hiteles."],
-    defaultExplanation: "",
+    defaultExplanation:
+      "A cikkben hivatkozott hír forrása nincs lehivatkozva, ezért annak a hitelessége megkérdőjelezhető. ",
   },
   {
     slug: "Ezt-meg-ki-mondta",
     text: "Ezt meg ki mondta?",
     details: ["A jó újságírás megalapozott, ellenőrizhető és hiteles."],
-    defaultExplanation: "",
+    defaultExplanation: "Ismeretlen forrásból idéz, így hiteltelen az állítás.",
   },
   {
     slug: "nem-tenyszeru",
