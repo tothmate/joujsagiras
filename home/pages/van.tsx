@@ -10,8 +10,8 @@ const Page = () => (
     <Paragraph>
       „A média hatalmáról való beszéd sokszor eltúlzott, és elsősorban politikusok szeretik emlegetni. A médiának
       valójában nincs szüksége nagyobb hatalomra és szabadságra, mint amennyi egy közrendőrnek van, aki leint egy
-      gyorsan hajtó magas rangú állami vezetőt és hatalmában áll büntetést kiszabni rá, esetleg azt mondani, hogy „engem
-      nem érdekel, ki maga, itt akkor is csak ötvennel lehet menni”. Azaz a saját feladata körében van hatalma döntést
+      gyorsan hajtó magas rangú állami vezetőt és hatalmában áll büntetést kiszabni rá, esetleg azt mondani, hogy »engem
+      nem érdekel, ki maga, itt akkor is csak ötvennel lehet menni«. Azaz a saját feladata körében van hatalma döntést
       hozni, tisztségekre, befolyásra való tekintet nélkül. (Egy demokrácia minőségét valószínűleg jól lehetne mérni az
       ilyen esetben visszavonulót fújó vagy a büntetést így is kiszabó rendőrök arányán – egy ilyen statisztika
       valószínűleg igen elszomorító képet mutatna.) Ez nem nagy hatalom, épp csak annyi, amennyi alapvetően szükséges
@@ -45,9 +45,15 @@ const Page = () => (
     </Paragraph>
     <Paragraph>
       Visszautalva a hasonlatra a közrendőrről: hogy a gyorshajtás gyorshajtás legyen, függetlenül attól, hogy ismert
-      politikus, csinos nő, udvariatlan bunkó vagy kedvelt szomszédunk követte-e el.
+      politikus, csinos nő, udvariatlan bunkó vagy kedvelt szomszédunk követte-e el."
     </Paragraph>
-    <Paragraph>Ahogy vannak jó rendőrök, úgy vannak jó újságírók is. Akik jó újságírást művelnek.</Paragraph>
+    <Paragraph>
+      Forrás: Weyer Balázs: <Link href="https://tinyurl.com/weyer-balazs">Hogyan mentsük meg a sajtót, hogy az megmenthessen minket? A szabad média anyagi és intézményi környezetének kiépítése.</Link> In: Hegymenet - Társadalmi és politikai kihívások Magyarországon. Szerk.: Jakab András - Urbán László. Budapest, 2017. 
+
+    </Paragraph>
+    <Paragraph>
+      Ahogy vannak jó rendőrök, úgy vannak jó újságírók is. Akik jó újságírást művelnek.
+    </Paragraph>
     <Heading1>
       Milyen a jó újságírás? <Link href="/milyen">Katt&nbsp;ide.</Link>
     </Heading1>
