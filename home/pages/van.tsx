@@ -45,15 +45,18 @@ const Page = () => (
     </Paragraph>
     <Paragraph>
       Visszautalva a hasonlatra a közrendőrről: hogy a gyorshajtás gyorshajtás legyen, függetlenül attól, hogy ismert
-      politikus, csinos nő, udvariatlan bunkó vagy kedvelt szomszédunk követte-e el."
+      politikus, csinos nő, udvariatlan bunkó vagy kedvelt szomszédunk követte-e el.&quot;
     </Paragraph>
     <Paragraph>
-      Forrás: Weyer Balázs: <Link href="https://tinyurl.com/weyer-balazs">Hogyan mentsük meg a sajtót, hogy az megmenthessen minket? A szabad média anyagi és intézményi környezetének kiépítése.</Link> In: Hegymenet - Társadalmi és politikai kihívások Magyarországon. Szerk.: Jakab András - Urbán László. Budapest, 2017. 
-
+      Forrás: Weyer Balázs:{" "}
+      <Link href="https://tinyurl.com/weyer-balazs">
+        Hogyan mentsük meg a sajtót, hogy az megmenthessen minket? A szabad média anyagi és intézményi környezetének
+        kiépítése.
+      </Link>{" "}
+      In: Hegymenet - Társadalmi és politikai kihívások Magyarországon. Szerk.: Jakab András - Urbán László. Budapest,
+      2017.
     </Paragraph>
-    <Paragraph>
-      Ahogy vannak jó rendőrök, úgy vannak jó újságírók is. Akik jó újságírást művelnek.
-    </Paragraph>
+    <Paragraph>Ahogy vannak jó rendőrök, úgy vannak jó újságírók is. Akik jó újságírást művelnek.</Paragraph>
     <Heading1>
       Milyen a jó újságírás? <Link href="/milyen">Katt&nbsp;ide.</Link>
     </Heading1>
