@@ -1,13 +1,13 @@
-import React from "react";
-import { Grid } from "@mui/material";
+import { Grid, Link, Typography } from "@mui/material";
 import Head from "next/head";
-import { Sticker, GeneratorMode } from "../src/models";
+import React from "react";
 import { getDescriptiveTitle, getSourceHostname, getUrlForSticker } from "../src/helpers";
-import Preview from "./Preview";
+import { GeneratorMode, Sticker } from "../src/models";
 import Arrow from "./Arrow";
+import Preview from "./Preview";
 import ShareBox from "./ShareBox";
 
-export default function Viewer(props: { sticker: Sticker }) {
+export default function Viewer(props: { sticker: Sticker; moreStickers: Sticker[] }) {
   const title = getDescriptiveTitle(props.sticker.reason.text);
   const opengraphTitle = `${title}: ${props.sticker.source.title} (${getSourceHostname(props.sticker)})`;
 
@@ -30,6 +30,20 @@ export default function Viewer(props: { sticker: Sticker }) {
       <Grid item xs={12} sm={5}>
         <ShareBox sticker={props.sticker} />
       </Grid>
+      {props.moreStickers && (
+        <Grid item xs={12}>
+          <Typography variant="body2">Más bejelentett cikkek:</Typography>
+        </Grid>
+      )}
+      {props.moreStickers.map((sticker) => (
+        <Grid item xs={6} sm={3} key={sticker.id}>
+          <Link href="/" sx={{ textDecoration: "none" }}>
+            <Typography fontSize={10}>
+              <Preview sticker={sticker} useCanvas={false} />
+            </Typography>
+          </Link>
+        </Grid>
+      ))}
     </Grid>
   );
 }

@@ -58,4 +58,5 @@ export type StickerStore = {
   load: (stickerId: string) => Promise<Result<Sticker, StickerStoreError | null>>;
   save: (sticker: Sticker) => Promise<Result<string, StickerStoreError | null>>;
   loadReasons: () => Promise<Result<Reason[], StickerStoreError | null>>;
+  loadMoreStickers: (sticker: Sticker) => Promise<Result<Sticker[], StickerStoreError | null>>;
 };

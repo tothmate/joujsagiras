@@ -10,6 +10,25 @@ const hashids = new Hashids("hopp public salt", 4);
 function SupabaseStore(supabaseUrl: string, supabaseAnonKey: string): StickerStore {
   const supabase = createClient(supabaseUrl, supabaseAnonKey);
 
+  const convertRowToSticker = (row: any) => {
+    return {
+      id: hashids.encode(row.id),
+      reason: {
+        slug: row.reasons.slug,
+        text: row.reasons.text,
+        details: row.reasons.details,
+        defaultExplanation: "",
+      },
+      explanation: row.explanation,
+      source: {
+        url: row.url,
+        date: getLocallizedDateString(DateTime.fromISO(row.updated_at)),
+        title: row.title,
+        image: row.image,
+      },
+    };
+  };
+
   return {
     load: async (stickerId: string) => {
       const [realId] = hashids.decode(stickerId);
@@ -19,7 +38,7 @@ function SupabaseStore(supabaseUrl: string, supabaseAnonKey: string): StickerSto
 
       const { data, error } = await supabase
         .from("stickers")
-        .select("url, explanation, title, image, updated_at, reasons(slug, text, details)")
+        .select("id, url, explanation, title, image, updated_at, reasons(slug, text, details)")
         .eq("id", realId)
         .limit(1);
       if (error || !data) {
@@ -30,22 +49,7 @@ function SupabaseStore(supabaseUrl: string, supabaseAnonKey: string): StickerSto
         return err({ type: StickerStoreErrorType.NotFound });
       }
 
-      return ok({
-        id: stickerId,
-        reason: {
-          slug: data[0].reasons.slug,
-          text: data[0].reasons.text,
-          details: data[0].reasons.details,
-          defaultExplanation: "",
-        },
-        explanation: data[0].explanation,
-        source: {
-          url: data[0].url,
-          date: getLocallizedDateString(DateTime.fromISO(data[0].updated_at)),
-          title: data[0].title,
-          image: data[0].image,
-        },
-      });
+      return ok(convertRowToSticker(data[0]));
     },
 
     save: async (sticker: Sticker) => {
@@ -74,6 +78,20 @@ function SupabaseStore(supabaseUrl: string, supabaseAnonKey: string): StickerSto
       }
 
       return ok(data);
+    },
+
+    loadMoreStickers: async (currentSticker: Sticker) => {
+      const { data, error } = await supabase
+        .from("stickers")
+        .select("id, url, explanation, title, image, updated_at, reasons(slug, text, details)")
+        .neq("id", hashids.decode(currentSticker.id))
+        .order("id", { ascending: false })
+        .limit(4);
+      if (error || !data) {
+        return ok([]);
+      }
+
+      return ok(data.map(convertRowToSticker));
     },
   };
 }

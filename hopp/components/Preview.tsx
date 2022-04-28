@@ -1,8 +1,14 @@
 import React, { useEffect, useRef } from "react";
-import { Card, CardContent, CardMedia, Typography, Link } from "@mui/material";
+import { Card, CardContent, CardMedia, Typography, Link, styled, TypographyProps } from "@mui/material";
 import { GeneratorMode, Sticker } from "../src/models";
 import { getSourceHostname, getUrlForSticker } from "../src/helpers";
 import { drawPreview } from "../src/canvas";
+
+const ClampedTypography = styled(Typography)<TypographyProps>(({ theme }) => ({
+  "-webkit-box-orient": "vertical",
+  "-webkit-line-clamp": "2",
+  display: "-webkit-box",
+}));
 
 export default function Preview(props: { sticker: Sticker; useCanvas: boolean }) {
   const canvasRef = useRef<HTMLCanvasElement>(null);
@@ -37,9 +43,9 @@ export default function Preview(props: { sticker: Sticker; useCanvas: boolean })
       )}
       <CardContent
         sx={{
-          padding: "0 12px",
+          padding: "0 0.5em",
           "&:last-child": {
-            paddingBottom: "6px",
+            paddingBottom: "0.25em",
           },
           backgroundColor: (theme) => theme.palette.grey[100],
         }}
@@ -54,9 +60,9 @@ export default function Preview(props: { sticker: Sticker; useCanvas: boolean })
         >
           {getSourceHostname(props.sticker)}
         </Link>
-        <Typography variant="subtitle1" component="h3" fontWeight="bold" lineHeight="1.5em">
+        <ClampedTypography variant="subtitle1" component="h3" fontWeight="bold" lineHeight="1.5em" fontSize="1em">
           {props.sticker.source.title}
-        </Typography>
+        </ClampedTypography>
       </CardContent>
     </Card>
   );
