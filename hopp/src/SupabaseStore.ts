@@ -10,7 +10,15 @@ const hashids = new Hashids("hopp public salt", 4);
 function SupabaseStore(supabaseUrl: string, supabaseAnonKey: string): StickerStore {
   const supabase = createClient(supabaseUrl, supabaseAnonKey);
 
-  const convertRowToSticker = (row: any) => {
+  const convertRowToSticker = (row: {
+    id: string;
+    reasons: { slug: string; text: string; details: string };
+    explanation: string;
+    url: string;
+    updated_at: string;
+    title: string;
+    image: string;
+  }) => {
     return {
       id: hashids.encode(row.id),
       reason: {

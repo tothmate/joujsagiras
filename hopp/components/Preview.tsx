@@ -4,11 +4,11 @@ import { GeneratorMode, Sticker } from "../src/models";
 import { getSourceHostname, getUrlForSticker } from "../src/helpers";
 import { drawPreview } from "../src/canvas";
 
-const ClampedTypography = styled(Typography)<TypographyProps>(({ theme }) => ({
+const ClampedTypography = styled(Typography)(() => ({
   "-webkit-box-orient": "vertical",
   "-webkit-line-clamp": "2",
   display: "-webkit-box",
-}));
+})) as typeof Typography;
 
 export default function Preview(props: { sticker: Sticker; useCanvas: boolean }) {
   const canvasRef = useRef<HTMLCanvasElement>(null);
