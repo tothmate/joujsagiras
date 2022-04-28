@@ -3,6 +3,7 @@ import { AppProps } from "next/app";
 import { ThemeProvider, createTheme } from "@mui/material/styles";
 import { Box, Container, CssBaseline } from "@mui/material";
 import Menu from "../components/Menu";
+import Footer from "../components/Footer";
 
 const theme = createTheme({
   palette: {
@@ -58,10 +59,10 @@ export default function MyApp(props: AppProps) {
       <CssBaseline />
       <Container maxWidth="md">
         <Box m={2}>
-          <Menu />
-        </Box>
-        <Box m={2}>
           <Component {...pageProps} />
+        </Box>
+        <Box m={2} mt={8}>
+          <Footer />
         </Box>
       </Container>
       {/* Preload characters so canvas painting don't have ot wait */}
