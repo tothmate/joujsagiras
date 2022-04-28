@@ -154,6 +154,14 @@ export default function Editor(props: { store: StickerStore }) {
     loadReasons();
   }, [props.store]);
 
+  useEffect(() => {
+    if (router.query["url"]) {
+      setUrlCandidate(router.query["url"] as string);
+      router.replace(router.route);
+      handleUrlSubmitted();
+    }
+  }, [handleUrlSubmitted, router, router.query]);
+
   return (
     <>
       <Head>
