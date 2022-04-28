@@ -74,6 +74,20 @@ export default function ShareBox(props: { sticker: Sticker }) {
       >
         Megosztás
       </Button>
+      <Button
+        startIcon={<Icon>add</Icon>}
+        variant="outlined"
+        sx={{ mt: 2 }}
+        color="primary"
+        size="large"
+        fullWidth
+        href="/hopp"
+        onClick={() => {
+          track("add-new", "click");
+        }}
+      >
+        Új cikk bejelentése
+      </Button>
     </>
   );
 }
