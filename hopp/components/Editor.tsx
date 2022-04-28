@@ -59,11 +59,13 @@ export default function Editor(props: { store: StickerStore }) {
     const response = await fetch(`api/fetch-opengraph-data?url=${urlCandidate}`);
     if (response.ok) {
       const data = await response.json();
+      const imageUrl = data.image && !isValidUrl(data.image) ? new URL(urlCandidate).origin + data.image : data.image;
+
       const newSource = {
         url: urlCandidate,
         title: data.title,
         date: getLocallizedDateString(DateTime.now()),
-        image: data.image,
+        image: imageUrl,
       };
       setSticker((sticker) => updateSticker(sticker, { source: newSource }));
       setStep(Step.URL_LOADED);
