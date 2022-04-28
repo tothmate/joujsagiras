@@ -1,12 +1,8 @@
 import { DateTime } from "luxon";
-import { GeneratorMode, reasons, Sticker, StickerChange } from "./models";
+import { GeneratorMode, Sticker, StickerChange } from "./models";
 
 export function updateSticker(sticker: Sticker, updates: StickerChange): Sticker {
   return { ...sticker, ...updates };
-}
-
-export function getReasonBySlug(slug: string) {
-  return reasons.find((r) => slug === r.slug);
 }
 
 export function getDescriptiveTitle(text: String) {

@@ -19,7 +19,7 @@ export default function Viewer(props: { sticker: Sticker }) {
         <meta property="og:image" content={getUrlForSticker(props.sticker, GeneratorMode.Png)} />
         <meta property="og:image:width" content="1200" />
         <meta property="og:image:height" content="628" />
-        <meta property="og:description" content={props.sticker.reason.details.join(" ")} />
+        <meta property="og:description" content={props.sticker.reason.details} />
       </Head>
       <Grid item xs={12} sm={6}>
         <Preview sticker={props.sticker} useCanvas={false} />

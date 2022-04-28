@@ -15,9 +15,8 @@ import {
   Typography,
 } from "@mui/material";
 import LoadingButton from "@mui/lab/LoadingButton";
-import { reasons, Sticker, StickerStore, GeneratorMode, emptySticker } from "../src/models";
+import { Sticker, StickerStore, GeneratorMode, emptySticker, Reason } from "../src/models";
 import {
-  getReasonBySlug,
   isValidUrl,
   updateSticker,
   getLocallizedDateString,
@@ -44,6 +43,7 @@ enum Step {
 export default function Editor(props: { store: StickerStore }) {
   const router = useRouter();
 
+  const [reasons, setReasons] = useState<Reason[]>([]);
   const [sticker, setSticker] = useState<Sticker>(emptySticker);
   const [step, setStep] = useState<Step>(Step.INITIAL);
   const [urlCandidate, setUrlCandidate] = useState<string>("");
@@ -76,22 +76,25 @@ export default function Editor(props: { store: StickerStore }) {
     }
   }, [urlCandidate]);
 
-  const handleReasonChanged = useCallback((value: string) => {
-    const newReason = getReasonBySlug(value);
-    if (newReason !== undefined) {
-      setSticker((sticker) =>
-        updateSticker(sticker, {
-          reason: newReason,
-          explanation:
-            sticker.explanation == sticker.reason.defaultExplanation
-              ? newReason.defaultExplanation
-              : sticker.explanation,
-        })
-      );
-      setStep(Step.REASON_SELECTED);
-      track("select-reason", "click");
-    }
-  }, []);
+  const handleReasonChanged = useCallback(
+    (value: string) => {
+      const newReason = reasons.find((r) => value === r.slug);
+      if (newReason !== undefined) {
+        setSticker((sticker) =>
+          updateSticker(sticker, {
+            reason: newReason,
+            explanation:
+              sticker.explanation == sticker.reason.defaultExplanation
+                ? newReason.defaultExplanation
+                : sticker.explanation,
+          })
+        );
+        setStep(Step.REASON_SELECTED);
+        track("select-reason", "click");
+      }
+    },
+    [reasons]
+  );
 
   const handleExplanationChanged = useCallback((value: string) => {
     setSticker((sticker) => updateSticker(sticker, { explanation: value }));
@@ -132,6 +135,22 @@ export default function Editor(props: { store: StickerStore }) {
       return true;
     });
   }, [router]);
+
+  useEffect(() => {
+    const loadReasons = async () => {
+      const result = await props.store.loadReasons();
+      result.match(
+        (reasons) => {
+          setReasons(reasons);
+        },
+        (error) => {
+          setErrorMessage(`Sikertelen betöltés, hiba: ${error?.message}`);
+          track("load-reasons", "error");
+        }
+      );
+    };
+    loadReasons();
+  }, [props.store]);
 
   return (
     <>

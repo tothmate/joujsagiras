@@ -35,11 +35,9 @@ export default function ShareBox(props: { sticker: Sticker }) {
       <Typography variant="h1" gutterBottom>
         Ez nem jó újságírás.
       </Typography>
-      {props.sticker.reason.details.map((detail) => (
-        <Typography variant="body2" gutterBottom key={detail}>
-          {linkify(detail)}
-        </Typography>
-      ))}
+      <Typography variant="body2" gutterBottom>
+        {linkify(props.sticker.reason.details)}
+      </Typography>
       <CopyToClipboard
         text={link}
         onCopy={() => {
