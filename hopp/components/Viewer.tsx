@@ -37,7 +37,7 @@ export default function Viewer(props: { sticker: Sticker; moreStickers: Sticker[
       )}
       {props.moreStickers.map((sticker) => (
         <Grid item xs={6} sm={3} key={sticker.id}>
-          <Link href="/" sx={{ textDecoration: "none" }}>
+          <Link href={getUrlForSticker(sticker, GeneratorMode.Share)} sx={{ textDecoration: "none" }}>
             <Typography fontSize={10}>
               <Preview sticker={sticker} useCanvas={false} />
             </Typography>
