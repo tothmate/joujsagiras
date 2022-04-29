@@ -88,13 +88,13 @@ function SupabaseStore(supabaseUrl: string, supabaseAnonKey: string): StickerSto
       return ok(data);
     },
 
-    loadMoreStickers: async (currentSticker: Sticker) => {
+    loadMoreStickers: async (currentSticker: Sticker, limit?: number) => {
       const { data, error } = await supabase
         .from("stickers")
         .select("id, url, explanation, title, image, updated_at, reasons(slug, text, details)")
-        .neq("id", hashids.decode(currentSticker.id))
+        .neq("id", currentSticker.id ? hashids.decode(currentSticker.id) : 0)
         .order("id", { ascending: false })
-        .limit(4);
+        .limit(limit || 4);
       if (error || !data) {
         return ok([]);
       }
