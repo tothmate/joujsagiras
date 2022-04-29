@@ -30,7 +30,7 @@ export default function Viewer(props: { sticker: Sticker; moreStickers: Sticker[
       <Grid item xs={12} sm={5}>
         <ShareBox sticker={props.sticker} />
       </Grid>
-      {props.moreStickers && (
+      {props.moreStickers.length > 0 && (
         <Grid item xs={12}>
           <Typography variant="body2">Más bejelentett cikkek:</Typography>
         </Grid>
