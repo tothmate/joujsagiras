@@ -36,7 +36,7 @@ export default function Preview(props: { sticker: Sticker; useCanvas: boolean })
       )}
       {!props.useCanvas && (
         <CardMedia
-          image={getUrlForSticker(props.sticker, GeneratorMode.Png)}
+          image={getUrlForSticker(props.sticker, GeneratorMode.Jpg)}
           title={props.sticker.source.title}
           style={{ width: "100%", aspectRatio: "1.91" }}
         />

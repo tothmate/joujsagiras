@@ -16,7 +16,7 @@ export default function Viewer(props: { sticker: Sticker; moreStickers: Sticker[
       <Head>
         <title>{title}</title>
         <meta property="og:title" content={opengraphTitle} />
-        <meta property="og:image" content={getUrlForSticker(props.sticker, GeneratorMode.Png)} />
+        <meta property="og:image" content={getUrlForSticker(props.sticker, GeneratorMode.Jpg)} />
         <meta property="og:image:width" content="1200" />
         <meta property="og:image:height" content="628" />
         <meta property="og:description" content={props.sticker.reason.details} />

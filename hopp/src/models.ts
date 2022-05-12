@@ -33,6 +33,7 @@ export type StickerChange = {
 export enum GeneratorMode {
   Share = 1,
   Png,
+  Jpg,
 }
 
 export const emptySticker: Sticker = {

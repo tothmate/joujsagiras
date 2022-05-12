@@ -14,8 +14,8 @@ module.exports = {
   async rewrites() {
     return [
       {
-        source: "/:reasonSlug/:stickerId.png",
-        destination: "/api/generate-sticker/?stickerId=:stickerId",
+        source: "/:reasonSlug/:stickerId.:format",
+        destination: "/api/generate-sticker/?stickerId=:stickerId&format=:format",
       },
     ];
   },

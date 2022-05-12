@@ -24,6 +24,8 @@ function getUrlSuffixByMode(mode: GeneratorMode) {
       return "/";
     case GeneratorMode.Png:
       return ".png";
+    case GeneratorMode.Jpg:
+      return ".jpg";
   }
 }
 
