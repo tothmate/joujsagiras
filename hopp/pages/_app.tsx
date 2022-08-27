@@ -2,8 +2,8 @@ import React from "react";
 import { AppProps } from "next/app";
 import { ThemeProvider, createTheme } from "@mui/material/styles";
 import { Box, Container, CssBaseline } from "@mui/material";
-import Menu from "../components/Menu";
 import Footer from "../components/Footer";
+import { appWithTranslation } from 'next-i18next';
 
 const theme = createTheme({
   palette: {
@@ -51,7 +51,7 @@ const theme = createTheme({
   },
 });
 
-export default function MyApp(props: AppProps) {
+const MyApp = (props: AppProps) => {
   const { Component, pageProps } = props;
 
   return (
@@ -70,3 +70,5 @@ export default function MyApp(props: AppProps) {
     </ThemeProvider>
   );
 }
+
+export default appWithTranslation(MyApp);

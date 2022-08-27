@@ -77,10 +77,11 @@ function SupabaseStore(supabaseUrl: string, supabaseAnonKey: string): StickerSto
       return ok(hashids.encode(data[0].id));
     },
 
-    loadReasons: async () => {
+    loadReasons: async (language: string) => {
       const { data, error } = await supabase
         .from("reasons")
-        .select("slug, text, details, defaultExplanation:default_explanation");
+        .select("slug, text, details, defaultExplanation:default_explanation")
+        .filter("slug", language === "en" ? "like" : "not.like", "en-%");
       if (error || !data) {
         return err({ type: StickerStoreErrorType.CouldNotLoadReasons, message: error?.message });
       }

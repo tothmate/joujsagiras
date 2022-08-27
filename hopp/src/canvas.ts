@@ -40,7 +40,7 @@ function drawImageProp(ctx: CanvasRenderingContext2D, img: Image) {
   ctx.drawImage(img as unknown as CanvasImageSource, cx, cy, cw, ch, 0, 0, w, h);
 }
 
-export async function drawPreview(ctx: CanvasRenderingContext2D, imageUrl?: string, text?: string) {
+export async function drawPreview(ctx: CanvasRenderingContext2D, imageUrl?: string, text?: string, language?: string) {
   const canvas = ctx.canvas;
   const heightRatio = 0.25;
   const textSizeRatio = 0.55;
@@ -71,7 +71,7 @@ export async function drawPreview(ctx: CanvasRenderingContext2D, imageUrl?: stri
     ctx.fillStyle = "#000000";
     ctx.font = `${canvas.height * heightRatio * textSizeRatio}px Oswald, sans-serif`;
     ctx.fillText(
-      getDescriptiveTitle(text).toUpperCase(),
+      getDescriptiveTitle(text, language).toUpperCase(),
       canvas.width * 0.02,
       canvas.height * heightRatio * (0.5 + 0.5 * textSizeRatio),
       canvas.width

@@ -1,0 +1,34 @@
+{
+  "footer": {
+    "project": "Part of the <l>Good Journalism</l> project."
+  },
+  "step1": {
+    "title": "Did you encounter bad journalism? Submit it!",
+    "description1": "Did you see an article that does not abide by good journalistic practices?",
+    "description2": "Report it, share it on Facebook and raise awareness!",
+    "url-placeholder": "Copy the URL of the article here",
+    "next": "Next"
+  },
+  "step2": {
+    "whatswrong": "What's wrong with it?",
+    "why": "Why? (optional)",
+    "submit": "Submit it!"
+  },
+  "error": {
+    "url-load": "Could not load URL",
+    "save": "Could not save, error: {{error}}",
+    "load": "Could not load, error: {{error}}",
+    "not-found": "Not found",
+    "error": "Error: {{error}}"
+  },
+  "share": {
+    "description1": "Why is that a problem?",
+    "description2": "It's not good journalism",
+    "copy": "Copy link",
+    "share": "Share",
+    "new": "Submit another"
+  },
+  "viewer": {
+    "more": "Other submitted articles:"
+  }
+}

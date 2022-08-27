@@ -1,7 +1,4 @@
-import React, { useCallback, useEffect, useState } from "react";
-import { DateTime } from "luxon";
-import Head from "next/head";
-import { useRouter } from "next/router";
+import LoadingButton from "@mui/lab/LoadingButton";
 import {
   Alert,
   Collapse,
@@ -12,21 +9,27 @@ import {
   Select,
   Snackbar,
   TextField,
-  Typography,
+  Typography
 } from "@mui/material";
-import LoadingButton from "@mui/lab/LoadingButton";
-import { Sticker, StickerStore, GeneratorMode, emptySticker, Reason } from "../src/models";
+import { DateTime } from "luxon";
+import { useTranslation } from "next-i18next";
+import Head from "next/head";
+import { useRouter } from "next/router";
+import { useCallback, useEffect, useState } from "react";
+import { basePath } from "../next.config";
 import {
-  isValidUrl,
-  updateSticker,
-  getLocallizedDateString,
-  getUrlForSticker,
   capitalizeFirstLetter,
-  track,
   getDescriptiveTitle,
+  getLocallizedDateString,
+  getLanguageFromSlug,
+  getUrlForSticker,
+  isValidUrl,
+  track,
+  updateSticker
 } from "../src/helpers";
-import Preview from "./Preview";
+import { emptySticker, GeneratorMode, Reason, Sticker, StickerStore } from "../src/models";
 import Arrow from "./Arrow";
+import Preview from "./Preview";
 import ShareBox from "./ShareBox";
 
 enum Step {
@@ -42,6 +45,7 @@ enum Step {
 
 export default function Editor(props: { store: StickerStore }) {
   const router = useRouter();
+  const { t, i18n } = useTranslation();
 
   const [reasons, setReasons] = useState<Reason[]>([]);
   const [sticker, setSticker] = useState<Sticker>(emptySticker);
@@ -56,7 +60,7 @@ export default function Editor(props: { store: StickerStore }) {
       return;
     }
 
-    const response = await fetch(`api/fetch-opengraph-data?url=${urlCandidate}`);
+    const response = await fetch(`${basePath}/api/fetch-opengraph-data?url=${urlCandidate}`);
     if (response.ok) {
       const data = await response.json();
       const imageUrl = data.image && !isValidUrl(data.image) ? new URL(urlCandidate).origin + data.image : data.image;
@@ -73,10 +77,10 @@ export default function Editor(props: { store: StickerStore }) {
       track("submit-url", "click");
     } else {
       setStep(Step.URL_ERROR);
-      setErrorMessage("Nem sikerült betölteni az URL-t");
+      setErrorMessage(t("error.url-load"));
       track("submit-url", "error");
     }
-  }, [urlCandidate]);
+  }, [urlCandidate, t]);
 
   const handleReasonChanged = useCallback(
     (value: string) => {
@@ -116,11 +120,11 @@ export default function Editor(props: { store: StickerStore }) {
       },
       (error) => {
         setStep(Step.SAVE_ERROR);
-        setErrorMessage(`Sikertelen mentés, hiba: ${error?.message}`);
+        setErrorMessage(t("error.save", { error: error?.message }));
         track("save-sticker", "error");
       }
     );
-  }, [props.store, sticker]);
+  }, [props.store, sticker, t]);
 
   useEffect(() => {
     if (step === Step.SAVED) {
@@ -140,19 +144,19 @@ export default function Editor(props: { store: StickerStore }) {
 
   useEffect(() => {
     const loadReasons = async () => {
-      const result = await props.store.loadReasons();
+      const result = await props.store.loadReasons(i18n.language);
       result.match(
         (reasons) => {
           setReasons(reasons);
         },
         (error) => {
-          setErrorMessage(`Sikertelen betöltés, hiba: ${error?.message}`);
+          setErrorMessage(t("error.load", { error: error?.message }));
           track("load-reasons", "error");
         }
       );
     };
     loadReasons();
-  }, [props.store]);
+  }, [i18n.language, props.store, t]);
 
   useEffect(() => {
     if (router.query["url"]) {
@@ -165,11 +169,11 @@ export default function Editor(props: { store: StickerStore }) {
   return (
     <>
       <Head>
-        <title>{getDescriptiveTitle(sticker.reason.text)}</title>
+        <title>{getDescriptiveTitle(sticker.reason.text, getLanguageFromSlug(sticker.reason.slug))}</title>
       </Head>
 
       <Snackbar open={errorMessage !== undefined} autoHideDuration={6000} onClose={() => setErrorMessage(undefined)}>
-        <Alert severity="error">Hopp! {errorMessage}</Alert>
+        <Alert severity="error">HOPP! {errorMessage}</Alert>
       </Snackbar>
 
       <Collapse in={step < Step.URL_LOADED}>
@@ -182,18 +186,18 @@ export default function Editor(props: { store: StickerStore }) {
           <Grid container spacing={2} justifyContent="center">
             <Grid item xs={12}>
               <Typography variant="h1" gutterBottom>
-                Rossz újságírással találkoztál? Tedd&nbsp;szóvá!
+                {t("step1.title")}
               </Typography>
               <Typography variant="body2" gutterBottom>
-                Láttál egy cikket, amely nem felel meg a jó újságírás elvárásainak?
+                {t("step1.description1")}
               </Typography>
               <Typography variant="body2" gutterBottom>
-                Jelentsd be, oszd meg Facebookon és hívd fel mások figyelmét is erre!
+                {t("step1.description2")}
               </Typography>
             </Grid>
             <Grid item xs={12} sm={7}>
               <TextField
-                label="Másold be ide a cikk URL-jét"
+                label={t("step1.url-placeholder")}
                 color="secondary"
                 fullWidth
                 error={step === Step.URL_ERROR}
@@ -209,7 +213,7 @@ export default function Editor(props: { store: StickerStore }) {
                 color="primary"
                 fullWidth
               >
-                Tovább
+                {t("step1.next")}
               </LoadingButton>
             </Grid>
           </Grid>
@@ -235,11 +239,11 @@ export default function Editor(props: { store: StickerStore }) {
               >
                 <FormControl fullWidth>
                   <InputLabel id="reason-selector-label" color="secondary">
-                    Mi a baj vele?
+                    {t("step2.whatswrong")}
                   </InputLabel>
                   <Select
                     labelId="reason-selector-label"
-                    label="Mi a baj vele?"
+                    label={t("step2.whatswrong")}
                     color="secondary"
                     value={sticker.reason.slug}
                     onChange={(e) => handleReasonChanged(e.target.value as string)}
@@ -252,7 +256,7 @@ export default function Editor(props: { store: StickerStore }) {
                   </Select>
                   <Collapse in={step >= Step.REASON_SELECTED && step < Step.SAVED}>
                     <TextField
-                      label="Miért? (opcionális)"
+                      label={t("step2.why")}
                       multiline
                       rows={4}
                       margin="normal"
@@ -268,7 +272,7 @@ export default function Editor(props: { store: StickerStore }) {
                       color="primary"
                       fullWidth
                     >
-                      Szóvá teszem!
+                      {t("step2.submit")}
                     </LoadingButton>
                   </Collapse>
                 </FormControl>

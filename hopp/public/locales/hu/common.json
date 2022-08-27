@@ -1,0 +1,34 @@
+{
+  "footer": {
+    "project": "A <l>Jó újságírás</l> projekt része."
+  },
+  "step1": {
+    "title": "Rossz újságírással találkoztál? Tedd szóvá!",
+    "description1": "Láttál egy cikket, amely nem felel meg a jó újságírás elvárásainak?",
+    "description2": "Jelentsd be, oszd meg Facebookon és hívd fel mások figyelmét is erre!",
+    "url-placeholder": "Másold be ide a cikk URL-jét",
+    "next": "Tovább"
+  },
+  "step2": {
+    "whatswrong": "Mi a baj vele?",
+    "why": "Miért? (opcionális)",
+    "submit": "Szóvá teszem!"
+  },
+  "error": {
+    "url-load": "Nem sikerült betölteni az URL-t",
+    "save": "Sikertelen mentés, hiba: {{error}}",
+    "load": "Sikertelen betöltés, hiba: {{error}}",
+    "not-found": "Nem található",
+    "error": "Hiba: {{error}}"
+  },
+  "share": {
+    "description1": "Hogy miért baj ez?",
+    "description2": "Ez nem jó újságírás.",
+    "copy": "Link másolása",
+    "share": "Megosztás",
+    "new": "Új cikk bejelentése"
+  },
+  "viewer": {
+    "more": "Más bejelentett cikkek:"
+  }
+}

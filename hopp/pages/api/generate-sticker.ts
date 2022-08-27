@@ -8,13 +8,15 @@ import { saveOswaldIfNeeded } from "../../src/font";
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
   const result = await store.load(req.query.stickerId as string);
   const format = (req.query.format as string) === "png" ? "png" : "jpeg";
+  const language = (req.query.reasonSlug as string).startsWith("en-") ? "en" : "hu";
+
   result.match(
     async (sticker) => {
       const fontFilepath = "/tmp/Oswald-VariableFont_wght.ttf";
       saveOswaldIfNeeded(fontFilepath);
       registerFont(fontFilepath, { family: "Oswald" });
       const canvas = createCanvas(1200, 628);
-      await drawPreview(canvas.getContext("2d"), sticker.source.image, sticker.reason.text);
+      await drawPreview(canvas.getContext("2d"), sticker.source.image, sticker.reason.text, language);
       const screenshot = format === "png" ? canvas.createPNGStream() : canvas.createJPEGStream();
 
       res.setHeader("Content-Type", `image/${format}`);

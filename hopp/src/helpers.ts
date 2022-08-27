@@ -5,7 +5,7 @@ export function updateSticker(sticker: Sticker, updates: StickerChange): Sticker
   return { ...sticker, ...updates };
 }
 
-export function getDescriptiveTitle(text: String) {
+export function getDescriptiveTitle(text: string, language?: string) {
   const exclamation = "HOPP!";
   if (!text) {
     return exclamation;
@@ -15,7 +15,7 @@ export function getDescriptiveTitle(text: String) {
     return `${exclamation} ${text}`;
   }
 
-  return `${exclamation} Ez ${text}`;
+  return `${exclamation} ${language === "en" ? "It's" : "Ez"} ${text}`;
 }
 
 function getUrlSuffixByMode(mode: GeneratorMode) {
@@ -31,6 +31,10 @@ function getUrlSuffixByMode(mode: GeneratorMode) {
 
 export function getUrlForSticker(sticker: Sticker, mode: GeneratorMode): string {
   return `${process.env.NEXT_PUBLIC_BASE_URL}/hopp/${sticker.reason.slug}/${sticker.id}${getUrlSuffixByMode(mode)}`;
+}
+
+export function getLanguageFromSlug(slug: string): string {
+  return slug.startsWith("en-") ? "en" : "hu";
 }
 
 export function isValidUrl(url: string) {

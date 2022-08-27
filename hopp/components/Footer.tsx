@@ -1,6 +1,6 @@
-import React from "react";
 import { Divider, Grid, Link, Typography } from "@mui/material";
 import { styled } from "@mui/material/styles";
+import { Trans } from "next-i18next";
 
 const FooterText = styled(Typography)(({ theme }) => ({
   fontFamily: "Oswald, sans-serif",
@@ -15,7 +15,7 @@ export default function Footer() {
       <Grid item>
         <Divider variant="middle" />
         <FooterText>
-          Hopp! A <Link href="/">Jó újságírás</Link> projekt része.
+          HOPP! <Trans i18nKey="footer.project" components={{ l: <Link href="/" /> }} />
         </FooterText>
       </Grid>
     </Grid>

@@ -1,17 +1,19 @@
-import React, { useState } from "react";
 import { Button, Icon, Link, Typography } from "@mui/material";
-import { Sticker, GeneratorMode } from "../src/models";
-import { getDescriptiveTitle, getUrlForSticker, track } from "../src/helpers";
+import { useTranslation } from "next-i18next";
+import { useState } from "react";
 import CopyToClipboard from "react-copy-to-clipboard";
+import { getDescriptiveTitle, getLanguageFromSlug, getUrlForSticker, track } from "../src/helpers";
+import { GeneratorMode, Sticker } from "../src/models";
 
 function linkify(text: string) {
-  const textToLink = "jó újságírás";
-  const parts = text.split(textToLink, 2);
-  if (parts.length == 2) {
+  const matchingLink = text?.match(/(good journalism|jó újságírás)/i);
+
+  if (matchingLink) {
+    const parts = text.split(matchingLink[1], 2);
     return [
       parts[0],
       <Link key="link" href="https://joujsagiras.hu/milyen">
-        {textToLink}
+        {matchingLink[1]}
       </Link>,
       parts[1],
     ];
@@ -21,19 +23,20 @@ function linkify(text: string) {
 }
 
 export default function ShareBox(props: { sticker: Sticker }) {
+  const { t } = useTranslation();
   const [copiedLink, setCopiedLink] = useState(false);
   const link = getUrlForSticker(props.sticker, GeneratorMode.Share);
 
   return (
     <>
       <Typography variant="h1" gutterBottom>
-        {getDescriptiveTitle(props.sticker.reason.text)}
+        {getDescriptiveTitle(props.sticker.reason.text, getLanguageFromSlug(props.sticker.reason.slug))}
       </Typography>
       <Typography variant="body2" gutterBottom>
-        {props.sticker.explanation || "Hogy miért baj ez?"}
+        {props.sticker.explanation || t("share.description1")}
       </Typography>
       <Typography variant="h1" gutterBottom>
-        Ez nem jó újságírás.
+        {t("share.description2")}
       </Typography>
       <Typography variant="body2" gutterBottom>
         {linkify(props.sticker.reason.details)}
@@ -53,7 +56,7 @@ export default function ShareBox(props: { sticker: Sticker }) {
           size="large"
           fullWidth
         >
-          Link másolása
+          {t("share.copy")}
         </Button>
       </CopyToClipboard>
       <Button
@@ -72,7 +75,7 @@ export default function ShareBox(props: { sticker: Sticker }) {
           track("share-facebook", "click");
         }}
       >
-        Megosztás
+        {t("share.share")}
       </Button>
       <Button
         startIcon={<Icon>add</Icon>}
@@ -86,7 +89,7 @@ export default function ShareBox(props: { sticker: Sticker }) {
           track("add-new", "click");
         }}
       >
-        Új cikk bejelentése
+        {t("share.new")}
       </Button>
     </>
   );

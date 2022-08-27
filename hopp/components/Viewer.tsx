@@ -1,14 +1,15 @@
 import { Grid, Link, Typography } from "@mui/material";
+import { useTranslation } from "next-i18next";
 import Head from "next/head";
-import React from "react";
-import { getDescriptiveTitle, getSourceHostname, getUrlForSticker } from "../src/helpers";
+import { getDescriptiveTitle, getSourceHostname, getLanguageFromSlug, getUrlForSticker } from "../src/helpers";
 import { GeneratorMode, Sticker } from "../src/models";
 import Arrow from "./Arrow";
 import Preview from "./Preview";
 import ShareBox from "./ShareBox";
 
 export default function Viewer(props: { sticker: Sticker; moreStickers: Sticker[] }) {
-  const title = getDescriptiveTitle(props.sticker.reason.text);
+  const { t } = useTranslation();
+  const title = getDescriptiveTitle(props.sticker.reason.text, getLanguageFromSlug(props.sticker.reason.slug));
   const opengraphTitle = `${title}: ${props.sticker.source.title} (${getSourceHostname(props.sticker)})`;
 
   return (
@@ -32,7 +33,7 @@ export default function Viewer(props: { sticker: Sticker; moreStickers: Sticker[
       </Grid>
       {props.moreStickers.length > 0 && (
         <Grid item xs={12}>
-          <Typography variant="body2">Más bejelentett cikkek:</Typography>
+          <Typography variant="body2">{t("viewer.more")}</Typography>
         </Grid>
       )}
       {props.moreStickers.map((sticker) => (

@@ -1,8 +1,8 @@
-import React, { useEffect, useRef } from "react";
-import { Card, CardContent, CardMedia, Typography, Link, styled, TypographyProps } from "@mui/material";
-import { GeneratorMode, Sticker } from "../src/models";
-import { getSourceHostname, getUrlForSticker } from "../src/helpers";
+import { Card, CardContent, CardMedia, Link, styled, Typography } from "@mui/material";
+import { useEffect, useRef } from "react";
 import { drawPreview } from "../src/canvas";
+import { getLanguageFromSlug, getSourceHostname, getUrlForSticker } from "../src/helpers";
+import { GeneratorMode, Sticker } from "../src/models";
 
 const ClampedTypography = styled(Typography)(() => ({
   "-webkit-box-orient": "vertical",
@@ -23,7 +23,7 @@ export default function Preview(props: { sticker: Sticker; useCanvas: boolean })
   useEffect(() => {
     const ctx = canvasRef?.current?.getContext("2d");
     if (ctx) {
-      drawPreview(ctx, props.sticker.source.image, props.sticker.reason.text);
+      drawPreview(ctx, props.sticker.source.image, props.sticker.reason.text, getLanguageFromSlug(props.sticker.reason.slug));
     }
   });
 
