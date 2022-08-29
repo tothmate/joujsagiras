@@ -3,7 +3,7 @@
     "project": "Part of the <l>Good Journalism</l> project."
   },
   "step1": {
-    "title": "Did you encounter bad journalism? Submit it!",
+    "title": "Did you encounter bad journalism? Speak up!",
     "description1": "Did you see an article that does not abide by good journalistic practices?",
     "description2": "Report it, share it on Facebook and raise awareness!",
     "url-placeholder": "Copy the URL of the article here",
@@ -12,7 +12,7 @@
   "step2": {
     "whatswrong": "What's wrong with it?",
     "why": "Why? (optional)",
-    "submit": "Submit it!"
+    "submit": "Speak up!"
   },
   "error": {
     "url-load": "Could not load URL",
@@ -26,9 +26,9 @@
     "description2": "It's not good journalism",
     "copy": "Copy link",
     "share": "Share",
-    "new": "Submit another"
+    "new": "Report another"
   },
   "viewer": {
-    "more": "Other submitted articles:"
+    "more": "Other reported articles:"
   }
 }
