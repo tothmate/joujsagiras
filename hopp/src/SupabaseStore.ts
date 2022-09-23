@@ -94,7 +94,8 @@ function SupabaseStore(supabaseUrl: string, supabaseAnonKey: string): StickerSto
         .from("stickers")
         .select("id, url, explanation, title, image, updated_at, reasons(slug, text, details)")
         .neq("id", currentSticker.id ? hashids.decode(currentSticker.id) : 0)
-        .order("id", { ascending: false })
+        .gte("updated_at", "2022-09-19")
+        .order("updated_at", { ascending: false })
         .limit(limit || 4);
       if (error || !data) {
         return ok([]);
