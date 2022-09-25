@@ -1,7 +1,7 @@
 import { Grid, Link, Typography } from "@mui/material";
 import { useTranslation } from "next-i18next";
 import Head from "next/head";
-import { getDescriptiveTitle, getSourceHostname, getLanguageFromSlug, getUrlForSticker } from "../src/helpers";
+import { getDescriptiveTitle, getLanguageFromSlug, getSourceHostname, getUrlForSticker } from "../src/helpers";
 import { GeneratorMode, Sticker } from "../src/models";
 import Arrow from "./Arrow";
 import Preview from "./Preview";
@@ -32,12 +32,12 @@ export default function Viewer(props: { sticker: Sticker; moreStickers: Sticker[
         <ShareBox sticker={props.sticker} />
       </Grid>
       {props.moreStickers.length > 0 && (
-        <Grid item xs={12}>
+        <Grid item xs={12} sx={{ displayPrint: "none" }}>
           <Typography variant="body2">{t("viewer.more")}</Typography>
         </Grid>
       )}
       {props.moreStickers.map((sticker) => (
-        <Grid item xs={6} sm={3} key={sticker.id}>
+        <Grid item xs={6} sm={3} key={sticker.id} sx={{ displayPrint: "none" }}>
           <Link href={getUrlForSticker(sticker, GeneratorMode.Share)} sx={{ textDecoration: "none" }}>
             <Typography fontSize={10}>
               <Preview sticker={sticker} useCanvas={false} />
