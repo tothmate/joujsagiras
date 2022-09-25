@@ -1,6 +1,7 @@
-import { Grid, Link, Typography } from "@mui/material";
+import { Box, Grid, Link, Typography } from "@mui/material";
 import { useTranslation } from "next-i18next";
 import Head from "next/head";
+import { QRCodeSVG } from "qrcode.react";
 import { getDescriptiveTitle, getLanguageFromSlug, getSourceHostname, getUrlForSticker } from "../src/helpers";
 import { GeneratorMode, Sticker } from "../src/models";
 import Arrow from "./Arrow";
@@ -24,6 +25,10 @@ export default function Viewer(props: { sticker: Sticker; moreStickers: Sticker[
       </Head>
       <Grid item xs={12} sm={6}>
         <Preview sticker={props.sticker} useCanvas={false} />
+        <Box mt={2} sx={{ display: "none", displayPrint: "block" }}>
+          <Typography variant="body2">Eredeti cikk:</Typography>
+          <QRCodeSVG value={props.sticker.source.url} />
+        </Box>
       </Grid>
       <Grid item xs={12} sm={1} sx={{ display: { xs: "none", sm: "block" } }}>
         <Arrow />
