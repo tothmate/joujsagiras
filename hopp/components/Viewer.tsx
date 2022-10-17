@@ -29,6 +29,18 @@ export default function Viewer(props: { sticker: Sticker; moreStickers: Sticker[
           <Typography variant="body2">Eredeti cikk:</Typography>
           <QRCodeSVG value={props.sticker.source.url} />
         </Box>
+        <Box mt={2} sx={{ display: "block", displayPrint: "none" }}>
+          <Typography variant="body2">Eredeti cikk:</Typography>
+            <Link
+                href={props.sticker.source.url}
+                underline="hover"
+                variant="body2"
+                target="_blank"
+              >
+            {props.sticker.source.url}
+          
+        </Link>
+        </Box>
       </Grid>
       <Grid item xs={12} sm={1} sx={{ display: { xs: "none", sm: "block" } }}>
         <Arrow />
