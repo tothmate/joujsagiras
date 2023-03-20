@@ -1,9 +1,9 @@
 import { InferGetServerSidePropsType } from "next";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import ErrorPage from "next/error";
-import List from "../components/List";
-import { emptySticker } from "../src/models";
-import store from "../src/SupabaseStore";
+import List from "../../components/List";
+import { emptySticker } from "../../src/models";
+import store from "../../src/SupabaseStore";
 
 export async function getServerSideProps() {
   const result = await store.loadMoreStickers(emptySticker, 100);

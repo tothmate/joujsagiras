@@ -103,6 +103,21 @@ function SupabaseStore(supabaseUrl: string, supabaseAnonKey: string): StickerSto
 
       return ok(data.map(convertRowToSticker));
     },
+
+    loadStickersWithSlug: async (reasonSlug: string, limit?: number) => {
+      const { data, error } = await supabase
+        .from("stickers")
+        .select("id, url, explanation, title, image, updated_at, reasons(slug, text, details)")
+        .eq("reason_slug", reasonSlug)
+        .gte("updated_at", "2022-09-19")
+        .order("updated_at", { ascending: false })
+        .limit(limit || 4);
+      if (error || !data) {
+        return ok([]);
+      }
+
+      return ok(data.map(convertRowToSticker));
+    },
   };
 }
 
