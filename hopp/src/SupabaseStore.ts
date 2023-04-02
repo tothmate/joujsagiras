@@ -81,7 +81,8 @@ function SupabaseStore(supabaseUrl: string, supabaseAnonKey: string): StickerSto
       const { data, error } = await supabase
         .from("reasons")
         .select("slug, text, details, defaultExplanation:default_explanation")
-        .filter("slug", language === "en" ? "like" : "not.like", "en-%");
+        .filter("slug", language === "en" ? "like" : "not.like", "en-%")
+        .filter("hidden", "eq", false);
       if (error || !data) {
         return err({ type: StickerStoreErrorType.CouldNotLoadReasons, message: error?.message });
       }
